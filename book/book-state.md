@@ -33,7 +33,7 @@ Legend: `D` = Draft, `S` = Score, `Rv` = Reviewed, `P` = Published
 
 | # | Chapter | Component | Primary System | D | S | Rv | P |
 |---|---------|-----------|---------------|---|---|----|---|
-| 4 | Structured Prompts — Your Systems Start Here | Prompt | Study | [ ] | -/30 | [ ] | [ ] |
+| 4 | Structured Prompts — Your Systems Start Here | Prompt | Study | DONE | -/30 | [ ] | [ ] |
 | 5 | State Files — Teaching Your Systems to Remember | State | Job Hunting | [ ] | -/30 | [ ] | [ ] |
 | 6 | A Second System — Meal Planning That Adapts | _(deepening)_ | Meal Planner | [ ] | -/30 | [ ] | [ ] |
 
@@ -144,3 +144,4 @@ Legend: `D` = Draft, `S` = Score, `Rv` = Reviewed, `P` = Published
 | 2026-05-06 | Adopted v3 as canonical. Removed 16 empty v1 chapter folders. Updated book-state.md and CLAUDE.md to match v3. Removed obsolete outlines. | All (restructure) |
 | 2026-05-06 | Ch 2 first draft completed (~3,500 words). Sessions 3-5 of the Study System. Covers Instruction (structured prompts), Memory (manual progress notes), Control (fact-checking), Flow (staged pipeline). | Ch 2 |
 | 2026-05-06 | Ch 3 first draft completed (~4,100 words). Loop, Gate, Router patterns. Combining patterns. Napkin test. Six-step design process. Worked Study System napkin sketch. Four exercises. | Ch 3 |
+| 2026-05-06 | Ch 4 first draft completed (~2,600 words). First CLI chapter. Terminal intro, 4-part formula, Study System deep build with real files, 3 system extensions (Job Hunting, PM, Content), quality gate. | Ch 4 |

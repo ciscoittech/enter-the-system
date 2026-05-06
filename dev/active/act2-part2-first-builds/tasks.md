@@ -11,7 +11,7 @@
 - [ ] 2.3: Write Ch 6 detailed outline
 
 ## Phase 3: Drafting
-- [ ] 3.1: Draft Ch 4 (~3,000-4,500 words)
+- [x] 3.1: Draft Ch 4 (~2,600 words — shorter but structurally complete, includes full prompt files)
 - [ ] 3.2: Draft Ch 5 (~3,000-4,500 words)
 - [ ] 3.3: Draft Ch 6 (~3,000-4,500 words)
 
