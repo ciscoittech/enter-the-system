@@ -44,7 +44,7 @@ Each chapter adds one component. By the end, your systems have all six working t
 
 **It's not tied to one tool.** The concepts work in Claude Code, OpenAI Codex, Kimi CLI, Cursor, or whatever ships next year. The tools change. The framework doesn't.
 
-**Every claim is backed by evidence.** Not "trust me" — [here's the data](research/METHODOLOGY.md). Eval notebooks you can run yourself. Three production systems documented with real metrics. A 127-item study curriculum with actual quiz scores. A content pipeline that's produced 26 posts with quality scoring.
+**Every claim is backed by evidence.** Not "trust me" — [here's the data](research/METHODOLOGY.md). Eval notebooks you can run yourself. Three production systems documented with real metrics. Plus a full production case study showing what these patterns look like at business scale.
 
 ---
 
@@ -64,6 +64,24 @@ Or read chapter by chapter:
 
 ![The Study System — Napkin Sketch](book/diagrams/png/ch03-napkin-sketch.png)
 *By Chapter 3, you can design a system on paper. Act 2 builds it for real.*
+
+---
+
+## Download the Project Files
+
+Every Act 2 chapter has downloadable starter and finished files — the actual CLAUDE.md files, state files, skill documents, and hook scripts the reader builds.
+
+**[Browse the downloads →](downloads/)**
+
+| Folder | Chapter | What's Inside |
+|--------|---------|---------------|
+| [`before/`](downloads/before/) | Act 1 | The vague one-liner prompts most people start with |
+| [`ch04-prompt/`](downloads/ch04-prompt/) | Ch 4: Structured Prompts | Root CLAUDE.md + 4 system CLAUDE.md files |
+| [`ch05-state/`](downloads/ch05-state/) | Ch 5: State Files | + 4 state files with @import wiring |
+| [`ch06-skill/`](downloads/ch06-skill/) | Ch 6: Skills | + 5 skill files in .claude/skills/ |
+| [`ch07-hook/`](downloads/ch07-hook/) | Ch 7: Hooks | + 7 hook scripts + settings.json |
+
+Each chapter folder is self-contained — it has every file your system needs after that chapter. Replace the `[BRACKETED PLACEHOLDERS]` with your information and follow the chapter.
 
 ---
 
@@ -115,23 +133,52 @@ This book shows its work.
 
 ## Full Book Outline
 
-| Ch | Title | What You Build |
+### Act 1: The System (Universal — any AI tool)
+
+| Ch | Title | What You Learn |
 |----|-------|---------------|
 | 1 | You're Already Building Systems | Recognize the invisible manual system you're running |
 | 2 | Going Deeper | Push each concept manually, feel why it breaks |
 | 3 | Design Patterns | Loop, Gate, Router — design your system on a napkin |
-| 4 | Structured Prompts | CLAUDE.md — the file that makes AI remember your project |
-| 5 | State Files | A tracker that carries forward what happened |
-| 6 | Skills | Loaded expertise — your voice, your rules, on demand |
-| 7 | Hooks | Automated checks that refuse to let bad output through |
-| 8 | Connections | Live data from the outside world |
-| 9 | Pipelines | Multi-stage workflows with quality gates |
-| 10 | When Systems Break | Every failure maps to a component — diagnose and fix |
-| 11 | Composing Systems | Wire your systems together into a personal AI OS |
-| 12 | Designing New Systems | Build one from scratch, for a problem the book never covered |
-| 13 | What's Next | The framework outlasts every tool |
+
+### Act 2: The Build (CLI-demonstrated — real files, real systems)
+
+| Ch | Title | Component | What You Build |
+|----|-------|-----------|---------------|
+| 4 | Structured Prompts | Prompt | CLAUDE.md — the file that makes AI remember your project |
+| 5 | State Files | State | A tracker that carries forward what happened |
+| 6 | Skills | Skill | Loaded expertise — your voice, your rules, on demand |
+| 7 | Hooks | Hook | Automated checks that refuse to let bad output through |
+| 8 | Connections | Connection | Live data from the outside world |
+| 9 | Pipelines | Pipeline | Multi-stage workflows with quality gates |
+
+### Act 2: Production & Mastery
+
+| Ch | Title | What You Learn |
+|----|-------|---------------|
+| 10 | A Real System | Production case study — MongoDB pipelines, AI agents, forensic matching |
+| 11 | The Cost of Intelligence | Token economics, model selection, spend smart not less |
+| 12 | When Systems Break | Every failure maps to a component — diagnose and fix |
+| 13 | Composing Systems | Wire your systems together into a personal AI OS |
+| 14 | Designing New Systems | Build one from scratch, for a problem the book never covered |
+| 15 | What's Next | The framework outlasts every tool |
 
 [Full detailed outline →](book/outline-v3.md)
+
+---
+
+## Progress
+
+| Area | Status |
+|------|--------|
+| Act 1 (Ch 1-3) | Drafted, reviewed, scored 28-30/30 |
+| Act 2 Build (Ch 4-9) | All 6 chapters drafted |
+| Act 2 Mastery (Ch 10-15) | Ch 10 drafted, Ch 11-15 outlined |
+| Downloads | Ch 4-7 complete with all project files |
+| Research | 8 research docs, 3 production systems, eval pipeline |
+| Diagrams | Act 1 complete, Act 2 in progress |
+
+**10 of 15 chapters drafted. 5 outlined and ready.**
 
 ---
 
@@ -141,13 +188,13 @@ This book shows its work.
 
 **Run the evals yourself.** The [notebooks](research/evals/) work with any AI API (OpenRouter, OpenAI, Anthropic). See the difference between prompts and systems with your own data.
 
-**Follow the build.** This book is being written in public. The [dev docs](dev/) show how every chapter is planned, drafted, reviewed, and scored. The production pipeline is the same systems-thinking approach the book teaches.
+**Follow the build.** This book is being written in public. The production pipeline is the same systems-thinking approach the book teaches.
 
 ---
 
 ## About
 
-Written by a network engineer who builds AI systems in production — not a researcher writing about theory. Three real systems (study, work, content) run daily and inform every chapter. The research repository contains the evidence. The eval notebooks are reproducible.
+Written by a network engineer who builds AI systems in production — not a researcher writing about theory. Three personal systems (study, work, content) plus a production business system run daily and inform every chapter. The research repository contains the evidence. The eval notebooks are reproducible.
 
 The book is CLI-demonstrated (terminal-first, because you need to see the system's parts) and interface-agnostic (same patterns work in Claude Code, Codex, Kimi CLI, Cursor, or whatever ships next).
 
