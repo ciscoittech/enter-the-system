@@ -58,8 +58,8 @@ Legend: `D` = Draft, `S` = Score, `Rv` = Reviewed, `P` = Published
 | 11 | The Cost of Intelligence | All 4 (cost management) | DONE | -/30 |
 | 12 | When Systems Break — Debugging | All 4 | [ ] | -/30 |
 | 13 | Composing Systems — Personal AI OS | All 4 | [ ] | -/30 |
-| 14 | Designing New Systems | Reader's choice | [ ] | -/30 |
-| 15 | What's Next | — (forward-looking) | [ ] | -/30 |
+| 14 | Designing New Systems | Reader's choice | DONE | -/30 |
+| 15 | What's Next | — (forward-looking) | DONE | -/30 |
 
 ---
 
