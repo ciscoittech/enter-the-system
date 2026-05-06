@@ -284,7 +284,7 @@ Run it across 3+ applications:
 ## Part III: Knowledge and Guard Rails
 *Components introduced: Skill, Hook*
 *Universal concepts: Instruction (advanced), Control*
-*Claude Code features introduced: .claude/skills/ directory + SKILL.md (Ch 7), .claude/settings.json + hooks/ (Ch 8), .claude/commands/ (Ch 9)*
+*Claude Code features introduced: .claude/skills/ directory + SKILL.md (Ch 6), .claude/settings.json + hooks/ (Ch 7), .claude/commands/ (Ch 7)*
 
 ---
 
@@ -410,7 +410,7 @@ Test by breaking: Feed the system a job posting and intentionally leave the comp
 ## Part IV: Connections and Full Pipelines
 *Components introduced: Connection, Pipeline*
 *Universal concepts: Flow*
-*Claude Code features introduced: MCP servers in settings.json (Ch 10), subagents + multi-step orchestration (Ch 11)*
+*Claude Code features introduced: MCP servers in settings.json (Ch 8), subagents + multi-step orchestration (Ch 9)*
 
 ---
 
@@ -534,15 +534,77 @@ A multi-stage content pipeline for the reader's recurring content need (blog, ne
 
 ---
 
-## Part V: Mastery
-*No new components. Debugging what breaks, composing what works.*
-*Claude Code features introduced: memory files (Ch 12), full .claude/ directory architecture (Ch 13)*
+## Part V: Production & Mastery
+*No new components. Production reality, cost management, debugging what breaks, composing what works.*
+*Claude Code features introduced: memory files (Ch 14), full .claude/ directory architecture (Ch 15)*
 
 ---
 
-### Chapter 10: When Systems Break — Debugging
+### Chapter 10: A Real System — Production Case Study
 
-**What this chapter covers**: Every system breaks. This chapter teaches the reader to diagnose failures and fix them — fast, without adding complexity. Maintenance (preventing drift) was taught per-component in Ch 5, 7, 8, 10, 11. This chapter is about what to do when something breaks DESPITE maintenance.
+**What this chapter covers**: No new component — a production-scale example using all 6. The reader has built their systems component by component. Now they see what a real system looks like when all six components operate together at production scale — and they map every piece back to what they already built.
+
+**The production system**: An abstracted specialty food import system that matches products from global suppliers to local market demand. The system uses a 37-tool AI agent orchestrating MongoDB aggregation pipelines to perform forensic-grade product matching and market analysis.
+
+**What the reader sees**:
+- **$facet multi-dimensional profiling**: A single database query that simultaneously profiles products across price ranges, category distribution, brand frequency, and seasonal patterns — like running four analyses at once. Maps to: *Connection* (Ch 8) pulling structured data, *Pipeline* (Ch 9) parallel stage execution.
+- **Price correlation supply chain forensics**: The system detects when products from different suppliers are actually the same item by comparing price patterns, packaging descriptions, and ingredient lists. Maps to: *Hook* (Ch 7) pattern-matching validation, *State* (Ch 5) tracking known product identities across sessions.
+- **Multi-signal demand scoring**: Combines sales velocity, social media mentions, competitor pricing, and seasonal trends into a single demand score per product. Maps to: *Connection* (Ch 8) pulling from multiple external sources, *Skill* (Ch 6) encoding scoring methodology.
+- **Entity resolution**: Matching "Shea Moisture Coconut & Hibiscus Curl Enhancing Smoothie" with "SM Coco-Hibiscus Smoothie" and "Shea M. C&H Curl Cream" as the same product. Maps to: *Skill* (Ch 6) encoding domain knowledge about product naming patterns.
+- **Mode detection (factual/analyst/strategic)**: The system detects whether the user is asking for raw data, analysis, or strategic recommendations — and responds differently. Maps to: *Router pattern* (Ch 3), implemented as a pipeline stage that classifies intent before processing.
+- **Tool composition**: 37 tools that the agent selects and sequences dynamically based on the query. Maps to: *Pipeline* (Ch 9) with dynamic stage selection, *Hook* (Ch 7) validating tool output before passing to the next stage.
+
+**The mapping exercise**: For each production component, the reader identifies:
+1. Which of their Ch 4-9 components does the same job
+2. What's different at production scale (volume, complexity, error handling)
+3. What's the same (the pattern, the purpose, the failure it prevents)
+
+**The gap between "working" and "production"**: The reader's systems work for personal use. Production systems handle thousands of items, multiple users, real money on the line. The COMPONENTS are the same — the scale is different. This chapter shows that the framework they learned isn't a toy version of real engineering. It IS real engineering.
+
+**Quality gate**: The abstraction holds — the reader can explain every production component using vocabulary from Ch 4-9. Technical patterns are preserved (the reader understands what $facet does and why). Every production element maps back to a component they've already built.
+
+---
+
+### Chapter 11: The Cost of Intelligence
+
+**What this chapter covers**: No new component — a practical operations chapter. AI systems cost money to run. This chapter teaches the reader to understand, estimate, track, and reduce those costs without sacrificing system quality.
+
+**Token economics — what you're actually paying for**:
+- Every word in, every word out costs tokens. Your prompt, your skill files, your state files, Claude's response — all tokens.
+- The model ladder: fast models ($0.04-1/M tokens), standard models ($3-15/M tokens), reasoning models ($15-75/M tokens)
+- When you load a 2,000-word skill file + a 500-word state file + a 300-word prompt, that's ~2,800 words of input tokens BEFORE Claude generates a single word of output
+- The multiplication problem: a pipeline with 5 stages runs 5 separate AI calls. Each loads skills and state. Costs multiply.
+
+**Five cost reduction strategies**:
+1. **Lean state files**: Keep active state small. Archive completed items. Every word in the state file is tokens you pay for every session. (References state hygiene from Ch 5.)
+2. **Hooks over model judgment**: Hooks that check word count, format, or presence of required fields cost zero tokens — they're code, not AI calls. Every check you move from "ask Claude to verify" to "run a script" saves money. (References Ch 7.)
+3. **Selective skill loading**: Don't load every skill every time. The content voice skill doesn't need to load when you're updating project status. Load what's needed for THIS task. (References Ch 6.)
+4. **Cache connections**: If you're pulling the same company research for multiple cover letters, cache it locally instead of re-fetching. Connection calls cost time and sometimes money. (References Ch 8.)
+5. **Batch pipelines**: Instead of running the full pipeline for every small change, batch similar items. Research 3 topics at once instead of 3 separate research stages. (References Ch 9.)
+
+**Monitoring what you spend**:
+- **Built-in tracking**: Most AI CLI tools show token usage per session. Check after each session.
+- **State file cost log**: Add a "Session Cost" section to your state files. Log date, task, tokens used, estimated cost. After a week, you'll see patterns.
+- **Production-grade monitoring (Langfuse)**: For readers who want detailed tracking — what Langfuse is (an open-source tool that records every AI call with cost, latency, and token counts), how it connects, what it shows. Not required, but powerful for anyone running systems daily.
+
+**When free is good enough**:
+- Hooks are always free — they're scripts, not AI calls
+- Local models (Ollama, LM Studio) for tasks that don't need frontier intelligence: formatting, simple classification, template filling
+- The hybrid approach: use a fast cheap model for drafting, a standard model for analysis, a reasoning model only for complex decisions. Match the model to the task.
+
+**The reader's cost exercise**:
+- Run each of their four systems once and record the token usage
+- Estimate weekly cost if they used each system daily
+- Apply 2-3 cost reduction strategies and measure the difference
+- Set a monthly budget and design their usage around it
+
+**Quality gate**: The reader can estimate the cost of any session before running it (within 50%). They have logged costs for a week and can identify their most expensive system and their cheapest optimization opportunity.
+
+---
+
+### Chapter 12: When Systems Break — Debugging
+
+**What this chapter covers**: Every system breaks. This chapter teaches the reader to diagnose failures and fix them — fast, without adding complexity. Maintenance (preventing drift) was taught per-component in Ch 5, 6, 7, 8, 9. This chapter is about what to do when something breaks DESPITE maintenance.
 
 **The failure taxonomy** — every system failure maps to a component:
 
@@ -587,13 +649,13 @@ A multi-stage content pipeline for the reader's recurring content need (blog, ne
 - Fix the component, not the prompt. If you're adding words to the prompt to work around a bug, you're patching the wrong thing.
 - Isolate before you fix. Test the suspected component alone — does the skill load? Does the state have the right data? Does the hook fire on test input?
 - Add a check after every fix. Whatever broke, add a hook or state tracker so you'll know if it breaks again.
-- Reference the maintenance practices from earlier chapters (state hygiene Ch 5, skill versioning Ch 7, hook tuning Ch 8, connection health Ch 10, pipeline bottlenecks Ch 11) — these are the preventive measures. This chapter is the emergency room.
+- Reference the maintenance practices from earlier chapters (state hygiene Ch 5, skill versioning Ch 6, hook tuning Ch 7, connection health Ch 8, pipeline bottlenecks Ch 9) — these are the preventive measures. This chapter is the emergency room.
 
 **Quality gate**: The reader can diagnose a real failure in one of their systems, identify the responsible component, fix it, and add a check to prevent recurrence — without adding complexity to the prompt.
 
 ---
 
-### Chapter 11: Composing Systems — Your Personal AI Operating System
+### Chapter 13: Composing Systems — Your Personal AI Operating System
 
 **What this chapter covers**: The reader has four independent systems. Now they wire them together into something greater than the sum of its parts.
 
@@ -623,7 +685,7 @@ A multi-stage content pipeline for the reader's recurring content need (blog, ne
 
 ---
 
-### Chapter 12: Designing New Systems — From Problem to Blueprint
+### Chapter 14: Designing New Systems — From Problem to Blueprint
 
 **What this chapter covers**: The reader has built four systems by following this book. Now they design and build one from scratch, for a problem the book never addressed. This is the test of whether the framework transferred.
 
@@ -649,7 +711,7 @@ A multi-stage content pipeline for the reader's recurring content need (blog, ne
 
 ---
 
-### Chapter 13: What's Next — Systems That Grow With You
+### Chapter 15: What's Next — Systems That Grow With You
 
 **What this chapter covers**: Forward-looking, not a recap. Where to go from here.
 
@@ -707,15 +769,15 @@ Official docs, community guides, MCP server directory, systems thinking referenc
 
 | Spec | Value |
 |------|-------|
-| Total chapters | 13 (Ch 1–13) |
-| Structure | 2 Acts: Universal (Ch 1–3), Cowork Build (Ch 4–13) |
-| Parts | I: The System / II: First Builds / III: Knowledge & Guard Rails / IV: Connections & Flow / V: Mastery |
+| Total chapters | 15 (Ch 1–15) |
+| Structure | 2 Acts: Universal (Ch 1–3), Cowork Build (Ch 4–15) |
+| Parts | I: The System / II: First Builds / III: Knowledge & Guard Rails / IV: Connections & Flow / V: Production & Mastery |
 | Throughline systems | 4: Study, Job Hunting, Project Management, Content |
 | Universal concepts | 4: Instruction, Memory, Control, Flow |
 | Cowork components | 6: Prompt, State, Skill, Hook, Connection, Pipeline |
 | Design patterns | 3: Loop, Gate, Router |
 | Target words/chapter | 3,000–4,500 |
-| Total book estimate | 40,000–60,000 words |
+| Total book estimate | 45,000–67,500 words |
 
 ## Component Introduction Schedule
 
@@ -727,10 +789,12 @@ Official docs, community guides, MCP server directory, systems thinking referenc
 | Ch 7 | Hook | Job Hunting | Prompt + State + Skill + Hook |
 | Ch 8 | Connection | Study | + Connection |
 | Ch 9 | Pipeline | Content | All 6 |
-| Ch 10 | — (debugging) | All four | All 6 |
-| Ch 11 | — (composition) | All four combined | All 6 + cross-system |
-| Ch 12 | — (new design) | Reader's choice | All 6 |
-| Ch 13 | — (forward) | — | — |
+| Ch 10 | — (production) | Production case study | All 6 (production scale) |
+| Ch 11 | — (cost) | All four | All 6 + cost awareness |
+| Ch 12 | — (debugging) | All four | All 6 |
+| Ch 13 | — (composition) | All four combined | All 6 + cross-system |
+| Ch 14 | — (new design) | Reader's choice | All 6 |
+| Ch 15 | — (forward) | — | — |
 
 ## System Growth Across Chapters
 
@@ -745,8 +809,10 @@ Each system's version at each chapter:
 | Ch 7 | v4: + hook | **v4: + hook (deep)** | v4: + hook | v4: + hook |
 | Ch 8 | **v5: + connection (deep)** | v5: + connection | v5: + connection | v5: + connection |
 | Ch 9 | v6: + pipeline | v6: + pipeline | v6: + pipeline | **v6: + pipeline (deep)** |
-| Ch 10 | debugged | debugged | debugged | debugged |
-| Ch 11 | composed | composed | composed | composed |
+| Ch 10 | production-mapped | production-mapped | production-mapped | production-mapped |
+| Ch 11 | cost-optimized | cost-optimized | cost-optimized | cost-optimized |
+| Ch 12 | debugged | debugged | debugged | debugged |
+| Ch 13 | composed | composed | composed | composed |
 
 **(deep)** = this system is the primary build for that chapter, with full walkthrough. Other systems get shorter "now extend" treatment.
 
