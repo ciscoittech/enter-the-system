@@ -30,7 +30,21 @@ After this chapter:
 [Topic] + [CLAUDE.md + Skill loaded + State read] → [Claude] → [Draft + State write]
 ```
 
-The skill sits alongside the CLAUDE.md — both load before Claude works. But they do different jobs. CLAUDE.md says "write an 800-word blog post, no jargon." The skill says "here's what my writing actually sounds like — here are three paragraphs I wrote, here are the patterns that make my content mine."
+The skill sits alongside the CLAUDE.md — but notice WHERE it loads. Here's the actual sequence when you start a session:
+
+```
+1. You type: claude (or open your AI tool in the content/ folder)
+2. Claude Code reads CLAUDE.md → knows your rules, your constraints
+3. Claude Code scans .claude/skills/ → reads skill names + descriptions
+4. You type your prompt: "Write a blog post about remote work burnout"
+5. Claude matches your request to a skill description → loads editorial-voice
+6. Claude reads content-state.md (via @import) → knows what you've written before
+7. Claude drafts — with your voice loaded from the start, not guessing
+```
+
+The skill doesn't load at startup like CLAUDE.md does. It loads on demand — when Claude decides (or you tell it) the skill matches the current task. That's the difference between instructions (always on) and expertise (loaded when relevant). You don't load your career-profile skill when generating a quiz. You don't load your study-method skill when writing a blog post. Skills are selective.
+
+CLAUDE.md says "write an 800-word blog post, no jargon." The skill says "here's what my writing actually sounds like — here are three paragraphs I wrote, here are the patterns that make my content mine."
 
 ---
 
@@ -66,6 +80,8 @@ Claude can also load skills on its own. It reads the description line from every
 - Skills change rarely. They're stable expertise that evolves slowly
 - State tracks what happened. Skills define how to do things well
 - Both live as files. Both can load automatically. Different purpose
+
+**This isn't a Claude Code feature.** It's a pattern that shows up everywhere. Cursor has `.cursor/rules/` — same idea, different folder name. Codex and Kimi CLI use `AGENTS.md` files that can reference external knowledge docs. Windsurf has its own rules system. The concept is: separate your instructions (what to do) from your expertise (how to do it well), and load the expertise when relevant. If you switch tools next year, your skill files transfer. Rename the folder, keep the content.
 
 And the core design principle, the rule that makes everything in this chapter work: **show, don't describe.** Three examples of your real writing teach Claude more about your voice than 500 words of rules describing your voice. Put the examples in the skill. Cut the rules.
 
@@ -239,7 +255,9 @@ claude
 
 Give it a topic for a blog post. Something you'd actually write about.
 
-What happens: Claude loads CLAUDE.md (format preferences, constraints), loads the editorial-voice skill (your real writing examples), loads content-standards (structure rules, fact-checking), reads content-state.md (what's been written before). Then it drafts.
+Here's what you should see happen. Claude loads CLAUDE.md (format preferences, constraints). It reads content-state.md through the `@` import (what's been written before). Then — because your CLAUDE.md says "load these skills when drafting content" — it loads the editorial-voice and content-standards skills. You might see it mention the skills in its response, or you can type `/editorial-voice` to load it explicitly if it doesn't pick them up automatically. Either way, the skills are in context before Claude writes a word.
+
+Then it drafts.
 
 The draft sounds different from what you got in Chapters 4 and 5. The opening matches your style. The word choices reflect your examples. The tone is yours, not generic. It's not perfect — but it's recognizably closer to your voice than anything the system produced before.
 
