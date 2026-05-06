@@ -176,11 +176,13 @@ Each of these is a prompt, not a system. By the end of this book, each one will 
 
 ---
 
-# ACT 2: THE BUILD (Cowork Implementation)
+# ACT 2: THE BUILD (CLI-Demonstrated, Interface-Agnostic)
 
-*The reader knows the concepts and patterns. Now they build. Each chapter introduces one Cowork component and does a deep build on whichever system makes that component's value most obvious. Then the reader extends the same component to the other systems.*
+*The reader knows the concepts and patterns. Now they build. All examples are shown in the terminal (CLI) because the reader needs to see the system's parts — state files, skill documents, hook scripts — as real files they create and edit. The same patterns work in Claude Code, Codex, Kimi CLI, or any similar tool. Warp Terminal is recommended (free, open-source) but not required.*
 
-*By the end of Act 2, all four systems are fully built — each with all six components working together.*
+*Each chapter introduces one component and does a deep build on the system where that component's value is most obvious. Then the reader extends the component to the other three systems. By the end of Act 2, all four systems are fully built — each with all six components working together.*
+
+*Every component chapter includes a "Maintain It" section teaching how to keep that component healthy over time — because systems that aren't maintained drift.*
 
 ---
 
@@ -196,10 +198,11 @@ Each of these is a prompt, not a system. By the end of this book, each one will 
 **Primary system**: Study System
 **Universal concept**: Instruction
 
-**The transition to Cowork**:
-- What Cowork is: Claude working autonomously — you describe the outcome, it executes
-- Chat vs. Cowork: when to use which
-- Opening Cowork, giving it folder access, writing your first structured instruction
+**The transition to CLI**:
+- Why the terminal: you see every file, every state change, every system part. GUIs hide this. When you're learning to build systems, transparency matters.
+- Setting up: install Warp Terminal (free, open-source, supports any AI CLI agent) or use any terminal you have. Install Claude Code (or equivalent: Codex, Kimi CLI).
+- "If you prefer a graphical interface, everything in this book works in Cowork, VS Code, or Cursor. The files are the same — only the interface is different."
+- Opening the tool, giving it folder access, writing your first structured instruction in the CLI
 
 **Deep build — Study System v1 (Prompt only)**:
 The reader picks a real topic they're currently learning and writes a structured prompt:
@@ -267,6 +270,12 @@ Run it across 3+ applications:
 
 **System diagram (all four)**: `[Input] → [Prompt + State read] → [Claude] → [Output + State write]` — the feedback arrow appears.
 
+**Maintain It — State Hygiene**:
+- When to archive: move completed/old entries out of active state. 50 rows is working memory; 500 is a database you can't process.
+- What to keep active: only items with status "in progress" or "recent." Everything else goes to an archive section or separate file.
+- How to know it's bloating: if the AI starts ignoring entries at the bottom, or if session start takes noticeably longer, the state file is too long.
+- The monthly check: read your state files once a month. What's stale? What's missing? 30 minutes saves hours of drift.
+
 **Quality gate**: Run any system 3 times. On session 3: it doesn't repeat work from session 1, it references patterns from prior sessions, and the state file shows clear progression. The system is learning.
 
 ---
@@ -333,6 +342,12 @@ Over 5+ pieces of content, the system converges on the reader's voice. The state
 
 **System diagram (all four)**: `[Input] → [Prompt + Skill loaded + State read] → [Claude] → [Output + State write]`
 
+**Maintain It — Skill Versioning**:
+- Version your skills: when you update, note what changed and why at the top of the file.
+- If the new version produces worse output, roll back. Skills aren't "always forward" — sometimes the previous version was better.
+- The state-to-skill feedback loop: your state file captures what the AI gets wrong. Those patterns become new rules in the skill. The skill produces better output. The state captures fewer corrections. This is the Loop pattern from Ch 3, implemented.
+- Quarterly check: read your skill files. Do they still match how you actually work? Roles change. Preferences evolve. A skill that hasn't been updated in 6 months is a skill that's drifting from reality.
+
 **Quality gate**: For the Content System — show 3 AI-drafted pieces to someone who reads the reader's work. They can't reliably tell which are AI-written. For the Job Hunting System — a cover letter generated using the career-profile skill is materially better than one generated without it (specific, voice-accurate, not generic).
 
 ---
@@ -379,6 +394,12 @@ Test by breaking: Feed the system a job posting and intentionally leave the comp
 *Content System v4*: Hooks that check every factual claim for a source, verify the draft matches the voice skill (sentence length, word choice, tone), flag clichés and AI-isms, and check that the piece meets word count and structural requirements.
 
 **System diagram (all four)**: `[Input] → [Prompt + Skill + State] → [Claude] → [Hook check] → [Output + State write]` — the hook sits between Claude's output and the final save.
+
+**Maintain It — Hook Tuning**:
+- False positives: if the hook flags everything, it becomes noise. Tune thresholds — start strict, loosen when you see the false positive pattern.
+- False negatives: periodically "break it on purpose" by feeding known-bad input. If the hook doesn't catch it anymore (because the AI got better at avoiding the pattern), update the hook.
+- The calibration loop: run your system for a week, review what the hooks caught. Were any flags wrong? Were any errors missed? Adjust. This is the Gate from Ch 3 — calibrating the gate is maintenance.
+- Don't add hooks for problems that never happen. If a hook hasn't fired in a month, consider whether it's still needed or whether the skill/prompt already prevents that failure.
 
 **Quality gate**: Feed any system input with 3 deliberate problems. All 3 are caught and flagged before the output is finalized. The hook doesn't fix them — it refuses to let bad output through and tells the reader (or Claude) what's wrong.
 
@@ -432,6 +453,11 @@ The hook still fires: every external fact needs a source. No hallucinated "facts
 *Content System v5*: Web search for research before drafting. Connection to the reader's publishing platform or CMS. The system can research a topic, draft the post, AND check what's already been published to avoid repetition — all without the reader copy-pasting anything.
 
 **System diagram (all four)**: New element — the Connection is shown as an external input arrow, separate from the reader's files.
+
+**Maintain It — Connection Health**:
+- Check that external sources still work: APIs change, MCP servers update, web search results shift. Run a test query monthly.
+- Handle failures gracefully: build into the prompt "if you can't reach [source], note the gap and continue with available data." Connections will fail — the system should degrade, not crash.
+- Monitor cost: some connections (API calls, web searches) have costs. Track usage in your state file so you know what you're spending.
 
 **Quality gate**: The Study System produces a research brief on a weak-area topic containing information that wasn't in the reader's files — live data pulled from web search. Every fact has a source link. The hook caught at least one unsourced claim during the process.
 
@@ -495,18 +521,24 @@ A multi-stage content pipeline for the reader's recurring content need (blog, ne
 
 **System diagram**: Full pipeline diagram with stages, gates, feedback loops, connections, and skill loading all visible. This is the most complex diagram in the book — and the reader built every piece of it across prior chapters.
 
+**Maintain It — Pipeline Bottlenecks**:
+- Find the constraint: your pipeline is only as fast as its weakest stage. Run the pipeline 3 times and note which stage takes longest or fails most. Fix THAT stage. Ignore the rest.
+- Stage-level monitoring: track time and pass/fail rate per stage in your state file. After 10 runs, you'll see the pattern.
+- When to add a stage: only when you can name the failure it prevents. "It would be nice to have a formatting stage" is not a reason. "Three times the review stage caught formatting issues that cost me 20 minutes to fix manually" is a reason.
+- When to remove a stage: if a stage passes 100% of the time for a month, consider whether it's still needed or whether the upstream stages have gotten good enough to make it redundant.
+
 **Quality gate**: Run the Content Pipeline on a real piece. Intentionally provide a topic where one of the sources contradicts another. The system should flag the contradiction at the REVIEW stage (not silently pick one and present it as fact). The gate works.
 
 ---
 
 ## Part V: Mastery
-*No new components. Operating, debugging, extending, and combining the systems you've built.*
+*No new components. Debugging what breaks, composing what works.*
 
 ---
 
-### Chapter 10: When Systems Break — Debugging and Maintenance
+### Chapter 10: When Systems Break — Debugging
 
-**What this chapter covers**: Every system breaks. This chapter teaches the reader to diagnose failures, fix them, and prevent them from recurring. This isn't theoretical — they'll debug real problems in the systems they've built.
+**What this chapter covers**: Every system breaks. This chapter teaches the reader to diagnose failures and fix them — fast, without adding complexity. Maintenance (preventing drift) was taught per-component in Ch 5, 7, 8, 10, 11. This chapter is about what to do when something breaks DESPITE maintenance.
 
 **The failure taxonomy** — every system failure maps to a component:
 
@@ -547,12 +579,11 @@ A multi-stage content pipeline for the reader's recurring content need (blog, ne
 - Pipeline gets stuck in revision loop → quality gate is too strict, or feedback isn't specific enough (Flow issue)
 - Facts slip through without sources → fact-check hook needs tightening (Control issue)
 
-**Maintenance practices**:
-- The monthly review: 30 minutes reading your state files. What trends? What's working? What's degrading?
-- Skill versioning: note what changed and why. If the new version is worse, roll back.
-- "Break it on purpose": periodically feed bad input to verify hooks still work
-- State file hygiene: archive completed/old entries, keep active state lean
-- Connection health: check that external data sources still work and return expected formats
+**The debugging mindset**:
+- Fix the component, not the prompt. If you're adding words to the prompt to work around a bug, you're patching the wrong thing.
+- Isolate before you fix. Test the suspected component alone — does the skill load? Does the state have the right data? Does the hook fire on test input?
+- Add a check after every fix. Whatever broke, add a hook or state tracker so you'll know if it breaks again.
+- Reference the maintenance practices from earlier chapters (state hygiene Ch 5, skill versioning Ch 7, hook tuning Ch 8, connection health Ch 10, pipeline bottlenecks Ch 11) — these are the preventive measures. This chapter is the emergency room.
 
 **Quality gate**: The reader can diagnose a real failure in one of their systems, identify the responsible component, fix it, and add a check to prevent recurrence — without adding complexity to the prompt.
 

@@ -1,14 +1,11 @@
 # Outline Decisions — Tasks
 
-## Phase 1: Apply Decisions to Outline
+## All Complete
 
-- [ ] Task 1.1: Update `outline-v3.md` — add CLI/Warp introduction to Ch 4
-- [ ] Task 1.2: Update `outline-v3.md` — add maintenance sections to Ch 5 (state hygiene), Ch 7 (skill versioning), Ch 8 (hook tuning)
-- [ ] Task 1.3: Update `outline-v3.md` — refocus Ch 12 on debugging (not maintenance)
-- [ ] Task 1.4: Update `CLAUDE.md` — add rule: "Act 2 is CLI-demonstrated, interface-agnostic. Warp recommended."
-- [ ] Task 1.5: Update `book-writer` SKILL.md — add Act 2 chapter template with CLI example format
-
-## Phase 2: Verify
-
-- [ ] Task 2.1: Run /review on updated outline for progression consistency
-- [ ] Task 2.2: Verify no chapter teaches maintenance for a component introduced in a later chapter
+- [x] Task 1.1: Update `outline-v3.md` — CLI/Warp introduction in Ch 4 (Act 2 intro rewritten)
+- [x] Task 1.2: Update `outline-v3.md` — maintenance sections added to Ch 5, 6 (Skills), 7 (Hooks), Ch 8 (Connections), Ch 9 (Pipelines)
+- [x] Task 1.3: Update `outline-v3.md` — Ch 10 refocused on debugging (maintenance references back to component chapters)
+- [x] Task 1.4: Update `CLAUDE.md` — rules 11-13 added (done in infrastructure phase)
+- [x] Task 1.5: Update `book-writer` SKILL.md — Act 2 template with CLI format (done in infrastructure phase)
+- [x] Task 2.1: Progression verified — maintenance taught per-component, debugging in Ch 12
+- [x] Task 2.2: Verified — no chapter teaches maintenance for a component from a later chapter
