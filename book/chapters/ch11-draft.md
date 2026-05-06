@@ -213,3 +213,19 @@ Prices will keep falling. Models that cost $5 per million tokens today will cost
 One more thing. The people who worry most about AI costs are usually the ones spending the least. If you've read this far and built the systems in this book, you're spending $5-20/month on tools that save you hours. That's a good deal. The people who should worry are the ones running expensive models on tasks a hook could handle, or loading 500-row state files every session, or searching the web for information they cached last week. Those aren't spending problems. Those are design problems. And now you know how to fix them.
 
 Your systems work. You understand what they cost. Next question: what do you do when they break?
+
+---
+
+## How to Know It's Clicking
+
+Five checks:
+
+**You can estimate a session's cost before running it.** Before starting your Content pipeline, you can say: "This will cost roughly $0.50-1.00 because it loads two skills, runs web search, and processes five stages." You're not guessing — you're reading the system.
+
+**Your state files are lean.** Open each state file. Count the active rows. If they're under 50, you're in the zone. If any are over 100, you know to archive.
+
+**You've moved at least one check from model to hook.** Something the AI used to judge — word count, banned words, company name placeholder — is now a shell script that costs nothing. You can name which check and why.
+
+**You know your model tier per system.** You can say: "Study quizzes use the standard model, content drafting uses standard, but the review stage could use fast." You're not defaulting to the most expensive option for everything.
+
+**You've logged costs for a week.** Your state file (or a separate cost log) has at least 5 entries showing what you spent and on what. You can spot the outlier — the session that cost 3x more than usual — and explain why.

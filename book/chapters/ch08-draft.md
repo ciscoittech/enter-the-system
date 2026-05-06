@@ -210,11 +210,11 @@ The constraint moved again. Your system isn't just a tutor anymore. It's a tutor
 
 ### Step 6: Verify the hooks still catch problems.
 
-This matters. Connections bring in external data — which means external errors. The web is full of wrong answers. Your hook from Chapter 7 should still catch bad questions regardless of where the data came from.
+This matters. Connections bring in external data — which means external errors. The web is full of wrong answers.
 
-Test it. Tell Claude: "Search for common AWS networking misconceptions and build a tricky quiz that includes some deliberately wrong 'correct' answers."
+Your hooks from Chapter 7 check format: question count, answer markers, word count, banned words. They won't catch a factually wrong answer pulled from a bad web source — that's beyond what a shell script can do. But they DO still verify structure, and they prevent the most common failures (missing answers, wrong format, placeholder text).
 
-Claude builds the quiz. The hook fires. If a "correct" answer contradicts well-established facts, the hook should flag it.
+Test it. Tell Claude: "Search for common AWS networking topics and build a quiz." The hook fires and verifies the format. If you want factual verification too, that's a place where you'd add a more sophisticated check later — or review the content yourself. Hooks handle the mechanical checks. Your judgment handles the rest.
 
 Connections bring in the world. Hooks still guard the gate. The web doesn't get a free pass just because it's external data. Your hook doesn't care where the information came from — it checks the output regardless. That's why you built hooks BEFORE connections. The guard rails were in place before the system opened up.
 

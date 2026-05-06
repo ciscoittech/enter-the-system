@@ -316,9 +316,15 @@ Same pattern, different stages. Each system gets a command file and a pipeline w
 
 Create `.claude/commands/study-deep.md`:
 
-Five stages: **IDENTIFY** weak areas from study-state.md (entry criteria: at least 3 quiz sessions logged, so weak areas are real data, not guesses). **RESEARCH** the weakest topic — web search for explanations, tutorials, practice resources, at least 3 sources saved to `study-system/pipeline/research.md`. **SYNTHESIZE** — combine web findings with your existing notes, load the study-method skill for your learning preferences, produce a focused study brief in `study-system/pipeline/study-brief.md`. **PRACTICE** — generate a 10-question quiz calibrated to the gap between your current understanding and the target. Hook fires: verify-quiz-answers checks format and accuracy. **ANALYZE** — after you take the quiz, analyze results, update study-state.md with new scores. Topic scored above 70%? Move it from "weak" to "moderate." Recommend the next session's focus.
+Five stages:
 
-This pipeline turns your Study System from a tutor that quizzes you into a researcher that identifies your gaps, finds the best material, teaches it your way, tests you, and tracks your progress. Six components working together: instructions define the pipeline, skills shape the teaching, state tracks progress, hooks verify quiz quality, connections find material, and the pipeline stages it all.
+1. **IDENTIFY** — Read study-state.md, find weak areas. Entry: at least 3 quiz sessions logged (so weak areas are data, not guesses).
+2. **RESEARCH** — Web search the weakest topic. Find explanations, tutorials, practice resources. Save to `study-system/pipeline/research.md`. Exit: at least 3 sources.
+3. **SYNTHESIZE** — Combine web findings with your notes. Load study-method skill. Produce a focused study brief in `study-system/pipeline/study-brief.md`.
+4. **PRACTICE** — Generate a 10-question quiz calibrated to the gap. Hook fires: verify-quiz-answers checks format.
+5. **ANALYZE** — After you take the quiz, analyze results, update study-state.md. Topic above 70%? Move from "weak" to "moderate." Recommend next session's focus.
+
+This pipeline turns your Study System from a tutor into a researcher — identifies gaps, finds material, teaches it your way, tests you, tracks progress.
 
 Create the workspace: `mkdir -p my-ai-systems/study-system/pipeline`
 
@@ -326,7 +332,13 @@ Create the workspace: `mkdir -p my-ai-systems/study-system/pipeline`
 
 Create `.claude/commands/job-apply.md`:
 
-Five stages: **RESEARCH COMPANY** — web search for the target company: recent news, values, tech stack, culture, Glassdoor sentiment, saved to `job-hunting/pipeline/company-brief.md` (exit criteria: at least 3 data points you can reference in the cover letter). **TAILOR MATERIALS** — load career-profile skill, read job-state.md for prior applications and patterns, draft a tailored cover letter and resume bullets in `job-hunting/pipeline/materials.md` (exit criteria: references company research, uses the resume version with the best callback rate from state, under 400 words). **QUALITY CHECK** — hooks fire: verify-cover-letter checks company name, word count, no fabrication; check-duplicate-application confirms you haven't applied here before. **PREPARE** — generate interview prep notes: common questions for this role type plus company-specific talking points, saved to `job-hunting/pipeline/interview-prep.md`. **TRACK** — update job-state.md with the new application: company, role, date, resume version, cover letter approach, status "Applied." Recalculate callback rates.
+Five stages:
+
+1. **RESEARCH COMPANY** — Web search: recent news, values, tech stack, culture. Save to `job-hunting/pipeline/company-brief.md`. Exit: at least 3 data points you can reference.
+2. **TAILOR MATERIALS** — Load career-profile skill, read job-state.md for patterns. Draft cover letter + resume bullets to `job-hunting/pipeline/materials.md`. Exit: references company research, uses best-performing resume version, under 400 words.
+3. **QUALITY CHECK** — Hooks fire: verify-cover-letter checks company name, word count, no fabrication. check-duplicate confirms you haven't applied here before.
+4. **PREPARE** — Generate interview prep: common questions for this role type + company-specific talking points. Save to `job-hunting/pipeline/interview-prep.md`.
+5. **TRACK** — Update job-state.md: company, role, date, resume version, approach, status "Applied." Recalculate callback rates.
 
 Create the workspace: `mkdir -p my-ai-systems/job-hunting/pipeline`
 
@@ -334,7 +346,13 @@ Create the workspace: `mkdir -p my-ai-systems/job-hunting/pipeline`
 
 Create `.claude/commands/status-report.md`:
 
-Five stages: **GATHER** — read project-state.md for current task status, pull latest meeting notes if file system connection is configured, compile raw data into `project-mgmt/pipeline/raw-data.md`. **ANALYZE** — identify what's done since the last report, what's blocked, what's at risk, what changed, save to `project-mgmt/pipeline/analysis.md` (exit criteria: analysis matches state file data — no invented progress). **ROUTE** — load PM methodology skill for audience formats, generate TWO versions: an executive summary (bullets, outcomes, risks) and a team update (detailed actions, owners, deadlines), saved to `project-mgmt/pipeline/exec-summary.md` and `project-mgmt/pipeline/team-update.md`. Hook fires: check-audience-format verifies each matches the expected structure. **VERIFY** — verify-status-consistency hook confirms task counts and statuses match the state file. **UPDATE** — update project-state.md with the report date, status changes, and new action items.
+Five stages:
+
+1. **GATHER** — Read project-state.md for current task status. Pull meeting notes if connected. Compile to `project-mgmt/pipeline/raw-data.md`.
+2. **ANALYZE** — What's done, blocked, at risk, changed. Save to `project-mgmt/pipeline/analysis.md`. Exit: analysis matches state file data — no invented progress.
+3. **ROUTE** — Load PM methodology skill. Generate TWO versions: executive summary (bullets, outcomes, risks) and team update (detailed actions, owners, deadlines). Hook fires: check-audience-format verifies structure.
+4. **VERIFY** — verify-status-consistency hook confirms task counts and statuses match state file.
+5. **UPDATE** — Update project-state.md with report date, status changes, new action items.
 
 Notice the Router pattern from Chapter 3 appearing in Stage 3 — one set of data, two outputs shaped for different audiences. Patterns you learned in theory are now wired into real systems.
 

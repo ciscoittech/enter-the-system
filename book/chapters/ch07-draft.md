@@ -151,7 +151,7 @@ if [ "$WORD_COUNT" -gt 400 ]; then
 fi
 
 # Check 3: Company names mentioned should exist in career profile
-PROFILE="$CLAUDE_PROJECT_DIR/.claude/skills/career-profile.md"
+PROFILE="$CLAUDE_PROJECT_DIR/.claude/skills/career-profile/SKILL.md"
 if [ -f "$PROFILE" ]; then
   COMPANIES=$(echo "$CONTENT" | grep -oE "at [A-Z][a-zA-Z]+" | sed 's/^at //' | sort -u)
   for COMPANY in $COMPANIES; do
@@ -427,11 +427,11 @@ my-ai-systems/
 ├── .claude/
 │   ├── settings.json                  ← hook registration (NEW)
 │   ├── skills/
-│   │   ├── editorial-voice.md         ← (Ch 6)
-│   │   ├── content-standards.md       ← (Ch 6)
-│   │   ├── study-method.md            ← (Ch 6)
-│   │   ├── career-profile.md          ← (Ch 6)
-│   │   └── pm-methodology.md          ← (Ch 6)
+│   │   ├── editorial-voice/SKILL.md   ← (Ch 6)
+│   │   ├── content-standards/SKILL.md ← (Ch 6)
+│   │   ├── study-method/SKILL.md      ← (Ch 6)
+│   │   ├── career-profile/SKILL.md    ← (Ch 6)
+│   │   └── pm-methodology/SKILL.md    ← (Ch 6)
 │   └── hooks/
 │       ├── verify-cover-letter.sh     ← blocks fabrication, placeholders, long letters
 │       ├── check-duplicate.sh         ← warns about repeat applications

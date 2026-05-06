@@ -1,6 +1,6 @@
 # Chapter 15: What's Next — Systems That Grow With You
 
-The tools will change. Six months from now, the AI will be better at following instructions, worse at some new edge case nobody predicted, and different in ways that make today's workarounds unnecessary. A year from now, there might be a tool that makes half your hooks redundant. Two years from now, the landscape will look nothing like today.
+The tools will change. Six months from now, the AI will be better at following instructions, worse at some new edge case nobody predicted, and different in ways that make today's workarounds unnecessary. A year from now, there might be a tool that makes half your hooks redundant. Two years from now, the field will look nothing like today.
 
 Your systems will still work.
 

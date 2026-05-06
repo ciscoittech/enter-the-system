@@ -134,7 +134,7 @@ How it works:
 3. Study System updates system-index.md: "Mastered: event-driven architecture"
 4. Next Content session, Claude reads the index, sees the mastery entry
 5. Claude suggests: "You've completed in-depth study of event-driven architecture. Ready to draft a post? I can use your study notes as the research foundation."
-6. You agree. Claude reads study-state.md for the concept summaries, key takeaways, and connections you made during study
+6. You agree. Claude reads study-state.md for the concept summaries, main points, and connections you made during study
 7. Content pipeline runs — but the RESEARCH stage already has material from the study state. It supplements with web search for current examples, but the core expertise comes from your actual learning, not generic research
 8. The resulting post has depth that a web-search-only draft wouldn't — because it's built on 3 weeks of structured learning
 
