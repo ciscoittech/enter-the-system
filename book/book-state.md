@@ -56,8 +56,8 @@ Legend: `D` = Draft, `S` = Score, `Rv` = Reviewed, `P` = Published
 |---|---------|---------------|---|---|
 | 10 | A Real System — Production Case Study | Abstracted production system | DONE | -/30 |
 | 11 | The Cost of Intelligence | All 4 (cost management) | DONE | -/30 |
-| 12 | When Systems Break — Debugging | All 4 | [ ] | -/30 |
-| 13 | Composing Systems — Personal AI OS | All 4 | [ ] | -/30 |
+| 12 | When Systems Break — Debugging | All 4 | DONE | -/30 |
+| 13 | Composing Systems — Personal AI OS | All 4 | DONE | -/30 |
 | 14 | Designing New Systems | Reader's choice | DONE | -/30 |
 | 15 | What's Next | — (forward-looking) | DONE | -/30 |
 
