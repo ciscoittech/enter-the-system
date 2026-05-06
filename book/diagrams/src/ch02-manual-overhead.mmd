@@ -1,0 +1,28 @@
+---
+title: "The Core Tension — Manual Overhead Compounds"
+---
+flowchart TB
+    subgraph system["Your Manual System (Session 5)"]
+        YOU["🧑 YOU"]
+        YOU -->|"remember context"| MEM["🧠 Memory"]
+        YOU -->|"type weak areas"| INST["💬 Instruction"]
+        YOU -->|"fact-check answers"| CTRL["🛡️ Control"]
+        YOU -->|"copy-paste between stages"| FLOW["🔄 Flow"]
+    end
+
+    subgraph ai["What AI Actually Does"]
+        AI["🤖 Generate output"]
+    end
+
+    MEM --> AI
+    INST --> AI
+    CTRL --> AI
+    FLOW --> AI
+
+    NOTE["⚠️ You're doing 80% of the work\nso AI can do the other 20%"]
+
+    style system fill:#FFF3E0,stroke:#FB8C00,stroke-width:2px
+    style ai fill:#E8F5E9,stroke:#4CAF50,stroke-width:1px
+    style YOU fill:#FB8C00,stroke:#E65100,color:#fff,stroke-width:2px
+    style AI fill:#4CAF50,stroke:#2E7D32,color:#fff
+    style NOTE fill:#FFEBEE,stroke:#E53935,stroke-width:1px,color:#C62828

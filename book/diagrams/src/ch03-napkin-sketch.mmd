@@ -1,0 +1,42 @@
+---
+title: "Study System — Napkin Sketch (All 3 Patterns)"
+---
+flowchart TB
+    INPUT["📄 Study materials\n+ Progress notes"] --> ASSESS["ASSESS LEVEL\n🧠 reads progress (MEMORY)"]
+
+    ASSESS --> ROUTER{"🔀 ROUTER\nTopic score?"}
+    ROUTER -->|"90%+"| LIGHT["Light review\n(verify retention)"]
+    ROUTER -->|"50-89%"| FOCUS["Focused practice\n(target gaps)"]
+    ROUTER -->|"Below 50%"| DEEP["Deep study\n(fundamentals)"]
+
+    LIGHT --> QUIZ
+    FOCUS --> QUIZ
+    DEEP --> QUIZ
+
+    QUIZ["GENERATE QUIZ\n(calibrated to path)"] --> TAKE["TAKE QUIZ"]
+    TAKE --> GATE{"🛡️ GATE\nAnswers correct?\n(CONTROL)"}
+
+    GATE -->|"✅ Pass"| SCORE["SCORE"]
+    GATE -->|"❌ Fail"| FLAG["Flag & correct\nbefore studying"]
+    FLAG --> SCORE
+
+    SCORE --> UPDATE["UPDATE PROGRESS\n🧠 writes state (MEMORY)"]
+    UPDATE --> LOOP{"🔄 LOOP\nScore ≥ 80%\non weak areas?"}
+
+    LOOP -->|"Yes"| DONE["✅ DONE\nPlan next session"]
+    LOOP -->|"No"| ASSESS
+
+    style INPUT fill:#f5f5f5,stroke:#333
+    style ASSESS fill:#4A90D9,stroke:#2C5F8A,color:#fff
+    style ROUTER fill:#FFC107,stroke:#F9A825,stroke-width:2px
+    style LIGHT fill:#A5D6A7,stroke:#4CAF50
+    style FOCUS fill:#FFB74D,stroke:#FB8C00
+    style DEEP fill:#EF9A9A,stroke:#E53935
+    style QUIZ fill:#4A90D9,stroke:#2C5F8A,color:#fff
+    style TAKE fill:#7E57C2,stroke:#512DA8,color:#fff
+    style GATE fill:#FFC107,stroke:#F9A825,stroke-width:2px
+    style SCORE fill:#4A90D9,stroke:#2C5F8A,color:#fff
+    style FLAG fill:#EF5350,stroke:#C62828,color:#fff
+    style UPDATE fill:#4A90D9,stroke:#2C5F8A,color:#fff
+    style LOOP fill:#FFC107,stroke:#F9A825,stroke-width:2px
+    style DONE fill:#4CAF50,stroke:#2E7D32,color:#fff

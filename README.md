@@ -21,6 +21,17 @@ Act 1 is ready for review. Three chapters, ~11,000 words. Read them in order —
 3. **[Chapter 3 — Design Patterns: Three Shapes Every System Takes](book/chapters/ch03-draft.md)** (~4,300 words)
    Loop, Gate, Router — three patterns that describe every system. You design the Study System on paper with a napkin sketch. Act 1 ends here — you have vocabulary, experience, and a blueprint.
 
+### See the Diagrams
+
+Each chapter has visual diagrams showing how the system grows:
+
+| Chapter 1 | Chapter 2 | Chapter 3 |
+|-----------|-----------|-----------|
+| ![Four Concepts](book/diagrams/png/ch01-four-concepts.png) | ![Manual Overhead](book/diagrams/png/ch02-manual-overhead.png) | ![Napkin Sketch](book/diagrams/png/ch03-napkin-sketch.png) |
+| *After Session 2: only Instruction is present* | *By Session 5: you're doing 80% of the work* | *The full Study System with all 3 patterns* |
+
+[All 9 diagrams →](book/diagrams/)
+
 ### See the Evidence
 
 The book's claims are backed by real data:
@@ -89,6 +100,10 @@ Leave feedback as [GitHub Issues](../../issues) or in-line comments on the files
 | 1 | [You're Already Building Systems](book/chapters/ch01-draft.md) | ~3,000 | 28/30 |
 | 2 | [Going Deeper](book/chapters/ch02-draft.md) | ~3,700 | 30/30 |
 | 3 | [Design Patterns](book/chapters/ch03-draft.md) | ~4,300 | 29/30 |
+
+### Diagrams
+- [All diagrams with previews](book/diagrams/) — 9 diagrams across 3 chapters
+- [Mermaid source files](book/diagrams/src/) — editable, version-controlled
 
 ### Research & Evidence
 - [Evaluation Methodology](research/METHODOLOGY.md)
