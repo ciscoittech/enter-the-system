@@ -28,16 +28,18 @@ If that doesn't work, you need Node.js first — download it at nodejs.org, inst
 
 **If you prefer a graphical interface** — everything in this book works in Claude's desktop app (Cowork), VS Code with the Claude extension, or Cursor. The files you create are identical. Only the interface differs. I'll show the terminal because it makes the system visible. Use whatever you're comfortable with.
 
-Now create a folder for your first system:
+Now create a folder for your systems:
 
 ```
 mkdir my-ai-systems
 cd my-ai-systems
-mkdir study-system
-cd study-system
 ```
 
-You're in your Study System's folder. Everything this system needs will live here. Before you launch the AI tool, you're going to create the most important file in any AI project.
+Before you create any system, you're going to create the most important file in any AI project — and it goes right here, in the root folder.
+
+**A quick note on how context works.** Claude Code reads CLAUDE.md files by walking up the directory tree from wherever you're working. If you're in `my-ai-systems/study-system/`, it loads the CLAUDE.md in `study-system/` AND the CLAUDE.md in the parent `my-ai-systems/` folder. They stack — root first, then the subfolder. This means you can put shared rules in the root (your name, your general preferences, "never fabricate data") and system-specific context in each subfolder (your study topic, your career history, your project team). General → specific. Every AI tool with project instructions works this way — it's not a Claude Code quirk, it's how scoped context should work.
+
+This matters because you're about to build four systems. They'll share some context (who you are, how you like to work) and differ on the rest (what each system does). One root file. Four system-specific files. The AI sees all of them.
 
 ---
 
@@ -55,14 +57,46 @@ This is the first system component you're building. Not a prompt you paste into 
 
 ---
 
-## Build It: Study System v1
+## Build It: The Root + Study System v1
 
 **Components Used:** `[Prompt (CLAUDE.md)]`
-**New this chapter:** The project instructions file
+**New this chapter:** The project instructions file — both root and system-specific
 
-**Step 1: Create your CLAUDE.md.**
+**Step 1: Create the root CLAUDE.md.**
 
-In your `study-system/` folder, create a file called `CLAUDE.md`. Open it in any text editor — VS Code, TextEdit, Notepad, whatever you have. Or if you're in Warp or another terminal, create it right there.
+This file lives in your `my-ai-systems/` folder — not inside any system. It contains what's true about YOU, regardless of which system you're working in.
+
+Create `my-ai-systems/CLAUDE.md`:
+
+```markdown
+# My AI Systems
+
+## Who I Am
+[YOUR NAME]. [ONE SENTENCE ABOUT WHAT YOU DO].
+
+## Shared Rules
+- Use plain language — define technical terms when you use them
+- Never fabricate data, credentials, or experience
+- If you're unsure about something, say so — don't guess confidently
+- Keep output concise — I'll ask for more detail if I need it
+
+## Systems in This Project
+- study-system/ — learning and quiz system
+- job-hunting/ — career and application system
+- project-mgmt/ — task and status tracking
+- content/ — writing and publishing
+```
+
+That's your root context. Every system inherits this. You never type "don't fabricate data" in four different places — it lives once, at the root, and applies everywhere.
+
+**Step 2: Create the study-system folder and its CLAUDE.md.**
+
+```
+mkdir study-system
+cd study-system
+```
+
+Now create `study-system/CLAUDE.md`. This file has the system-specific context — your topic, level, quiz format. When Claude Code runs here, it reads BOTH files: the root (who you are, shared rules) and this one (what the Study System does). Open it in any text editor — VS Code, TextEdit, Notepad, whatever you have. Or if you're in Warp or another terminal, create it right there.
 
 Here's what goes in it. Replace the brackets with your real information:
 
@@ -250,31 +284,32 @@ Produce an 800-word blog post with:
 
 ## What You Built
 
-Four folders. Four CLAUDE.md files. Four systems that know who you are and how to work — automatically, every session.
+One root file. Four system files. Five CLAUDE.md files total — and the AI reads the right combination automatically based on where you're working.
 
 ```
 my-ai-systems/
+├── CLAUDE.md              ← YOUR shared rules (applies everywhere)
 ├── study-system/
-│   └── CLAUDE.md          ← knows your topic, level, quiz format
+│   └── CLAUDE.md          ← study-specific (topic, level, quiz format)
 ├── job-hunting/
-│   └── CLAUDE.md          ← knows your career, achievements, constraints
+│   └── CLAUDE.md          ← job-specific (career, achievements, constraints)
 ├── project-mgmt/
-│   └── CLAUDE.md          ← knows your project, team, deadline
+│   └── CLAUDE.md          ← pm-specific (project, team, deadline)
 └── content/
-    └── CLAUDE.md          ← knows your audience, tone, banned words
+    └── CLAUDE.md          ← content-specific (audience, tone, banned words)
 ```
 
-Every time you open the AI in one of these folders, it reads the CLAUDE.md and starts with full context. No re-explaining. No pasting your background. No forgotten constraints.
+When you work in `study-system/`, the AI loads root CLAUDE.md (who you are, shared rules) PLUS `study-system/CLAUDE.md` (your topic, quiz format). When you switch to `job-hunting/`, it loads root PLUS `job-hunting/CLAUDE.md`. Same shared foundation, different system context. You wrote your name and shared rules once. They apply everywhere.
 
-This is the universal pattern. Claude Code calls the file CLAUDE.md. Codex and Kimi call it AGENTS.md. Cursor uses .cursorrules. Different names, same idea: persistent project instructions that load automatically. Learn this once, use it in any tool.
+This is how scoped context works — general rules at the root, specific rules in the subfolder. It's the same pattern in every tool: Claude Code reads CLAUDE.md files up the directory tree, Codex does the same with AGENTS.md, Cursor with .cursorrules. Learn it once, use it anywhere.
 
 Here's what your system looks like:
 
 ```
-[Your short prompt] + [CLAUDE.md auto-loaded] → [AI] → [Output]
+[Your short prompt] + [Root CLAUDE.md + System CLAUDE.md auto-loaded] → [AI] → [Output]
 ```
 
-Better than Act 1 — the static context is handled. But there's still no feedback arrow. No memory of what happened last session. No state. The AI knows who you are but not what you've done.
+Better than Act 1 — the static context is handled at two levels. But there's still no feedback arrow. No memory of what happened last session. No state. The AI knows who you are and how each system should work, but not what you've done.
 
 Chapter 5 adds the feedback loop.
 
