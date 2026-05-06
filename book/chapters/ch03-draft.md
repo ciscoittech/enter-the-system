@@ -106,6 +106,8 @@ Here's what a Content System looks like with all three:
 
 Router → Gate → Loop. Three patterns, one system. Variety, quality, refinement — each pattern handles a different problem.
 
+This isn't a thought experiment. The author runs a content pipeline with exactly this structure — 26 posts tracked, each scored on six dimensions with a 24-out-of-30 minimum to publish. The Gate has sent 15 drafts back to rework. The Router handles four output formats from the same source material. The Loop refines voice until AI-generated text is indistinguishable from the author's own writing. The patterns work at production scale, not just on napkins.
+
 A Job Hunting System uses two:
 
 **Router**: Dream company you'd give anything to work for → full custom treatment. Every sentence tailored, deep company research, specific examples matched to their values. Wide-net application to keep pipeline full → solid template with targeted adjustments. Same system, two paths, appropriate effort for each.
@@ -321,5 +323,7 @@ You've built a Study System from nothing — five sessions, each one better, eac
 You have a napkin sketch of the system you want to build. You know what each piece does and which failure it prevents.
 
 Act 2 gives you the tools to build it for real. You already know what you're building and why. That's the hard part — and you've already done it.
+
+One more thing before we start building. Everything in Act 2 comes from real systems the author uses in production — not tutorials written for a book. A study system tracking 127 curriculum items with quiz scoring and gap detection. A work operations system with 15 specialized agents and 80,000 reference documents. A content pipeline that's produced 26 scored posts across multiple platforms. The patterns you're about to learn are extracted from systems that run every day. The research repository for this book has the evidence — architecture diagrams, prompt comparisons, eval notebooks you can run yourself. When someone asks "does this actually work?" the answer isn't "trust me." It's "here's the data."
 
 Let's build.

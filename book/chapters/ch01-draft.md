@@ -185,7 +185,9 @@ Right now, one prompt tries to do everything. By Chapter 11, a multi-stage pipel
 
 Same AI. Same underlying technology. Different architecture around it.
 
-And it's not just studying. The same four concepts turn a one-shot cover letter into a career campaign system that tracks applications and learns from outcomes. They turn a task-list prompt into a project management system that generates audience-tailored updates from live data. They turn a generic blog post into a content pipeline that writes in your voice, checks its facts, and gets better with every piece.
+This isn't theoretical. The author's own study system tracks 127 topics across 21 columns — quiz scores, gap keywords, completion dates, next-session priorities — all updated automatically after every session. You'll see the evidence in this book's research repository. What you're about to build in Act 2 is based on systems that run in production, not tutorials written for a book.
+
+And it's not just studying. The same four concepts turn a one-shot cover letter into a career campaign system that tracks applications and learns from outcomes. They turn a task-list prompt into a work operations system with 15 specialized agents and 80,000 reference documents. They turn a generic blog post into a content pipeline that's produced 26 scored posts — each one graded on six dimensions, with a minimum quality threshold enforced by the system, not by willpower.
 
 Four concepts. Applied to anything you already use AI for. That's what this book builds.
 
