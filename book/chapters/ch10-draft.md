@@ -4,9 +4,9 @@ You just built four systems. Each one has all six components — prompts, state,
 
 But you've been building at personal scale. A study system tracking 30 topics. A job search managing 50 applications. A content pipeline producing one piece at a time.
 
-Here's what you should know: people are using these same patterns — right now — to run real businesses. Not big tech companies with million-dollar AI budgets. Solo founders. Small teams. People who figured out that the same components you just learned can be pointed at a market and turned into a competitive advantage.
+Here's what's happening right now: people with deep domain knowledge — the person who knows their market, their customers, their supply chain — are working at a scale they never could before. Not because they learned machine learning. Because they learned to build systems like the ones you just built, and they pointed those systems at problems they already understood better than anyone.
 
-This isn't the ceiling. This is how deep the rabbit hole goes. And every piece of what you're about to see maps back to something you already know how to build.
+This chapter shows you what that looks like. Every piece of it maps back to something you already know how to build.
 
 ---
 
@@ -228,19 +228,13 @@ The patterns are familiar. But production systems differ from personal ones in w
 
 ---
 
-## This Is Happening Right Now
+## Domain Knowledge Is the Multiplier
 
-This isn't a preview of some future where AI is "finally ready." People are building systems like this today — and they're not the ones making headlines.
+The system you just saw wasn't built by an AI researcher. It was built by someone who knows their market — who's spent years understanding which suppliers are reliable, which products move, which price signals matter. The AI didn't replace that knowledge. It amplified it.
 
-A solo consultant built a client research system that pulls public filings, news, and social media into a state file, runs it through an analysis pipeline, and produces briefing docs that used to take a junior analyst two days. She charges the same rate. The work takes 90 minutes instead of 16 hours.
+That's the pattern worth paying attention to. The people getting the most from AI systems aren't the ones with the deepest technical skills. They're the ones with the deepest domain knowledge who learned to build systems around what they already know. A supply chain expert who can now track 50 suppliers instead of 5. A content strategist who can now produce and quality-check 10 pieces a week instead of 2. A project manager who can now monitor 20 workstreams with the same attention they used to give 4.
 
-An independent e-commerce seller built a product research agent that monitors competitor pricing across 12 marketplaces, tracks price changes in a state file, and alerts when a margin opportunity opens. He used to check prices manually twice a week. The system checks every day and surfaces only what changed.
-
-A freelance developer built a code review pipeline — state file tracks past review patterns, skill file carries the team's coding standards, hooks flag security issues before the review even starts. His review throughput tripled. His error rate dropped.
-
-None of these people have ML engineering backgrounds. None of them are burning venture capital. They learned the same six components you just learned. They pointed those components at problems where the data compounds — where session 100 is dramatically more useful than session 1.
-
-That's the pattern. The systems that win aren't the ones with the fanciest AI models. They're the ones where the data accumulates, the feedback loops tighten, and the human gets to focus on decisions instead of data entry.
+The domain knowledge was always the hard part. It takes years to build. The system just lets it operate at a scale that wasn't possible when every task required manual attention.
 
 Your Study System could become this. Track not 30 topics but 3,000 exam questions across 50 study sessions. Score mastery with multi-signal confidence. Recommend what to study next with weighted scoring.
 
@@ -248,4 +242,4 @@ Your Content System could become this. Track not 20 published pieces but 500 —
 
 The components are the same. The patterns are the same. The scale is different. And the scale comes not from learning new concepts, but from feeding more data into the concepts you already know.
 
-Now — your systems work, and you've seen how deep this goes. The next question is practical: what do they cost to run, and how do you spend smart? That's Chapter 11.
+Now — your systems work, and you've seen what's possible when domain knowledge meets the components you just learned. The next question is practical: what do they cost to run, and how do you spend smart? That's Chapter 11.
