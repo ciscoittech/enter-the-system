@@ -189,6 +189,7 @@ Each of these is a prompt, not a system. By the end of this book, each one will 
 ## Part II: First Builds — Instruction + Memory
 *Components introduced: Prompt, State*
 *Universal concepts: Instruction, Memory*
+*Claude Code features introduced as needed: CLAUDE.md (Ch 4), state files (Ch 5), folder structure (Ch 6)*
 
 ---
 
@@ -283,6 +284,7 @@ Run it across 3+ applications:
 ## Part III: Knowledge and Guard Rails
 *Components introduced: Skill, Hook*
 *Universal concepts: Instruction (advanced), Control*
+*Claude Code features introduced: .claude/skills/ directory + SKILL.md (Ch 7), .claude/settings.json + hooks/ (Ch 8), .claude/commands/ (Ch 9)*
 
 ---
 
@@ -408,6 +410,7 @@ Test by breaking: Feed the system a job posting and intentionally leave the comp
 ## Part IV: Connections and Full Pipelines
 *Components introduced: Connection, Pipeline*
 *Universal concepts: Flow*
+*Claude Code features introduced: MCP servers in settings.json (Ch 10), subagents + multi-step orchestration (Ch 11)*
 
 ---
 
@@ -533,6 +536,7 @@ A multi-stage content pipeline for the reader's recurring content need (blog, ne
 
 ## Part V: Mastery
 *No new components. Debugging what breaks, composing what works.*
+*Claude Code features introduced: memory files (Ch 12), full .claude/ directory architecture (Ch 13)*
 
 ---
 

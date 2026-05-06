@@ -4,7 +4,7 @@ You have a napkin sketch of the system you want to build. You know the four conc
 
 Time to stop sketching and start building.
 
-This chapter is where the book shifts. Act 1 gave you the thinking. Act 2 gives you the tools. And the first tool is the simplest one — a structured prompt, saved as a real file that you can see, edit, and reuse.
+This chapter is where the book shifts. Act 1 gave you the thinking. Act 2 gives you the tools. And the first tool isn't what you'd expect — it's not a prompt you type. It's a file you write once that tells the AI who you are, what you're building, and how to work. A file that loads automatically every time you start a session, so you never re-explain yourself again.
 
 ---
 
@@ -12,310 +12,271 @@ This chapter is where the book shifts. Act 1 gave you the thinking. Act 2 gives 
 
 You're about to open a terminal. If you've never done that before, this section takes about five minutes. If you have, skip to the next section.
 
-A terminal is a text-based window where you type commands and see results. That's it. No mystery. The reason this book uses a terminal instead of a graphical interface is the same reason cooking shows use kitchens instead of vending machines — you need to see what you're making. In a graphical tool, your state files are hidden behind menus. Your skill documents are "settings" somewhere. Your hooks are invisible background processes. In the terminal, everything is a file in a folder. You can see it, open it, read it, change it. When you're learning to build systems, that transparency is the whole point.
+A terminal is a text-based window where you type commands and see results. That's it. The reason this book uses a terminal instead of a graphical interface is the same reason cooking shows use kitchens instead of vending machines — you need to see what you're making. In a graphical tool, your instruction files are hidden behind menus. Your state files are "settings" somewhere. Your hooks are invisible. In the terminal, everything is a file in a folder you can see, open, and understand.
 
 Here's what to install:
 
-**A terminal.** If you're on a Mac, you already have one (it's called Terminal, in your Applications/Utilities folder). But I recommend Warp — it's free, open-source, and designed for exactly this kind of work. Download it at warp.dev. On Windows, use Windows Terminal (built in) or Warp. On Linux, you already know what a terminal is.
+**A terminal.** If you're on a Mac, you already have one — it's called Terminal, in Applications/Utilities. But I recommend Warp. It's free, open-source, and designed for working with AI tools. Download it at warp.dev. On Windows, use Windows Terminal or Warp. On Linux, you already know what a terminal is.
 
-**An AI CLI tool.** This book shows Claude Code, but the same patterns work in OpenAI's Codex, Kimi CLI, or any AI tool that works in the terminal. Install Claude Code by typing this in your terminal:
+**An AI CLI tool.** This book shows Claude Code, but the patterns work in OpenAI's Codex, Kimi CLI, or any AI tool that runs in the terminal. Install Claude Code by typing:
 
 ```
 npm install -g @anthropic-ai/claude-code
 ```
 
-If that command doesn't work, you'll need Node.js first — download it at nodejs.org, install it, then try again.
+If that doesn't work, you need Node.js first — download it at nodejs.org, install it, try again.
 
-**If you prefer a graphical interface** — everything in this book works in Claude's desktop app (Cowork), VS Code with the Claude extension, or Cursor. The files you create are identical. The only difference is whether you see them in a terminal or through a graphical panel. I'll show the terminal because it makes the system visible. Use whatever you're comfortable with.
+**If you prefer a graphical interface** — everything in this book works in Claude's desktop app (Cowork), VS Code with the Claude extension, or Cursor. The files you create are identical. Only the interface differs. I'll show the terminal because it makes the system visible. Use whatever you're comfortable with.
 
-Now create a folder for your systems and open your AI tool:
+Now create a folder for your first system:
 
 ```
 mkdir my-ai-systems
 cd my-ai-systems
-claude
+mkdir study-system
+cd study-system
 ```
 
-Three commands. You're in. The AI is waiting for instructions. Let's give it some.
+You're in your Study System's folder. Everything this system needs will live here. Before you launch the AI tool, you're going to create the most important file in any AI project.
 
 ---
 
-## The Four-Part Formula (One More Time)
+## The File That Changes Everything
 
-You've used this before. In Chapter 2, Session 3, you upgraded your study prompt from "quiz me on the key concepts" to a structured version with four parts — and the output jumped from random to targeted. Same AI, dramatically better results.
+Every modern AI CLI tool — Claude Code, Codex, Kimi, Cursor — has the same foundational concept: a project instructions file. A plain text file that sits in your project folder and gets loaded automatically at the start of every session. You write it once. The AI reads it every time. You never re-explain yourself.
 
-Here's the formula:
+In Claude Code, this file is called `CLAUDE.md`. In Codex and Kimi, it's called `AGENTS.md`. In Cursor, it's `.cursorrules`. Different names, same idea. This book calls it what Claude Code calls it — CLAUDE.md — but the concept transfers to any tool.
 
-**Context** — Who you are, what you're working on, where you stand. This calibrates the AI's tone and difficulty level.
+Here's why this matters. Think back to Chapter 2. Every session, you typed your topic, your level, your weak areas, your constraints. Manual memory. By Session 4, maintaining that context was becoming a chore. By Session 20, you'd have quit.
 
-**Input** — What the AI should read or work with. Files, notes, pasted content, a description of the situation.
+CLAUDE.md solves the static part of that problem. Your topic doesn't change between sessions. Your level changes slowly. Your constraints — "focus on understanding, not memorization" — are the same every time. All of that goes in CLAUDE.md, and you never type it again.
 
-**Output** — Exactly what the finished work looks like. Not "give me a summary" but "create a 10-question quiz with 4 options each, correct answers marked, and a 2-sentence explanation per answer."
-
-**Constraints** — What NOT to do. "Don't ask memorization questions — focus on understanding." "Don't invent experience I don't have." "Keep it under 400 words."
-
-We tested this formally. Same AI, same topic — a vague prompt versus the four-part formula. We scored both on relevance, specificity, difficulty calibration, and format compliance. The vague prompt averaged 11 out of 20. The structured prompt scored 20 out of 20. Every run. The biggest gap was format compliance — the vague prompt couldn't even produce the right number of questions consistently. (Full eval with scoring breakdowns is in this book's research repository.)
-
-The formula works. Now you're going to save it as a file — not paste it into a chat and lose it, but write it to a file you keep, reuse, and improve over time. That's the difference between a prompt and a system component.
+This is the first system component you're building. Not a prompt you paste into a chat and lose. A persistent file that defines how the AI works in this project, automatically, every session.
 
 ---
 
 ## Build It: Study System v1
 
-**Components Used:** `[Prompt]`
-**New this chapter:** `[Prompt]`
+**Components Used:** `[Prompt (CLAUDE.md)]`
+**New this chapter:** The project instructions file
 
-You're going to build the first version of the Study System — the same one you've been running manually since Chapter 1, but now as a real project with a real file.
+**Step 1: Create your CLAUDE.md.**
 
-**Step 1: Create the project folder.**
+In your `study-system/` folder, create a file called `CLAUDE.md`. Open it in any text editor — VS Code, TextEdit, Notepad, whatever you have. Or if you're in Warp or another terminal, create it right there.
 
-In your terminal (inside the `my-ai-systems` folder), type:
-
-```
-mkdir study-system
-cd study-system
-```
-
-You now have a folder for your Study System. Every file this system needs will live here.
-
-**Step 2: Create the prompt file.**
-
-Create a new file called `study-prompt.md`. You can do this in any text editor, or type it directly. Here's the full prompt — copy it and fill in the brackets with your real topic:
+Here's what goes in it. Replace the brackets with your real information:
 
 ```markdown
-# Study System — Prompt v1
+# Study System
 
-## Context
+## Who I Am
 I'm studying [YOUR TOPIC — e.g., AWS Solutions Architect certification,
 conversational Spanish, music theory, personal investing].
 
 My current level: I understand [WHAT YOU KNOW] but struggle with
 [WHAT TRIPS YOU UP].
 
-My goal: [WHAT YOU NEED TO KNOW, AND BY WHEN — e.g., "pass the exam
-by August" or "hold a 5-minute conversation by my trip in October"].
+My goal: [WHAT YOU NEED TO KNOW AND BY WHEN].
 
-## Input
-Here's what I've been working on recently:
-[PASTE YOUR NOTES, OR DESCRIBE WHAT YOU'VE BEEN STUDYING]
+## How to Quiz Me
+When I ask for a quiz or study session:
 
-## Output
-Generate:
-1. A summary of the 3-5 most important concepts from my input
-   (in plain language, with one sentence explaining WHY each matters)
-2. 10 quiz questions testing my understanding:
-   - 4 multiple-choice options per question
-   - Mark the correct answer
-   - 2-sentence explanation: why the correct answer is right,
-     and why the most tempting wrong answer is wrong
-3. Connections: for each concept, one sentence linking it to
-   something from a previous study session (if I mentioned one)
-   or to an everyday analogy
+**Format**: 10 questions, 4 multiple-choice options each. Mark the
+correct answer. For each answer, write a 2-sentence explanation —
+why the right answer is right, and why the most tempting wrong
+answer is wrong.
 
-## Constraints
-- Focus on conceptual understanding, not memorization of specific
-  numbers, dates, or command syntax
-- If two answers could seem correct, acknowledge the ambiguity
-  in your explanation
-- Use plain language — if you use a technical term, define it
-  immediately in parentheses
-- Don't add study tips, exam strategies, or resource recommendations
-  unless I ask
+**Difficulty**: At least 6 of 10 questions should target the areas
+I said I struggle with. The other 4 should review areas I'm
+stronger in to verify retention.
+
+**Style**: Focus on conceptual understanding, not memorizing specific
+numbers, dates, or syntax. If two answers could seem correct,
+acknowledge the ambiguity. Use plain language — define technical
+terms in parentheses on first use.
+
+## What NOT to Do
+- Don't add study tips or exam strategies unless I ask
+- Don't recommend courses, books, or resources unless I ask
+- Don't include questions that require memorizing a specific
+  number or date to answer
+- Don't hedge — if you're unsure about an answer, flag it
+  rather than guessing confidently
 ```
 
-Save this file. Read it back. Notice the structure — Context tells the AI who you are, Input gives it material to work with, Output specifies exactly what comes back, Constraints prevent the three problems you discovered in Chapter 2 (memorization questions, unexplained ambiguity, unsolicited extras).
+Save it. That's it. That's your first system component.
 
-This file is your first system component. It's not a message you paste and lose — it's a document you keep, reference, and improve.
+**Step 2: Launch the AI and see what happens.**
 
-**Step 3: Run it.**
-
-In Claude Code (or your AI tool), reference the prompt:
+In your terminal, from the `study-system/` folder:
 
 ```
-Read study-prompt.md and follow the instructions in it.
-Use my notes below as the Input section:
-
-[Paste your actual study notes or describe what you've been working on]
+claude
 ```
 
-Watch what happens. The AI reads your prompt file, follows the four-part structure, and generates output that matches your specifications. You should see:
+Claude Code starts, sees your folder, and — this is the important part — automatically reads CLAUDE.md. You don't paste anything. You don't reference the file. It just loads. Every session, every time, without you doing anything.
 
-- A concept summary in plain language (not a textbook dump)
-- 10 quiz questions weighted toward your weak areas (if you described them in Context)
-- Explanations that address why wrong answers are tempting, not just why right answers are right
-- No unsolicited study tips or resource recommendations (your Constraints section working)
+Now type:
 
-Here's an abbreviated sample of what the output looks like (using personal investing as the example):
+```
+Quiz me. I've been studying [paste a brief summary of what you
+worked on recently, or describe your understanding so far].
+```
 
-**Concept Summary:**
+That's a short prompt. But watch what the AI does with it. It already knows your topic, your level, your weak areas, your quiz format, your constraints — because it read CLAUDE.md before you typed a word. The output should be:
 
-*1. Compound interest isn't just "interest on interest" — it's why starting early matters more than starting big. A 22-year-old investing $200/month beats a 32-year-old investing $400/month by retirement, because the early investor has 10 extra years of compounding.*
+- 10 questions weighted toward your weak areas (not random coverage)
+- 4 options per question, correct answer marked
+- 2-sentence explanations addressing why wrong answers are tempting
+- Conceptual questions, not memorization (your constraint working)
+- No unsolicited study tips (your "What NOT to Do" working)
 
-*2. An index fund isn't a "safe" investment — it's a "diversified" investment. It still goes down. The difference is that it tracks the whole market instead of betting on one company...*
+Compare this to Session 1 in Chapter 1, where you typed everything into a single prompt. Same AI. But now the context is persistent — you wrote it once, and it applies every time you open this folder.
 
-**Quiz (showing 2 of 10):**
+**Step 3: Close and reopen.**
 
-*Question 3: Why might a target-date fund be appropriate for a beginning investor?*
-- *A) It guarantees a specific return by the target date*
-- *B) It automatically adjusts its stock-to-bond ratio as the target date approaches*
-- *C) It only invests in government-backed securities*
-- *D) It has no management fees*
+Close Claude Code. Open it again in the same folder.
 
-*Correct: B. Target-date funds shift from growth-oriented (more stocks) to preservation-oriented (more bonds) as you approach retirement. Option A is tempting because the name "target-date" sounds like a guarantee — but the date is when the allocation shifts, not when a return is promised.*
+```
+claude
+```
 
-The structured prompt produced better output than anything you got in Chapter 1's sessions. The format is consistent. The difficulty matches your stated level. The constraints held.
+Type: "Quiz me on what we covered last time."
 
-**Step 4: Notice what's missing.**
+The AI reads CLAUDE.md again — your topic, level, constraints are all there. But here's what it CAN'T do: it doesn't know what "last time" was. It doesn't know your score. It doesn't know which questions you got wrong.
 
-Close your AI tool. Open it again. Ask it about your study topic without referencing the prompt file.
+CLAUDE.md handles static context — who you are, how you want to work. It doesn't handle dynamic data — what happened in each session. That's what state files do. That's Chapter 5.
 
-It has no idea you were just here. Your quiz scores? Gone. Your weak areas? Unknown. The concepts you nailed? It'll quiz you on them again. The ten minutes you just spent? Invisible.
-
-This is the same gap you felt in Chapter 1, Session 2. But now you can name it precisely: the system has Instruction (the structured prompt) but no Memory (nothing carries forward between sessions). Your napkin sketch from Chapter 3 shows exactly where the state file goes. Chapter 5 puts it there.
+But notice how much better this already is. You didn't re-explain your topic. You didn't re-type your format preferences. You didn't remind the AI about your constraints. The CLAUDE.md file handled all of that automatically. The manual overhead from Chapter 2's sessions just dropped dramatically.
 
 ---
 
-## Extend It: Three More v1 Prompts
+## Extend It: Three More Systems
 
-The four-part formula isn't specific to studying. It works for anything you'd ask AI to help with. Here are three more systems — each one gets a prompt file, and each one has the same gap.
+The project instructions pattern works for any system. Same concept, different folder, different CLAUDE.md.
 
-### Job Hunting v1
-
-Create a folder and a prompt file:
+### Job Hunting System
 
 ```
-mkdir ../job-hunting
+mkdir ../../job-hunting
+cd ../../job-hunting
 ```
 
-Create `job-hunting/job-prompt.md`:
+Create `CLAUDE.md`:
 
 ```markdown
-# Job Hunting — Prompt v1
+# Job Hunting System
 
-## Context
-I'm a [YOUR ROLE — e.g., product manager with 7 years of experience
-in B2B SaaS]. I'm targeting [ROLE TYPE — e.g., Senior PM roles at
-growth-stage startups]. My strongest selling points are [2-3 KEY
-ACHIEVEMENTS — quantified if possible].
+## Who I Am
+I'm a [YOUR ROLE — e.g., product manager with 7 years in B2B SaaS].
+My strongest achievements:
+- [ACHIEVEMENT 1 — quantified]
+- [ACHIEVEMENT 2 — quantified]
+- [ACHIEVEMENT 3 — quantified]
 
-## Input
-Here's the job posting I'm applying to:
-[PASTE THE FULL JOB POSTING]
+I'm targeting [ROLE TYPE — e.g., Senior PM at growth-stage startups].
 
-## Output
-1. 5 resume bullet points tailored to this specific role
-   (each starting with an action verb, each quantified)
-2. A cover letter draft (under 400 words) that:
-   - Names the company and references something specific about them
-   - Connects my experience to their stated needs
-   - Sounds like a person, not a template
-3. 3 potential interview questions specific to this role,
-   with suggested talking points from my experience
+## When I Paste a Job Posting
+Produce:
+1. 5 tailored resume bullet points (action verb + quantified result)
+2. A cover letter (under 400 words) that names the company, references
+   something specific about them, and connects my experience to their needs
+3. 3 likely interview questions with talking points from my experience
 
-## Constraints
+## What NOT to Do
 - Never invent experience, projects, or metrics I didn't provide
-- Don't use "passionate about" or "excited to join" — find a
-  more specific reason
-- Keep the cover letter under 400 words
+- Don't use "passionate about" or "excited to join" — find specific reasons
+- Don't write generic cover letters that could apply to any company
+- If the role requires skills I haven't listed, flag it — don't fabricate
 ```
 
-Run it with a real job posting. The output should be noticeably tailored — not a generic cover letter with the company name swapped in, but one that references specific details from the posting. But close the session and try another job posting tomorrow — you'll re-explain your entire career from scratch. No tracking of what you've applied to, which resume version you used where, or what's gotten callbacks.
+Run Claude Code in this folder, paste a real job posting, and watch. The AI already knows your career, your achievements, your constraints. You typed a job URL. It produced tailored output. But close the session — it won't remember which jobs you've applied to, which resume version you sent where, or what got callbacks.
 
-### Project Management v1
+### Project Management System
 
-Create `project-mgmt/pm-prompt.md`:
+Create `project-mgmt/CLAUDE.md`:
 
 ```markdown
-# Project Management — Prompt v1
+# Project Management System
 
-## Context
-I'm [YOUR ROLE] managing [PROJECT NAME]. The team includes
-[WHO'S INVOLVED]. The deadline is [DATE].
+## Who I Am
+I'm [YOUR ROLE] managing [PROJECT NAME].
+Team: [WHO'S INVOLVED].
+Deadline: [DATE].
 
-## Input
-Here's the current status:
-[DESCRIBE WHAT'S DONE, WHAT'S IN PROGRESS, AND WHAT'S BLOCKED]
-
-## Output
+## When I Give a Status Update
+Produce:
 1. Task breakdown: each task with owner, dependency, estimated
-   duration, and status (not started / in progress / done / blocked)
+   duration, and status
 2. Critical path: which tasks must finish before others can start
-3. Risk flag: anything that could delay the deadline, with a
+3. Risk flags: anything that could delay the deadline, with a
    one-sentence mitigation
 
-## Constraints
-- Don't assume resources I haven't mentioned
-- Flag any task that depends on something outside the team's control
-- If a deadline looks impossible given the dependencies, say so
+## What NOT to Do
+- Don't assume resources or team members I haven't mentioned
+- Don't create optimistic timelines — if dependencies make a
+  deadline impossible, say so
+- Flag anything that depends on people or systems outside our control
 ```
 
-Run it. Solid task breakdown. Come back next week — the AI has no idea what's been completed, what slipped, or that the deadline moved to Friday.
+### Content System
 
-### Content v1
-
-Create `content/content-prompt.md`:
+Create `content/CLAUDE.md`:
 
 ```markdown
-# Content — Prompt v1
+# Content System
 
-## Context
-I write [WHAT — blog posts, newsletters, social media] for
-[AUDIENCE]. My tone is [DESCRIBE — e.g., conversational but
-informed, like explaining something to a smart friend].
+## Who I Am
+I write [WHAT — blog posts, newsletters] for [AUDIENCE].
+My tone is [DESCRIBE — e.g., conversational but informed, like
+explaining something to a smart friend over coffee].
 
-## Input
-Topic: [WHAT TO WRITE ABOUT]
-Angle: [WHAT MAKES YOUR TAKE DIFFERENT]
-
-## Output
-An 800-word blog post with:
+## When I Give a Topic
+Produce an 800-word blog post with:
 - A hook in the first sentence (not "In today's world...")
 - A clear argument that builds (not a listicle)
 - One specific example or story
 - A close that gives the reader something to do or think about
 
-## Constraints
+## What NOT to Do
 - Never use: "leverage," "utilize," "delve," "ecosystem,"
   "game-changing," "in today's rapidly evolving landscape"
-- Don't hedge with "it might" or "could potentially" — take a position
+- Don't hedge with "it might" or "could potentially"
 - No numbered lists as the main structure
+- Don't write in your voice — write in mine (see my tone above)
 ```
-
-Run it. Readable draft. But it doesn't know your voice — it's writing in its voice, calibrated slightly by your description. Post #2 will sound different from post #1 because there's no loaded knowledge of how you actually write. That's what skills fix in Chapter 7.
 
 ---
 
-## The Pattern
+## What You Built
 
-Four systems. Four domains. Same four-part formula. Each one produces better output than a vague prompt — dramatically better. And each one breaks the same way: close the session, and everything starts from zero.
-
-You now have four folders in `my-ai-systems/`:
+Four folders. Four CLAUDE.md files. Four systems that know who you are and how to work — automatically, every session.
 
 ```
 my-ai-systems/
 ├── study-system/
-│   └── study-prompt.md
+│   └── CLAUDE.md          ← knows your topic, level, quiz format
 ├── job-hunting/
-│   └── job-prompt.md
+│   └── CLAUDE.md          ← knows your career, achievements, constraints
 ├── project-mgmt/
-│   └── pm-prompt.md
+│   └── CLAUDE.md          ← knows your project, team, deadline
 └── content/
-    └── content-prompt.md
+    └── CLAUDE.md          ← knows your audience, tone, banned words
 ```
 
-Four prompt files. Four system components. Four v1 systems that work for a single session and forget everything.
+Every time you open the AI in one of these folders, it reads the CLAUDE.md and starts with full context. No re-explaining. No pasting your background. No forgotten constraints.
 
-Here's what your system looks like right now:
+This is the universal pattern. Claude Code calls the file CLAUDE.md. Codex and Kimi call it AGENTS.md. Cursor uses .cursorrules. Different names, same idea: persistent project instructions that load automatically. Learn this once, use it in any tool.
+
+Here's what your system looks like:
 
 ```
-[Your input] → [Structured Prompt file] → [AI] → [Output]
+[Your short prompt] + [CLAUDE.md auto-loaded] → [AI] → [Output]
 ```
 
-No feedback arrow. No loop. No memory. The output goes to you, and that's where it ends. Next session, the AI starts fresh.
+Better than Act 1 — the static context is handled. But there's still no feedback arrow. No memory of what happened last session. No state. The AI knows who you are but not what you've done.
 
-You already know what's missing — you drew it on a napkin in Chapter 3. The feedback loop. A file that carries forward what happened this session so the next session can pick up where this one left off.
-
-That file is called state. Chapter 5 builds it.
+Chapter 5 adds the feedback loop.
 
 ---
 
@@ -323,12 +284,12 @@ That file is called state. Chapter 5 builds it.
 
 Five checks:
 
-**Folder check.** You have four folders in `my-ai-systems/`, each with a prompt file. They're real files you can open, read, and edit — not messages lost in a chat history.
+**Folder check.** You have four folders in `my-ai-systems/`, each with a CLAUDE.md file. They're real files you can open, read, and edit.
 
-**Format check.** Run any of the four prompts. The output follows your requested format — 4-option quiz questions, quantified resume bullets, task breakdown with owners, blog post with a hook (not "In today's world..."). If the format is wrong, your Output section isn't specific enough.
+**Auto-load check.** Open Claude Code in your Study System folder. Type a short prompt — "quiz me on [topic]." Verify: the AI follows your format (10 questions, 4 options, explanations) and constraints (no memorization questions, no unsolicited tips) WITHOUT you specifying them in the prompt. CLAUDE.md is doing its job.
 
-**Quality check.** Compare the Study System output to what you got in Chapter 1, Session 1. The structured version should be noticeably better — more targeted, better explained, fewer random tangents.
+**Portability check.** If you use a different AI tool, create the equivalent file (AGENTS.md for Codex/Kimi, .cursorrules for Cursor) with the same content. Same result, different filename.
 
-**Break it on purpose.** Close your AI tool. Open it fresh. Run the Study System prompt again without changing anything. Verify: the AI doesn't mention yesterday's quiz scores, doesn't know your weak areas, covers topics you already mastered. That's the gap. You can name it now: "No state. No memory. No feedback loop."
+**Break it on purpose.** Open Claude Code in a DIFFERENT folder — one without a CLAUDE.md. Ask for a study quiz. Watch the output: generic topic coverage, random format, no constraints. That's what "no project instructions" looks like. Now go back to your study-system folder and run the same prompt. The difference is the CLAUDE.md.
 
-**Explain it.** You can tell someone, in your own words, why a structured prompt is better than a vague one — AND why it's still not a system. The prompt is one component. The system needs at least two more before the loop closes.
+**Name the gap.** CLAUDE.md handles static context — who you are, how you work. What it can't handle: what happened last session, your quiz scores, your weak areas over time. You can explain why to someone: "The instructions file is like a job description. The state file — which we'll build next — is like the work log."
