@@ -13,36 +13,44 @@ A prompt is one input. A system is the whole loop — instruction, memory, contr
 
 ---
 
-## Status: Complete First Draft
+## Read the Book
 
-**All 15 chapters drafted. ~50,000 words. Scored and reviewed.**
+| | Link | What's Inside |
+|---|------|-------------|
+| **Act 1** (Free) | **[Read Act 1 →](book/published/act1-beta-draft.md)** | 3 chapters, ~11,000 words. Universal concepts. Works in any AI tool. |
+| **Act 2** (Full Draft) | **[Read Act 2 →](book/published/act2-beta-draft.md)** | 12 chapters, ~40,000 words. Build real systems. Production case study. |
 
-| Area | Status |
-|------|--------|
-| Act 1 — Universal Concepts (Ch 1-3) | Drafted, reviewed, scored 28-30/30 |
-| Act 2 — Build Chapters (Ch 4-9) | Drafted, reviewed, scored 23-27/30 |
-| Act 2 — Production & Mastery (Ch 10-15) | Drafted, reviewed, scored 22-30/30 |
-| Downloads | Ch 4-7 complete (54 project files) |
-| Research | 8 research docs with verified CLI behavior |
-| Diagrams | 14 Mermaid diagrams (Act 1 + Ch 9-10) |
-| Production Evidence | 3 systems + 1 production case study |
+Or read individual chapters:
 
-**Average score: 25.9/30** across 11 reviewed chapters. All pass (minimum 20/30). One perfect score (Ch 14).
+**Act 1: The System** — tool-agnostic, works in ChatGPT/Claude/Gemini
 
----
+| Ch | Read | What You Learn |
+|----|------|---------------|
+| 1 | [You're Already Building Systems](book/chapters/ch01-draft.md) | The four concepts. Why your prompts break. |
+| 2 | [Going Deeper](book/chapters/ch02-draft.md) | Push each concept, feel why manual systems collapse |
+| 3 | [Design Patterns](book/chapters/ch03-draft.md) | Loop, Gate, Router — design on a napkin |
 
-## What You'll Build
+**Act 2: The Build** — hands-on, one new component per chapter
 
-Four real systems that grow across the entire book. Each starts as a basic prompt and ends as a full 6-component pipeline.
+| Ch | Read | Component | What You Build |
+|----|------|-----------|---------------|
+| 4 | [Structured Prompts](book/chapters/ch04-draft.md) | Prompt | CLAUDE.md — persistent project instructions |
+| 5 | [State Files](book/chapters/ch05-draft.md) | State | Memory that carries forward across sessions |
+| 6 | [Skills](book/chapters/ch06-draft.md) | Skill | Loaded expertise — your voice, your rules |
+| 7 | [Hooks](book/chapters/ch07-draft.md) | Hook | Automated checks that catch mistakes |
+| 8 | [Connections](book/chapters/ch08-draft.md) | Connection | Live data from the outside world |
+| 9 | [Pipelines](book/chapters/ch09-draft.md) | Pipeline | Multi-stage workflows with quality gates |
 
-| System | You Start With | You End With |
-|--------|---------------|-------------|
-| **Study** | "Quiz me on cloud computing" | An adaptive learning system that tracks weak areas, adjusts difficulty, verifies answers, pulls live data, and plans the next session |
-| **Job Hunting** | "Write me a cover letter" | A career campaign that tracks applications, tailors materials from a loaded career profile, catches fabricated details, and learns which approaches get callbacks |
-| **Project Management** | "Help me plan this project" | A project operations system that pulls live data, generates status updates for different audiences, flags risks, and tracks everything |
-| **Content** | "Write a blog post about X" | A content pipeline that researches, drafts in your voice, fact-checks against sources, enforces quality gates, and publishes |
+**Act 2: Production & Mastery** — real-world systems, cost, debugging, composition
 
-These aren't hypothetical. The author runs all four in production. [See the evidence.](research/systems/)
+| Ch | Read | What You Learn |
+|----|------|---------------|
+| 10 | [A Real System](book/chapters/ch10-draft.md) | Production case study — MongoDB pipelines + AI agents |
+| 11 | [The Cost of Intelligence](book/chapters/ch11-draft.md) | Token economics, model selection, spend smart |
+| 12 | [When Systems Break](book/chapters/ch12-draft.md) | Every failure maps to a component — diagnose and fix |
+| 13 | [Composing Systems](book/chapters/ch13-draft.md) | Wire systems into a personal AI operating system |
+| 14 | [Designing New Systems](book/chapters/ch14-draft.md) | Build from scratch for any problem |
+| 15 | [What's Next](book/chapters/ch15-draft.md) | The framework outlasts every tool |
 
 ---
 
@@ -58,82 +66,52 @@ PROMPT → STATE → SKILL → HOOK → CONNECTION → PIPELINE
  tell it)    remembers)   expertise)   checks)      data)            workflows)
 ```
 
-Each chapter adds one component. By the end, your systems have all six working together. Then a production case study shows what these patterns look like at business scale — MongoDB aggregation pipelines, AI agents with 37 tools, and forensic matching that discovers hidden supply chain relationships.
+Each chapter adds one component. By the end, your systems have all six working together.
 
-**It's not tied to one tool.** The concepts work in Claude Code, OpenAI Codex, Kimi CLI, Cursor, or whatever ships next year.
+**Then it goes further.** Chapter 10 shows a production system that uses these same patterns at business scale — MongoDB aggregation pipelines discovering hidden supply chain relationships, an AI agent with 37 specialized tools reasoning across 22,000+ data points, and forensic matching that finds what no human could track manually.
 
-**Every claim is backed by evidence.** Not "trust me" — [here's the data](research/METHODOLOGY.md).
+**It's not tied to one tool.** The concepts work in Claude Code, OpenAI Codex, Kimi CLI, Cursor, or whatever ships next year. Chapter 6 explicitly covers how skills transfer across platforms.
 
 ---
 
-## Read It Now (Free)
+## Highlights
 
-**Act 1 is free.** Three chapters, ~11,000 words. Run 5 hands-on sessions in any AI tool and walk away understanding why your prompts break — and what to do about it.
+### PII Redaction as a System Design Pattern (Ch 7)
 
-### [Read Act 1 →](book/published/act1-beta-draft.md)
+The book teaches hooks through a cover letter fabrication detector — a script that catches AI-invented credentials before you submit them. But it also shows where hooks go at scale: a production PII redactor that strips sensitive data before the AI sees it, maps private information to safe aliases, and — the key insight — **injects context telling the AI how to interpret the sanitized data**. That last part is systems thinking: the redaction alone is regex, but the context injection is what makes it a *system*.
 
-Or chapter by chapter:
+[See the production PII redactor evidence →](research/systems/pii-redactor/)
 
-1. **[You're Already Building Systems](book/chapters/ch01-draft.md)** — You run a study quiz, get great results, then watch it forget everything.
-2. **[Going Deeper](book/chapters/ch02-draft.md)** — You push through 3 more sessions, manually patching each concept.
-3. **[Design Patterns](book/chapters/ch03-draft.md)** — Loop, Gate, Router — three shapes that describe every AI system.
+### Production Aggregation Pipeline (Ch 10)
 
-![The Study System — Napkin Sketch](book/diagrams/png/ch03-napkin-sketch.png)
-*By Chapter 3, you can design a system on paper. Act 2 builds it for real.*
+Chapter 10 isn't a toy example. It's an abstracted version of a real business system:
+
+- **Supply chain forensics** — price correlation algorithms that discover who supplies whom by comparing pricing across 22,000+ quotes. If Supplier A is consistently 30%+ cheaper than Supplier B across 3+ overlapping products, A supplies B. Confidence scoring at three tiers.
+- **Multi-dimensional profiling** — six analyses running in parallel against the same dataset. One query, six answers. Competitor battlecards assembled in under a second.
+- **37-tool AI agent** — three thinking modes (factual lookup, analytical reasoning, strategic sparring) with automatic mode detection. Ask "What should I buy with $5,000?" and get a sourced, evidence-backed purchasing recommendation.
+- **Multi-signal demand scoring** — weighted across demand (35%), margin (30%), supply reliability (20%), and data confidence (15%). Every recommendation traces back to specific data points.
+
+Every component maps back to what the reader built in Chapters 4-9. Same patterns, different scale.
+
+[Read the full production case study →](book/chapters/ch10-draft.md) · [See the diagrams →](book/chapters/ch10-showcase.md)
 
 ---
 
 ## Download the Project Files
 
-Every Act 2 chapter has downloadable starter and finished files — the actual CLAUDE.md files, state files, skill documents, and hook scripts.
+Every Act 2 build chapter has downloadable starter and finished files — the actual CLAUDE.md files, state files, skill documents, and hook scripts.
 
-**[Browse the downloads →](downloads/)**
+**[Browse all downloads →](downloads/)**
 
 | Folder | Chapter | What's Inside |
 |--------|---------|---------------|
 | [`before/`](downloads/before/) | Act 1 | The vague one-liner prompts most people start with |
-| [`ch04-prompt/`](downloads/ch04-prompt/) | Ch 4: Structured Prompts | Root CLAUDE.md + 4 system CLAUDE.md files |
-| [`ch05-state/`](downloads/ch05-state/) | Ch 5: State Files | + 4 state files with @import wiring |
-| [`ch06-skill/`](downloads/ch06-skill/) | Ch 6: Skills | + 5 skill files in .claude/skills/ |
-| [`ch07-hook/`](downloads/ch07-hook/) | Ch 7: Hooks | + 7 hook scripts + settings.json |
+| [`ch04-prompt/`](downloads/ch04-prompt/) | Ch 4 | Root CLAUDE.md + 4 system CLAUDE.md files |
+| [`ch05-state/`](downloads/ch05-state/) | Ch 5 | + 4 state files with @import wiring |
+| [`ch06-skill/`](downloads/ch06-skill/) | Ch 6 | + 5 skill files in .claude/skills/ |
+| [`ch07-hook/`](downloads/ch07-hook/) | Ch 7 | + 7 hook scripts + settings.json (correct stdin JSON API) |
 
-Each folder is self-contained with every file your system needs after that chapter.
-
----
-
-## Full Book Outline (15 Chapters)
-
-### Act 1: The System (Universal — any AI tool)
-
-| Ch | Title | Score |
-|----|-------|-------|
-| 1 | You're Already Building Systems | 28/30 |
-| 2 | Going Deeper | 30/30 |
-| 3 | Design Patterns | 29/30 |
-
-### Act 2: The Build (CLI-demonstrated)
-
-| Ch | Title | Component | Primary System | Score |
-|----|-------|-----------|---------------|-------|
-| 4 | Structured Prompts | Prompt | Study | — |
-| 5 | State Files | State | Job Hunting | 27/30 |
-| 6 | Skills | Skill | Content | 24/30 |
-| 7 | Hooks | Hook | Job Hunting | 23/30 |
-| 8 | Connections | Connection | Study | 27/30 |
-| 9 | Pipelines | Pipeline | Content | 27/30 |
-
-### Act 2: Production & Mastery
-
-| Ch | Title | Score |
-|----|-------|-------|
-| 10 | A Real System — Production Case Study | 22/30 |
-| 11 | The Cost of Intelligence | 23/30 |
-| 12 | When Systems Break — Debugging | 28/30 |
-| 13 | Composing Systems — Personal AI OS | 28/30 |
-| 14 | Designing New Systems | **30/30** |
-| 15 | What's Next | 26/30 |
-
-[Full detailed outline →](book/outline-v3.md) · [Production case study preview →](book/chapters/ch10-showcase.md)
+Each folder is self-contained — every file your system needs after that chapter. Replace `[BRACKETED PLACEHOLDERS]` with your info.
 
 ---
 
@@ -145,6 +123,7 @@ Each folder is self-contained with every file your system needs after that chapt
 | [Study System (production)](research/systems/study-system/) | 127 items, quiz scoring, gap detection |
 | [Work System (production)](research/systems/work-system/) | 15 agents, 15 skills, 80K+ reference docs |
 | [Content System (production)](research/systems/content-system/) | 7-stage pipeline, 26 posts, 24/30 quality gate |
+| [PII Redactor (production)](research/systems/pii-redactor/) | Domain-aware redaction with context injection |
 | [Production Case Study](book/chapters/ch10-showcase.md) | MongoDB pipelines, 37-tool AI agent, forensic matching |
 
 ---
@@ -171,13 +150,31 @@ Each folder is self-contained with every file your system needs after that chapt
 | Connection | Ch 8 | Live data from external tools and APIs |
 | Pipeline | Ch 9 | Multi-stage workflows with quality gates |
 
-**3 Design Patterns**: Loop (improve iteratively), Gate (check before shipping), Router (different inputs → different handling)
+**3 Design Patterns**: Loop (improve iteratively), Gate (check before shipping), Router (different inputs, different handling)
+
+---
+
+## Status
+
+**All 15 chapters drafted. ~50,000 words. Scored, reviewed, and second-pass edited.**
+
+| Area | Status |
+|------|--------|
+| Act 1 (Ch 1-3) | Drafted, reviewed, 28-30/30 |
+| Act 2 Build (Ch 4-9) | Drafted, reviewed, 23-27/30 |
+| Act 2 Mastery (Ch 10-15) | Drafted, reviewed, 22-30/30 |
+| Downloads | 54 project files (Ch 4-7) |
+| Research | 8 docs with verified CLI behavior |
+| Diagrams | 19 embedded across Ch 1-10, 10 placeholders in Ch 11-15 |
+| Production Evidence | 3 systems + PII redactor + case study |
+
+Average score: **25.9/30**. All pass. One perfect score (Ch 14: Designing New Systems).
 
 ---
 
 ## Get Involved
 
-**Read Act 1 and tell us what you think.** Leave feedback as [GitHub Issues](../../issues).
+**Read it and tell us what you think.** [GitHub Issues](../../issues) — what clicked, what confused you, what's missing.
 
 **Run the evals yourself.** The [notebooks](research/evals/) work with any AI API.
 
@@ -185,8 +182,8 @@ Each folder is self-contained with every file your system needs after that chapt
 
 ## About
 
-Written by a network engineer who builds AI systems in production — not a researcher writing about theory. Three personal systems plus a production business system run daily and inform every chapter.
+Written by a network engineer who builds AI systems in production — not a researcher writing about theory. Three personal systems plus a production business system (MongoDB aggregation pipelines, AI agents, forensic matching) run daily and inform every chapter.
 
-CLI-demonstrated (terminal-first, because you need to see the system's parts) and interface-agnostic (same patterns work in Claude Code, Codex, Kimi CLI, Cursor, or whatever ships next).
+CLI-demonstrated and interface-agnostic. Same patterns work in Claude Code, Codex, Kimi CLI, Cursor, or whatever ships next.
 
 **[Start reading →](book/published/act1-beta-draft.md)**
