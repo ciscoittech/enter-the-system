@@ -54,7 +54,7 @@ Legend: `D` = Draft, `S` = Score, `Rv` = Reviewed, `P` = Published
 
 | # | Chapter | Primary System | D | S |
 |---|---------|---------------|---|---|
-| 10 | A Real System — Production Case Study | Abstracted production system | DRAFTING | -/30 |
+| 10 | A Real System — Production Case Study | Abstracted production system | DONE | -/30 |
 | 11 | The Cost of Intelligence | All 4 (cost management) | [ ] | -/30 |
 | 12 | When Systems Break — Debugging | All 4 | [ ] | -/30 |
 | 13 | Composing Systems — Personal AI OS | All 4 | [ ] | -/30 |
@@ -147,3 +147,4 @@ Legend: `D` = Draft, `S` = Score, `Rv` = Reviewed, `P` = Published
 | 2026-05-06 | Ch 7 drafted. ~4,030 words. Job Hunting deep build. stdin JSON + jq, exit code 2 blocks, PII redactor sidebar, 2 hook scripts with line-by-line walkthrough. | Ch 7 |
 | 2026-05-06 | Ch 8 drafted. ~4,140 words. Study System deep build. Web search (built-in, zero setup) + remote HTTP MCP. Graceful degradation as core design lesson. | Ch 8 |
 | 2026-05-06 | Ch 9 drafted. ~4,380 words. Content System deep build. Pipeline as emergent pattern (not built-in). 5-stage content pipeline. Capstone — all 6 components complete. | Ch 9 |
+| 2026-05-06 | Ch 10 drafted. ~3,460 words. Production case study abstracted to food import domain. All technical patterns preserved. Zero identifying leaks verified. | Ch 10 |
