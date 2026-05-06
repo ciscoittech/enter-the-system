@@ -40,6 +40,15 @@ if echo "$LOWER_PROMPT" | grep -qE "(test|try this prompt|verify)"; then
   SUGGESTIONS+=("/prompt-test — Test a Cowork prompt and document results")
 fi
 
+if echo "$LOWER_PROMPT" | grep -qE "(dev.?docs|plan|tasks|implementation|remaining work|what.s left)"; then
+  SUGGESTIONS+=("/dev-docs — Create or review implementation plan")
+  SUGGESTIONS+=("/dev-docs-update — Update plan between sessions")
+fi
+
+if echo "$LOWER_PROMPT" | grep -qE "(diagram|visual|image|mermaid|render)"; then
+  SUGGESTIONS+=("bash book/diagrams/render.sh — Render all Mermaid diagrams to SVG+PNG")
+fi
+
 if [ ${#SUGGESTIONS[@]} -gt 0 ]; then
   echo "Available commands that might help:"
   for suggestion in "${SUGGESTIONS[@]}"; do

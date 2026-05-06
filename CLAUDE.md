@@ -91,17 +91,24 @@ frontier-engineering-cowork/
 
 ---
 
-## Chapter Production Pipeline
+## Production Pipeline
 
+### Act 1 Pipeline (used for Ch 1-3 — COMPLETE)
 ```
-1. DETAILED OUTLINE → Write section-by-section blueprint (like act1-detailed-outlines.md)
-2. DRAFT            → /draft → book/chapters/chXX-draft.md
-3. REVIEW           → /review → score >= 20/30 or rework
-4. UPDATE STATE     → book/book-state.md
+DETAILED OUTLINE → DRAFT → REVIEW (score ≥ 20/30) → ENRICH (add research evidence) → DIAGRAMS
 ```
 
-For Act 2 chapters (Cowork builds), add before step 1:
-- RESEARCH → /research-topic → research/synthesized/ (for component-specific Cowork features)
+### Act 2 Pipeline (Ch 4-13)
+```
+1. RESEARCH      → /research-topic → CLI specifics, component behavior, production system evidence
+2. OUTLINE       → Section-by-section blueprint with CLI examples planned
+3. DRAFT         → /draft → book/chapters/chXX-draft.md (CLI-demonstrated, 4 throughline systems)
+4. EVAL NOTEBOOK → Build corresponding eval in research/evals/notebooks/
+5. DIAGRAMS      → Mermaid source in book/diagrams/src/ → render.sh
+6. REVIEW        → /review → score ≥ 20/30 or rework
+7. ENRICH        → Add production evidence from research/systems/
+8. UPDATE STATE  → book/book-state.md + dev-docs
+```
 
 ---
 
@@ -160,6 +167,9 @@ Reader does it themselves → Quality gate
 8. **State tracking.** Update `book/book-state.md` after every writing session.
 9. **Quality gates.** Chapter scores >= 20/30 on the 6-dimension rubric before moving to `published/`.
 10. **Canonical outline is `outline-v3.md`.** All chapter structure, system assignments, and component schedules follow v3.
+11. **Act 2 is CLI-demonstrated, interface-agnostic.** All examples show terminal/CLI. State files, skills, hooks are real files. Warp Terminal recommended (free, open-source) but not required. Say "If you prefer a graphical interface, these same files work in Cowork or VS Code." Patterns work in Claude Code, Codex, Kimi CLI, etc.
+12. **Maintenance is taught per-component, not deferred.** Each component chapter (Ch 5, 7, 8, 10, 11) includes a "Maintain It" section. Ch 12 is debugging (fixing what breaks), not maintenance (preventing drift).
+13. **Dev-docs track all work.** Implementation plans live in `dev/active/`. Use `/dev-docs` to create, `/dev-docs-update` to track between sessions.
 
 ---
 
