@@ -54,9 +54,9 @@ Tasting food before serving it to guests. You taste. It's good? Serve it. Someth
 
 In AI systems:
 
-Job Hunting: Claude drafts a cover letter. Before you send it, a check fires: does it mention the company by name — the actual name, not "your company"? Does it reference something specific about the role? Does every claimed accomplishment match your real experience? Is it under 400 words? Pass all four → ready to send. Fail any one → back to drafting with specific feedback about what's wrong.
+Job Hunting: the AI drafts a cover letter. Before you send it, a check fires: does it mention the company by name — the actual name, not "your company"? Does it reference something specific about the role? Does every claimed accomplishment match your real experience? Is it under 400 words? Pass all four → ready to send. Fail any one → back to drafting with specific feedback about what's wrong.
 
-Project Management: Claude generates a status report. Check: do the task counts match the tracker? Are all blocked items explained? Is the format right for this specific audience — executive summary for the boss, detailed action items for the team? Pass → deliver. Fail → regenerate with corrections.
+Project Management: the AI generates a status report. Check: do the task counts match the tracker? Are all blocked items explained? Is the format right for this specific audience — executive summary for the boss, detailed action items for the team? Pass → deliver. Fail → regenerate with corrections.
 
 **When to use it**: When shipping bad output costs more than checking it. Cover letters you can't un-send. Financial reports people make decisions from. Quiz answers you're going to study and internalize. Client communications that shape how people see you. Anything where a mistake that gets through is worse than a few extra seconds catching it.
 
@@ -98,13 +98,13 @@ Real systems aren't pure. They combine patterns. The three shapes are building b
 
 Here's what a Content System looks like with all three:
 
-Start with a **Router**. What kind of content? Blog post → long-form research and drafting process. Social media post → short-form, different structure, different voice. Newsletter → personal tone, different opening style. The format determines the path.
+**Router** first: blog post → long-form process. Social post → short-form. Newsletter → personal tone. The format determines the path.
 
-Then a **Gate**. After the research stage, check: are there at least three credible sources? Is there a clear angle that hasn't been covered a hundred times? If yes, proceed to drafting. If not, back to research with a note about what's missing. Don't draft a blog post on a foundation of one half-relevant article.
+**Gate** after research: at least three credible sources and a clear angle? If yes, proceed to drafting. If not, back to research. Don't draft on a foundation of one half-relevant article.
 
-Then a **Loop**. Draft → check against the writer's voice and style rules → revise where the tone drifts → check again. Exit condition: passes the style check on all criteria, or maximum two revision cycles (because infinite polishing is its own problem).
+**Loop** on the draft: write → check against voice and style → revise → check again. Exit: passes the style check, or maximum two revision cycles.
 
-Router → Gate → Loop. Three patterns, one system. Each pattern handles a different problem: the Router handles variety (different formats need different processes), the Gate handles quality (don't build on bad research), the Loop handles refinement (get the voice right through iteration).
+Router → Gate → Loop. Three patterns, one system. Variety, quality, refinement — each pattern handles a different problem.
 
 A Job Hunting System uses two:
 
@@ -152,7 +152,19 @@ That's six steps. Not a rigid methodology — a thinking process. For simple sys
 
 ## The Worked Example: Your Study System on a Napkin
 
-Let's put it all together. Here's the Study System — the one you've been running manually for five sessions — sketched as a design. Every element maps to something you've already experienced.
+Before the full sketch, here's what a simple system looks like in this notation. A basic Loop for editing a draft:
+
+```
+[Draft] --> [Check: sounds like me?]
+               |           |
+             [yes]        [no]
+               |           |
+             [Done]    [Revise] --> back to Draft
+```
+
+That's it. Boxes for steps, arrows for flow, a decision point, and a backward arrow for the loop. Everything you need.
+
+Now the full Study System — the one you've been running manually for five sessions — sketched as a design. Every element maps to something you've already experienced.
 
 ```
 STUDY SYSTEM — NAPKIN SKETCH

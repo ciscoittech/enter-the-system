@@ -55,7 +55,7 @@ Think about what that means for your Study System. Session 3 was better than Ses
 
 That's not a few sentences you can type from memory. That's a file. A document that the system reads at the start of every session and writes to at the end. A record that accumulates over time, getting more useful with every session because it has more data to work with.
 
-This book calls that file "state." You'll build one in Chapter 5. But right now, let's feel what manual memory actually looks like — and where it breaks.
+This book calls that file "state" — a running record of what's happened and what to do next. You'll build one in Chapter 5. But right now, let's feel what manual memory actually looks like — and where it breaks.
 
 Before you start your next session, write yourself a progress note. Something like this:
 

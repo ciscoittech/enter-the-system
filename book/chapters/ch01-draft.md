@@ -72,7 +72,7 @@ Chapter 2 goes deep on each one, and you'll feel every single failure firsthand.
 
 ## Session 1: Build It
 
-Put this book down and open an AI tool. Any of them — ChatGPT, Claude, Gemini, whatever you have. This works in all of them, because the framework is about the system, not the software.
+Put this book down and open an AI tool. Any of them — ChatGPT, Claude, Gemini, whatever you have. This works in all of them, because the framework is about the system, not the software. The whole thing takes about fifteen minutes — ten for Session 1, five for Session 2.
 
 Pick something you're actually trying to learn right now. Not a hypothetical — your real thing. A certification you need for work. A language you're studying. A hobby you're trying to get better at. A skill you've been meaning to develop. If nothing comes to mind, pick personal investing — everyone could stand to understand their own money better.
 
@@ -175,13 +175,13 @@ One out of four. That's what a prompt gives you.
 
 By the end of this book, that study session will be unrecognizable from what you just experienced.
 
-Right now, the system quizzes you on random topics. By Chapter 9, it reads your progress file, identifies the three concepts you've scored lowest on across all prior sessions, and generates questions that specifically target the gaps in your understanding — skipping everything you've already mastered.
+Right now, the system quizzes you on random topics. By Chapter 11, it reads your progress file, identifies the three concepts you've scored lowest on across all prior sessions, and generates questions that specifically target the gaps in your understanding — skipping everything you've already mastered.
 
 Right now, the system forgets everything between sessions. By Chapter 5, it reads a study tracker at the start of every session and writes updated results at the end. Session 12 builds on Session 11 builds on Session 10. Your weak areas from last month inform today's practice.
 
-Right now, you're the one checking whether the answers are right. By Chapter 7, the system verifies its own answers before you see them and flags anything it's uncertain about.
+Right now, you're the one checking whether the answers are right. By Chapter 8, the system verifies its own answers before you see them and flags anything it's uncertain about.
 
-Right now, one prompt tries to do everything. By Chapter 9, a multi-stage pipeline assesses your level, generates targeted practice, tests you, analyzes the patterns in your mistakes, updates your progress, and plans the next session — each stage focused, each stage checked before the next one begins.
+Right now, one prompt tries to do everything. By Chapter 11, a multi-stage pipeline assesses your level, generates targeted practice, tests you, analyzes the patterns in your mistakes, updates your progress, and plans the next session — each stage focused, each stage checked before the next one begins.
 
 Same AI. Same underlying technology. Different architecture around it.
 
