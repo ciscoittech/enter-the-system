@@ -22,15 +22,13 @@ Every component in this system is something you've already built. Just bigger.
 
 ---
 
-## The Data Layer: MongoDB Aggregation as Intelligence
+## The Data Layer: State Files at Scale
 
-Your state files are markdown tables. They work. But when you're tracking thousands of price quotes across dozens of suppliers, markdown tables stop scaling. This system uses MongoDB — a database that stores documents instead of rows — and aggregation pipelines that transform raw data into intelligence.
+Your state files are markdown tables. They work. But when you're tracking thousands of price quotes across dozens of suppliers, markdown tables stop scaling. This system uses a database instead — think of it as a massive, searchable state file. The data goes in raw. The system runs it through a series of filters and calculations — like a multi-stage assembly line — and intelligence comes out the other end. Same idea as your content pipeline from Chapter 9, but running against a database instead of files on disk.
 
-You don't need to learn MongoDB to understand what's happening here. Think of an aggregation pipeline as a multi-stage assembly line for data. Raw quotes go in one end. Cleaned, grouped, compared, and scored intelligence comes out the other. Same idea as your content pipeline from Chapter 9, but running against a database instead of files on disk.
+### Six Questions, One Pass
 
-### The $facet Pattern: Six Analyses in One Query
-
-When the founder asks "Tell me about Supplier A," the system doesn't run six separate queries. It runs one query with six parallel branches using a pattern called `$facet`. Each branch answers a different question about the same supplier, simultaneously:
+When the founder asks "Tell me about Supplier A," the system doesn't look up six different things one at a time. It answers six questions in a single pass — all running in parallel against the same supplier's data:
 
 **Branch 1 — Pricing**: Average price, minimum, maximum, median across all their quotes. How many total quotes are in the system.
 
@@ -44,9 +42,9 @@ When the founder asks "Tell me about Supplier A," the system doesn't run six sep
 
 **Branch 6 — Vision intelligence**: What their social media posts reveal — product quality tiers, packaging, branding, presentation standards.
 
-One query. Six dimensions. The result is a competitor battlecard assembled in under a second.
+One pass. Six answers. The result is a complete competitor profile assembled in under a second.
 
-This is the same shape as your hooks from Chapter 8 — multiple checks running against the same input. The difference is scale: instead of three checks on a cover letter, it's six analyses across thousands of data points. But the pattern — parallel evaluation branches feeding into a combined result — is identical.
+This is the same shape as your hooks from Chapter 7 — multiple checks running against the same input. The difference is scale: instead of three checks on a cover letter, it's six analyses across thousands of data points. But the pattern — parallel checks feeding into a combined result — is identical.
 
 ### Supply Chain Forensics: Who Supplies Whom
 
@@ -88,15 +86,15 @@ The result is a supply chain map the founder couldn't have assembled manually. N
 
 ---
 
-## The Agent Layer: 37 Tools and Three Thinking Modes
+## The Agent Layer: One Question, Thirty-Seven Capabilities
 
-The data layer produces intelligence. The agent layer makes it conversational. The founder doesn't write database queries. They send a text message: "What should I buy with $5,000?" and the agent reasons its way to an answer.
+The data is useless sitting in a database. The agent makes it conversational. The founder doesn't write queries or read spreadsheets. They send a text message: "What should I buy with $5,000?" and the agent reasons its way to an answer.
 
-### Mode Detection: Matching the Response to the Question
+### Three Ways of Thinking
 
-Not every question needs the same kind of thinking. "How many cases do we have in stock?" is a data lookup — fast model, quick answer. "What if we started importing directly instead of buying from distributors?" is strategic exploration — slower model, deeper reasoning, pushback on assumptions.
+Not every question needs the same kind of thinking. "How many cases do we have in stock?" is a quick lookup. "What if we started importing directly instead of buying from distributors?" is strategic thinking that requires pushback and follow-up questions.
 
-The agent detects which mode a question calls for using keyword signals:
+The agent figures out which kind of thinking a question needs:
 
 **Factual mode** triggers on phrases like "how many," "what's in stock," "show me the numbers," "what did we spend." Quick data retrieval. The default model handles it — fast and cheap.
 
@@ -112,13 +110,13 @@ Your CLAUDE.md from Chapter 4 set a consistent personality. This system does the
 
 When the founder asks "What should I buy with $5,000?", the agent doesn't guess. It calls tools in sequence, each one feeding context to the next:
 
-**Step 1 — market_snapshot()**: Returns supply chain tiers, social media competition density, and top-margin products. The agent now knows WHO to buy from (distributors, not resellers) and WHICH products have the best spread between cost and sell price.
+**Step 1 — "What's the market look like?"** The agent pulls a snapshot: supply chain tiers, which competitors are most active on social media, and which products have the best spread between cost and sell price. Now it knows WHO to buy from and WHICH products to consider.
 
-**Step 2 — margin_map()**: Shows the actual cost at each tier versus the packaged/retail sell price. Distributor cost for saffron: $12/gram. Reseller cost: $18/gram. Our packaged sell price: $32/gram. The margin at distributor tier is 166%. At reseller tier, 78%. The data says buy from distributors.
+**Step 2 — "What are the actual margins?"** The agent checks real cost at each supply chain tier versus what customers will pay. Distributor cost for saffron: $12/gram. Reseller cost: $18/gram. Packaged sell price: $32/gram. Buying from the distributor tier: 166% margin. From the reseller tier: 78%. The data says buy from distributors.
 
-**Step 3 — buy_optimizer($5,000)**: Takes the budget, pulls live cost data from the cheapest tier, scores every product by margin multiplied by demand, and allocates the budget. Maximum 30% per product for diversification — don't put everything into saffron even if the margin is highest. The optimizer factors in demand signals: if nobody's asking for high-grade cardamom, a 200% margin doesn't matter.
+**Step 3 — "How should I allocate this $5,000?"** The agent takes the budget, pulls live costs from the cheapest tier, and ranks every product by margin times demand. It caps any single product at 30% of the budget — don't put everything into saffron even if the margin is highest. And it checks demand: if nobody's asking for high-grade cardamom, a 200% margin doesn't matter.
 
-**Step 4 — demand_check("saffron")**: Counts demand signals across all data sources — customer surveys, social media mentions, buyer inquiries in trade channels, and trend data. Returns an assessment: HIGH, GROWING, MODERATE, or LOW.
+**Step 4 — "Is saffron actually selling?"** The agent counts demand signals from every source — customer surveys, social media mentions, buyer inquiries, trend data. The answer comes back: HIGH demand, growing week over week.
 
 The agent synthesizes all four results into a single recommendation:
 
@@ -204,7 +202,7 @@ The patterns are familiar. But production systems differ from personal ones in w
 
 **Scale changes the game.** Your state files track dozens of items. This database tracks tens of thousands. The supply chain algorithm compares every supplier pair — with 15 suppliers, that's 105 comparisons. Each comparison checks multiple overlapping products. A human couldn't do this weekly. The system does it in seconds.
 
-**Observability is non-negotiable.** Every agent decision is traced through an observability platform. What model was used, what tools were called, how long each took, what the token cost was. When the agent gives a bad recommendation, the founder can trace the exact chain of tool calls that produced it and find where the reasoning broke. Your systems work well enough that you can debug by re-reading the state file. Production systems need structured logs.
+**You need to see what the system is thinking.** Every agent decision is logged — which AI model was used, which tools were called, how long each took, what it cost. When the agent gives a bad recommendation, the founder can trace the exact chain of questions and answers that produced it and find where the reasoning went wrong. Your systems work well enough that you can debug by re-reading the state file. At production scale, you need a dashboard that shows you the system's decision trail.
 
 **Session management prevents context collapse.** The agent uses Redis-backed sessions with a one-hour TTL and a 30-message cap. If the founder has a long conversation, older messages drop off. This prevents the context window from overflowing and producing incoherent responses. Your systems manage context through file size — keeping state lean, archiving old rows. Same problem, different solution.
 
@@ -222,4 +220,4 @@ Your Content System could become this. Imagine it tracking not 20 published piec
 
 The components are the same. The patterns are the same. The scale is different. And the scale comes not from learning new concepts, but from feeding more data into the concepts you already know.
 
-That's the path. You're on it.
+Now — your systems work, and you've seen where they can go. The next question is practical: what do they cost to run, and how do you spend smart? That's Chapter 11.
