@@ -1,6 +1,6 @@
 # From Prompts to Pipelines — Outline (v3)
 
-**Full Title**: *From Prompts to Pipelines: Building AI Systems That Actually Work*
+**Full Title**: *From Prompts to Pipelines: A Systems-Based Approach to Prompt Engineering and Agentic Workflows*
 **Audience**: Knowledge workers who already use AI for everyday tasks — but hit the wall every time. Their prompts work once, then break. They re-explain context every session. They can't trust the output without checking everything manually. They're smart, they're motivated, and they're tired of AI being a coinflip.
 **Thesis**: You're already using AI. You're just using it wrong — not because your prompts are bad, but because a prompt isn't a system. This book teaches you to see the system, then build it.
 

@@ -36,7 +36,7 @@
 
 | Resource | What It Contains |
 |----------|-----------------|
-| GitHub: ciscoittech/enter-the-system | Full book source, research, eval notebooks, production system evidence |
+| GitHub: ciscoittech/prompt-to-pipeline | Full book source, research, eval notebooks, production system evidence |
 | research/METHODOLOGY.md | How we evaluate prompts and systems |
 | research/evals/notebooks/ | Jupyter notebooks — run them yourself |
 | research/systems/ | 3 production systems genericized as evidence |

@@ -1,6 +1,6 @@
 # CLAUDE.md — From Prompts to Pipelines
 
-**Full Title**: *From Prompts to Pipelines: Building AI Systems That Actually Work*
+**Full Title**: *From Prompts to Pipelines: A Systems-Based Approach to Prompt Engineering and Agentic Workflows*
 
 A book teaching non-AI-savvy people how to **think in systems** and **build AI systems** — not just use prompts. The reader doesn't learn "how to use Cowork." They learn how to decompose any work into components (inputs, outputs, state, feedback loops, guard rails) and wire those components together so AI does the work reliably, every time.
 

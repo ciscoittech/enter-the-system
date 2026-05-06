@@ -1,8 +1,8 @@
 # From Prompts to Pipelines
 
-**Building AI Systems That Actually Work**
+**A Systems-Based Approach to Prompt Engineering and Agentic Workflows**
 
-A book teaching knowledge workers how to think in systems and build AI systems — not just write prompts. You learn to decompose work into components (instructions, memory, control, flow) and wire them together so AI produces reliable results every time.
+A book teaching knowledge workers a systems-based approach to prompt engineering and agentic workflows. You learn to decompose work into components (instructions, memory, control, flow) and wire them together — moving from one-shot prompts to full AI systems that produce reliable results every time.
 
 ---
 
