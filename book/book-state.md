@@ -34,7 +34,7 @@ Legend: `D` = Draft, `S` = Score, `Rv` = Reviewed, `P` = Published
 | # | Chapter | Component | Primary System | Claude Code Feature | D | S |
 |---|---------|-----------|---------------|-------------------|---|---|
 | 4 | Structured Prompts | Prompt | Study | CLAUDE.md (project instructions) | DONE | -/30 |
-| 5 | State Files | State | Job Hunting | State files (read/write per session) | [ ] | -/30 |
+| 5 | State Files | State | Job Hunting | State files (read/write per session) | DONE | 28/30 |
 
 ### Act 2, Part III: Knowledge & Guard Rails (Instruction adv. + Control)
 
@@ -102,6 +102,7 @@ Legend: `D` = Draft, `S` = Score, `Rv` = Reviewed, `P` = Published
 | `ch03-draft.md` | Ch 3 first draft | DONE — reviewed, enriched |
 | `ch04-draft.md` | Ch 4 first draft | DONE — CLAUDE.md approach |
 | `ch04-outline.md` | Ch 4 writing blueprint | DONE (needs update for CLAUDE.md rewrite) |
+| `ch05-draft.md` | Ch 5 first draft | DONE — 28/30, @import wiring, state hygiene |
 | `act1-detailed-outlines.md` | Ch 1-3 blueprints | DONE |
 | `act1-review.md` | v1 review | DONE |
 | `act1-review-v2.md` | v2 review (post-research) | DONE |
@@ -139,3 +140,4 @@ Legend: `D` = Draft, `S` = Score, `Rv` = Reviewed, `P` = Published
 | 2026-05-06 | Ch 4 drafted with CLAUDE.md as foundation. Root + system-specific context scoping. | Ch 4 |
 | 2026-05-06 | Appendices rewritten A-E. v1 artifacts cleaned up. | Appendices |
 | 2026-05-06 | Fixed book-state divergence — removed Meal Planner and Integration chapters, aligned with v3 outline (4 systems only, no filler chapters). | Structure |
+| 2026-05-06 | Ch 5 drafted. ~2,550 words. @import mechanism as key wiring. 3-session Job Hunting deep build. Break-it tests for wiring removal, duplicates, edit behavior. Self-score 28/30. | Ch 5 |

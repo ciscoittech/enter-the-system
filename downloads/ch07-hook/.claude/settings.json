@@ -1,0 +1,51 @@
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash .claude/hooks/verify-cover-letter.sh",
+            "statusMessage": "Checking cover letter..."
+          },
+          {
+            "type": "command",
+            "command": "bash .claude/hooks/verify-content-quality.sh",
+            "statusMessage": "Checking content quality..."
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash .claude/hooks/check-duplicate-application.sh"
+          },
+          {
+            "type": "command",
+            "command": "bash .claude/hooks/check-weak-area-focus.sh"
+          },
+          {
+            "type": "command",
+            "command": "bash .claude/hooks/verify-status-consistency.sh"
+          }
+        ]
+      }
+    ],
+    "Notification": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "osascript -e 'display notification \"Claude needs attention\" with title \"Claude Code\"'"
+          }
+        ]
+      }
+    ]
+  }
+}
