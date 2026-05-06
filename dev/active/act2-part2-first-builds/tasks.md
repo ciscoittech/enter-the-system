@@ -6,7 +6,7 @@
 - [ ] 1.3: Update outline-v3.md — add "Maintain It" template to Ch 7, 8, 10, 11
 
 ## Phase 2: Detailed Outlines
-- [ ] 2.1: Write Ch 4 detailed outline (section-by-section blueprint)
+- [x] 2.1: Write Ch 4 detailed outline (section-by-section blueprint)
 - [ ] 2.2: Write Ch 5 detailed outline
 - [ ] 2.3: Write Ch 6 detailed outline
 
