@@ -2,39 +2,38 @@
 
 All implementation plans for remaining book production work.
 
+## Book Structure (Canonical)
+
+13 chapters. 4 throughline systems. No filler chapters.
+
+| Part | Chapters | Components | Primary Systems |
+|------|----------|-----------|----------------|
+| Act 1 | 1-3 | (concepts) | Study throughline |
+| Part II | 4-5 | Prompt, State | Study, Job Hunting |
+| Part III | 6-7 | Skill, Hook | Content, Job Hunting |
+| Part IV | 8-9 | Connection, Pipeline | Study, Content |
+| Part V | 10-13 | (mastery) | All 4 |
+
 ## Active Work Units
 
 | Work Unit | Chapters | Status | Blocker? |
 |-----------|----------|--------|----------|
-| [Outline Decisions](active/outline-decisions/) | — | Decisions made, apply to outline | No |
-| [Infrastructure Updates](active/infrastructure-updates/) | — | 7/14 done | No |
-| [Part II: First Builds](active/act2-part2-first-builds/) | Ch 4-6 | Not started | Needs outline updates first |
-| [Part III: Knowledge & Guard Rails](active/act2-part3-knowledge-guardrails/) | Ch 7-9 | Not started | Needs Part II |
-| [Part IV: Connections & Pipelines](active/act2-part4-connections-pipelines/) | Ch 10-11 | Not started | **MCP research blocker** |
-| [Part V: Mastery](active/act2-part5-mastery/) | Ch 12-13 | Not started | Needs Part IV |
+| [Infrastructure](active/infrastructure-updates/) | — | **14/14 DONE** | — |
+| [Outline Decisions](active/outline-decisions/) | — | **DONE** | — |
+| [Part II: First Builds](active/act2-part2-first-builds/) | Ch 4-5 | Ch 4 DONE, Ch 5 next | No |
+| [Part III: Knowledge & Guard Rails](active/act2-part3-knowledge-guardrails/) | Ch 6-7 | Not started | Needs Part II |
+| [Part IV: Connections & Pipelines](active/act2-part4-connections-pipelines/) | Ch 8-9 | Not started | **MCP research** |
+| [Part V: Mastery](active/act2-part5-mastery/) | Ch 10-13 | Not started | Needs Part IV |
 
 ## Execution Order
 
 ```
-1. Infrastructure Updates (remaining 7 tasks) ← DO FIRST
-2. Outline Decisions → apply to outline-v3.md
-3. Part II: Ch 4-6 (outlines → drafts → evals → diagrams → review)
-4. Part III: Ch 7-9 (same pipeline)
-5. MCP Research (can start in parallel with Part III)
-6. Part IV: Ch 10-11
-7. Part V: Ch 12-13
+1. ✅ Infrastructure (14/14 done)
+2. ✅ Outline decisions applied
+3. Part II: Ch 5 (outline → draft → eval → diagrams → review)
+4. Part III: Ch 6-7
+5. MCP Research (parallel with Part III)
+6. Part IV: Ch 8-9
+7. Part V: Ch 10-13
 8. Appendices + final pass
 ```
-
-## Production Pipeline (Per Chapter)
-
-```
-RESEARCH → OUTLINE → DRAFT → EVAL NOTEBOOK → DIAGRAMS → REVIEW → ENRICH → UPDATE STATE
-```
-
-## What's Already Done
-
-- Act 1 (Ch 1-3): 3 chapters drafted, reviewed (87/90), research-enriched, diagrammed
-- Research section: methodology, 3 production systems, 1 eval notebook run
-- 9 Mermaid diagrams rendered to SVG + PNG
-- GitHub repo public with beta reader guide

@@ -4,12 +4,12 @@ Last updated: 2026-05-06
 
 ---
 
-## Structure: 2 Acts, 5 Parts, 13 Chapters
+## Structure: 2 Acts, 13 Chapters, 4 Throughline Systems
 
 **Outline**: `book/outline-v3.md` (canonical)
 
 **4 Throughline Systems**: Study, Job Hunting, Project Management, Content
-Each system starts as a basic prompt in Act 1 and grows across Act 2 into a full 6-component system.
+Each system starts as a basic prompt and grows across Act 2 into a full 6-component system.
 
 **4 Universal Concepts**: Instruction, Memory, Control, Flow (tool-agnostic, taught in Act 1)
 **6 Cowork Components**: Prompt, State, Skill, Hook, Connection, Pipeline (built in Act 2)
@@ -25,39 +25,39 @@ Legend: `D` = Draft, `S` = Score, `Rv` = Reviewed, `P` = Published
 
 | # | Chapter | D | S | Rv | P | Notes |
 |---|---------|---|---|----|---|-------|
-| 1 | You're Already Building Systems (You're Just Building Them Badly) | DONE | -/30 | [ ] | [ ] | ~3,200 words. `ch01-draft.md` |
-| 2 | Going Deeper — What Each Concept Actually Means | DONE | -/30 | [ ] | [ ] | ~3,500 words. `ch02-draft.md` |
-| 3 | Design Patterns — Three Shapes Every System Takes | DONE | -/30 | [ ] | [ ] | ~4,100 words. `ch03-draft.md` |
+| 1 | You're Already Building Systems | DONE | 28/30 | DONE | [ ] | ~3,200 words. `ch01-draft.md` |
+| 2 | Going Deeper | DONE | 30/30 | DONE | [ ] | ~3,500 words. `ch02-draft.md` |
+| 3 | Design Patterns | DONE | 29/30 | DONE | [ ] | ~4,300 words. `ch03-draft.md` |
 
-### Act 2, Part II: First Builds — Instruction + Memory
+### Act 2, Part II: First Builds (Instruction + Memory)
 
-| # | Chapter | Component | Primary System | D | S | Rv | P |
-|---|---------|-----------|---------------|---|---|----|---|
-| 4 | Structured Prompts — Your Systems Start Here | Prompt | Study | DONE | -/30 | [ ] | [ ] |
-| 5 | State Files — Teaching Your Systems to Remember | State | Job Hunting | [ ] | -/30 | [ ] | [ ] |
-| 6 | A Second System — Meal Planning That Adapts | _(deepening)_ | Meal Planner | [ ] | -/30 | [ ] | [ ] |
+| # | Chapter | Component | Primary System | Claude Code Feature | D | S |
+|---|---------|-----------|---------------|-------------------|---|---|
+| 4 | Structured Prompts | Prompt | Study | CLAUDE.md (project instructions) | DONE | -/30 |
+| 5 | State Files | State | Job Hunting | State files (read/write per session) | [ ] | -/30 |
 
-### Act 2, Part III: Knowledge and Guard Rails
+### Act 2, Part III: Knowledge & Guard Rails (Instruction adv. + Control)
 
-| # | Chapter | Component | Primary System | D | S | Rv | P |
-|---|---------|-----------|---------------|---|---|----|---|
-| 7 | Skills — Giving Claude Expertise On Demand | Skill | Content | [ ] | -/30 | [ ] | [ ] |
-| 8 | Hooks — Automated Guard Rails | Hook | Job Hunting | [ ] | -/30 | [ ] | [ ] |
-| 9 | A Third System — The Job Hunt Engine | _(integration)_ | Job Hunting | [ ] | -/30 | [ ] | [ ] |
+| # | Chapter | Component | Primary System | Claude Code Feature | D | S |
+|---|---------|-----------|---------------|-------------------|---|---|
+| 6 | Skills | Skill | Content | .claude/skills/ + SKILL.md | [ ] | -/30 |
+| 7 | Hooks | Hook | Job Hunting | .claude/settings.json + hooks/ | [ ] | -/30 |
 
-### Act 2, Part IV: Connections and Full Pipelines
+### Act 2, Part IV: Connections & Pipelines (Flow)
 
-| # | Chapter | Component | Primary System | D | S | Rv | P |
-|---|---------|-----------|---------------|---|---|----|---|
-| 10 | Connections — Pulling Live Data Into Your System | Connection | Study | [ ] | -/30 | [ ] | [ ] |
-| 11 | Pipelines — Multi-Stage Workflows | Pipeline | Content | [ ] | -/30 | [ ] | [ ] |
+| # | Chapter | Component | Primary System | Claude Code Feature | D | S |
+|---|---------|-----------|---------------|-------------------|---|---|
+| 8 | Connections | Connection | Study | MCP servers in settings.json | [ ] | -/30 |
+| 9 | Pipelines | Pipeline | Content | Subagents + orchestration | [ ] | -/30 |
 
 ### Act 2, Part V: Mastery
 
-| # | Chapter | D | S | Rv | P |
-|---|---------|---|---|----|---|
-| 12 | When Systems Break — Debugging and Maintenance | [ ] | -/30 | [ ] | [ ] |
-| 13 | Scaling Up — Building Your Personal AI Operating System | [ ] | -/30 | [ ] | [ ] |
+| # | Chapter | Primary System | Claude Code Feature | D | S |
+|---|---------|---------------|-------------------|---|---|
+| 10 | When Systems Break — Debugging | All 4 | Memory files (.claude/memory/) | [ ] | -/30 |
+| 11 | Composing Systems — Personal AI OS | All 4 | Full .claude/ architecture | [ ] | -/30 |
+| 12 | Designing New Systems | Reader's choice | — (applies all patterns) | [ ] | -/30 |
+| 13 | What's Next | — | — (forward-looking) | [ ] | -/30 |
 
 ---
 
@@ -65,15 +65,13 @@ Legend: `D` = Draft, `S` = Score, `Rv` = Reviewed, `P` = Published
 
 | Chapter | Component | Primary System | All Systems At |
 |---------|-----------|---------------|----------------|
-| Ch 4 | Prompt | Study | Prompt |
+| Ch 4 | Prompt (CLAUDE.md) | Study | Prompt |
 | Ch 5 | State | Job Hunting | Prompt + State |
-| Ch 6 | — (deepening) | Meal Planner | Prompt + State |
-| Ch 7 | Skill | Content | Prompt + State + Skill |
-| Ch 8 | Hook | Job Hunting | Prompt + State + Skill + Hook |
-| Ch 9 | — (integration) | Job Hunting | Prompt + State + Skill + Hook |
-| Ch 10 | Connection | Study | + Connection |
-| Ch 11 | Pipeline | Content | All 6 |
-| Ch 12–13 | — (mastery) | All | All 6 |
+| Ch 6 | Skill | Content | Prompt + State + Skill |
+| Ch 7 | Hook | Job Hunting | Prompt + State + Skill + Hook |
+| Ch 8 | Connection | Study | + Connection |
+| Ch 9 | Pipeline | Content | All 6 |
+| Ch 10-13 | — (mastery) | All | All 6 |
 
 ---
 
@@ -81,15 +79,16 @@ Legend: `D` = Draft, `S` = Score, `Rv` = Reviewed, `P` = Published
 
 | Chapter | Study | Job Hunting | Project Mgmt | Content |
 |---------|-------|-------------|--------------|---------|
-| Ch 1–3 | "before" prompt | "before" prompt | "before" prompt | "before" prompt |
-| Ch 4 | **v1: prompt (deep)** | v1: prompt | v1: prompt | v1: prompt |
-| Ch 5 | v2: + state | **v2: + state (deep)** | v2: + state | v2: + state |
-| Ch 7 | v3: + skill | v3: + skill | v3: + skill | **v3: + skill (deep)** |
-| Ch 8 | v4: + hook | **v4: + hook (deep)** | v4: + hook | v4: + hook |
-| Ch 10 | **v5: + connection (deep)** | v5: + connection | v5: + connection | v5: + connection |
-| Ch 11 | v6: + pipeline | v6: + pipeline | v6: + pipeline | **v6: + pipeline (deep)** |
+| 1-3 | "before" prompt | "before" prompt | "before" prompt | "before" prompt |
+| 4 | **v1: prompt (deep)** | v1: prompt | v1: prompt | v1: prompt |
+| 5 | v2: + state | **v2: + state (deep)** | v2: + state | v2: + state |
+| 6 | v3: + skill | v3: + skill | v3: + skill | **v3: + skill (deep)** |
+| 7 | v4: + hook | **v4: + hook (deep)** | v4: + hook | v4: + hook |
+| 8 | **v5: + connection (deep)** | v5: + connection | v5: + connection | v5: + connection |
+| 9 | v6: + pipeline | v6: + pipeline | v6: + pipeline | **v6: + pipeline (deep)** |
+| 10-11 | debugged + composed | debugged + composed | debugged + composed | debugged + composed |
 
-**(deep)** = primary build for that chapter with full walkthrough.
+**(deep)** = primary build with full walkthrough. Others get shorter "extend it" treatment.
 
 ---
 
@@ -98,38 +97,31 @@ Legend: `D` = Draft, `S` = Score, `Rv` = Reviewed, `P` = Published
 | File | Purpose | Status |
 |------|---------|--------|
 | `outline-v3.md` | Canonical outline | DONE |
-| `act1-detailed-outlines.md` | Detailed outlines for Ch 1, 2, 3 | DONE |
-| `ch01-outline.md` | Ch 1 writing blueprint | DONE |
-| `ch01-draft.md` | Ch 1 first draft (~3,200 words) | DONE — needs review |
-| `outline.md` | v1 outline (obsolete) | TO DELETE |
-| `outline-v2.md` | v2 outline (superseded by v3) | TO DELETE |
+| `ch01-draft.md` | Ch 1 first draft | DONE — reviewed, enriched |
+| `ch02-draft.md` | Ch 2 first draft | DONE — reviewed, enriched |
+| `ch03-draft.md` | Ch 3 first draft | DONE — reviewed, enriched |
+| `ch04-draft.md` | Ch 4 first draft | DONE — CLAUDE.md approach |
+| `ch04-outline.md` | Ch 4 writing blueprint | DONE (needs update for CLAUDE.md rewrite) |
+| `act1-detailed-outlines.md` | Ch 1-3 blueprints | DONE |
+| `act1-review.md` | v1 review | DONE |
+| `act1-review-v2.md` | v2 review (post-research) | DONE |
 
 ---
 
 ## Current Priority
 
-**Now: Act 1 Drafting**
-- ✅ Ch 1 draft complete
-- ⏳ Ch 2 draft — detailed outline exists in `act1-detailed-outlines.md`
-- ⏳ Ch 3 draft — detailed outline exists in `act1-detailed-outlines.md`
-- ⏳ Review Ch 1 draft (score against rubric)
+**Now: Fix outline alignment + continue Act 2**
+- ⏳ Tighten outline-v3.md Ch 4 section (match CLAUDE.md draft)
+- ⏳ Write Ch 5 detailed outline + draft
+- ⏳ Build eval notebook 02 (state impact) alongside Ch 5
 
-**Next: Act 2 Detailed Outlines**
-- Ch 4–6 detailed outlines (Part II: First Builds)
-- Ch 7–9 detailed outlines (Part III: Knowledge & Guard Rails)
+**Next: Part III**
+- Ch 6 (Skills) + eval notebook 03
+- Ch 7 (Hooks) + eval notebook 04
 
 **Later**
-- Ch 10–11 detailed outlines (Part IV: Connections & Pipelines)
-- Ch 12–13 detailed outlines (Part V: Mastery)
-- MCP/connection research for Ch 10
-- Systems-thinking source material for Ch 3, 12 (Meadows, Goldratt)
-
----
-
-## Blockers
-
-- **MCP/connection research (Ch 10)**: Need step-by-step guide for non-technical users — which MCP servers, APIs, CLI tools work in Cowork.
-- **Systems-thinking source material (Ch 3, 12)**: Donella Meadows, Goldratt concepts to translate for the audience.
+- Ch 8-9 (MCP research required before Ch 8)
+- Ch 10-13 (mastery chapters)
 
 ---
 
@@ -137,11 +129,13 @@ Legend: `D` = Draft, `S` = Score, `Rv` = Reviewed, `P` = Published
 
 | Date | What was done | Chapters touched |
 |------|---------------|------------------|
-| 2026-05-06 | Project scaffolded. Folder structure, CLAUDE.md, .claude/ system, v1 outline, all skills/commands/hooks created. | All (scaffold) |
-| 2026-05-06 | book-writer skill updated for systems-thinking framework. book-state.md updated to v1 15-chapter structure. | None (skill infra) |
-| 2026-05-06 | v2 outline written. Major restructure: 2 Acts, throughline systems, universal concepts. | Structure |
-| 2026-05-06 | v3 outline written (compressed to 13 chapters). 4 throughline systems. Act 1 detailed outlines for Ch 1-3. Ch 1 writing blueprint. Ch 1 first draft completed (~3,200 words). | Ch 1, 2, 3 |
-| 2026-05-06 | Adopted v3 as canonical. Removed 16 empty v1 chapter folders. Updated book-state.md and CLAUDE.md to match v3. Removed obsolete outlines. | All (restructure) |
-| 2026-05-06 | Ch 2 first draft completed (~3,500 words). Sessions 3-5 of the Study System. Covers Instruction (structured prompts), Memory (manual progress notes), Control (fact-checking), Flow (staged pipeline). | Ch 2 |
-| 2026-05-06 | Ch 3 first draft completed (~4,100 words). Loop, Gate, Router patterns. Combining patterns. Napkin test. Six-step design process. Worked Study System napkin sketch. Four exercises. | Ch 3 |
-| 2026-05-06 | Ch 4 first draft completed (~2,600 words). First CLI chapter. Terminal intro, 4-part formula, Study System deep build with real files, 3 system extensions (Job Hunting, PM, Content), quality gate. | Ch 4 |
+| 2026-05-06 | Project scaffolded. v1 outline, skills, commands, hooks. | All (scaffold) |
+| 2026-05-06 | v3 outline, Act 1 detailed outlines, Ch 1-3 drafted. | Ch 1, 2, 3 |
+| 2026-05-06 | Act 1 reviewed (28, 30, 28), fixes applied, research enriched (28, 30, 29). | Ch 1, 2, 3 |
+| 2026-05-06 | Research section: methodology, 3 production systems, eval notebook 01 (11/20 → 20/20). | Research |
+| 2026-05-06 | 9 Mermaid diagrams rendered. GitHub repo public. Beta reader README. | Diagrams |
+| 2026-05-06 | Infrastructure overhaul: 14/14 tasks. All skills, hooks, commands updated to v3. | Infrastructure |
+| 2026-05-06 | Dev-docs for all remaining work. Outline decisions applied. | Planning |
+| 2026-05-06 | Ch 4 drafted with CLAUDE.md as foundation. Root + system-specific context scoping. | Ch 4 |
+| 2026-05-06 | Appendices rewritten A-E. v1 artifacts cleaned up. | Appendices |
+| 2026-05-06 | Fixed book-state divergence — removed Meal Planner and Integration chapters, aligned with v3 outline (4 systems only, no filler chapters). | Structure |
