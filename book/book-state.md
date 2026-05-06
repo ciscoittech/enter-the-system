@@ -41,7 +41,7 @@ Legend: `D` = Draft, `S` = Score, `Rv` = Reviewed, `P` = Published
 | # | Chapter | Component | Primary System | Claude Code Feature | D | S |
 |---|---------|-----------|---------------|-------------------|---|---|
 | 6 | Skills | Skill | Content | .claude/skills/ + SKILL.md | DONE | -/30 |
-| 7 | Hooks | Hook | Job Hunting | .claude/settings.json + hooks/ | [ ] | -/30 |
+| 7 | Hooks | Hook | Job Hunting | .claude/settings.json + hooks/ | DONE | -/30 |
 
 ### Act 2, Part IV: Connections & Pipelines (Flow)
 
@@ -142,3 +142,4 @@ Legend: `D` = Draft, `S` = Score, `Rv` = Reviewed, `P` = Published
 | 2026-05-06 | Fixed book-state divergence — removed Meal Planner and Integration chapters, aligned with v3 outline (4 systems only, no filler chapters). | Structure |
 | 2026-05-06 | Ch 5 drafted. ~2,550 words. @import mechanism as key wiring. 3-session Job Hunting deep build. Break-it tests for wiring removal, duplicates, edit behavior. Self-score 28/30. | Ch 5 |
 | 2026-05-06 | Ch 6 drafted. ~3,640 words. Content System deep build. Skill directory format, show-don't-describe principle, auto-trigger honesty (~50%), /skill-name as reliable path. | Ch 6 |
+| 2026-05-06 | Ch 7 drafted. ~4,030 words. Job Hunting deep build. stdin JSON + jq, exit code 2 blocks, PII redactor sidebar, 2 hook scripts with line-by-line walkthrough. | Ch 7 |
