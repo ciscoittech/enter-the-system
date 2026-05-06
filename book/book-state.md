@@ -50,14 +50,16 @@ Legend: `D` = Draft, `S` = Score, `Rv` = Reviewed, `P` = Published
 | 8 | Connections | Connection | Study | MCP servers in settings.json | DONE | -/30 |
 | 9 | Pipelines | Pipeline | Content | Subagents + orchestration | DONE | -/30 |
 
-### Act 2, Part V: Mastery
+### Act 2, Part V: Production & Mastery
 
-| # | Chapter | Primary System | Claude Code Feature | D | S |
-|---|---------|---------------|-------------------|---|---|
-| 10 | When Systems Break — Debugging | All 4 | Memory files (.claude/memory/) | [ ] | -/30 |
-| 11 | Composing Systems — Personal AI OS | All 4 | Full .claude/ architecture | [ ] | -/30 |
-| 12 | Designing New Systems | Reader's choice | — (applies all patterns) | [ ] | -/30 |
-| 13 | What's Next | — | — (forward-looking) | [ ] | -/30 |
+| # | Chapter | Primary System | D | S |
+|---|---------|---------------|---|---|
+| 10 | A Real System — Production Case Study | Abstracted production system | DRAFTING | -/30 |
+| 11 | The Cost of Intelligence | All 4 (cost management) | [ ] | -/30 |
+| 12 | When Systems Break — Debugging | All 4 | [ ] | -/30 |
+| 13 | Composing Systems — Personal AI OS | All 4 | [ ] | -/30 |
+| 14 | Designing New Systems | Reader's choice | [ ] | -/30 |
+| 15 | What's Next | — (forward-looking) | [ ] | -/30 |
 
 ---
 
