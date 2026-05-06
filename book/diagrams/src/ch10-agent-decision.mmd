@@ -1,0 +1,36 @@
+---
+title: "Chapter 10 — Agent Decision Flow: 'What should I buy with $5,000?'"
+---
+flowchart TD
+    Q["User Question\n'What should I buy with $5,000?'"]
+
+    MODE{"Mode Detection"}
+    Q --> MODE
+    MODE -->|"'what should' = analyst"| ANALYST["ANALYST MODE\nReasoning model activated"]
+
+    ANALYST --> STEP1
+    subgraph TOOLCHAIN["Sequential Tool Calls"]
+        direction TB
+        STEP1["1. market_snapshot()\nWho sells what, at which tier"]
+        STEP2["2. margin_map()\nCost vs sell price at each tier"]
+        STEP3["3. buy_optimizer($5000)\nAllocate budget by margin x demand\nMax 30% per product"]
+        STEP4["4. demand_check('saffron')\nSurvey + social + trade signals"]
+        STEP1 --> STEP2 --> STEP3 --> STEP4
+    end
+
+    STEP4 --> SYNTH
+
+    subgraph SYNTH["Synthesis"]
+        direction TB
+        REC["Recommendation\n'Buy from Importer Co:\n$1,500 saffron (166% margin)\n$1,200 vanilla (250% margin)\n$800 specialty oils (200% margin)\n...'"]
+        NUM["Every number traces\nback to a tool call"]
+    end
+
+    SYNTH --> OUT["Delivered to founder\n47 units, 5 products\nProjected revenue: $14,200"]
+
+    style Q fill:#E3F2FD,stroke:#1976D2
+    style MODE fill:#FFC107,stroke:#F9A825,stroke-width:2px
+    style ANALYST fill:#7E57C2,stroke:#512DA8,color:#fff
+    style TOOLCHAIN fill:#F3E5F5,stroke:#7B1FA2
+    style SYNTH fill:#E8F5E9,stroke:#388E3C
+    style OUT fill:#4CAF50,stroke:#2E7D32,color:#fff

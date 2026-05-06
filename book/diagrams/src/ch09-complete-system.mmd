@@ -1,0 +1,79 @@
+---
+title: "After Chapter 9 — Complete System: All 6 Components Across All 4 Systems"
+---
+flowchart TD
+    subgraph PROJECT["my-ai-systems/"]
+        direction TB
+
+        subgraph SHARED[".claude/"]
+            direction LR
+            SKILLS["skills/\nstudy-expert.md\njob-coach.md\ncontent-voice.md\nproject-planner.md"]
+            HOOKS["hooks/\npre-edit checks\npost-output validation"]
+            SETTINGS["settings.json\nhook config"]
+            COMMANDS["commands/\npipeline triggers"]
+        end
+
+        subgraph STUDY["study-system/"]
+            direction LR
+            S_CM["CLAUDE.md\nStudy persona + rules"]
+            S_ST["study-state.md\nTopics, scores, dates"]
+            S_CN["connections/\nFlashcard API\nCourse catalog"]
+        end
+
+        subgraph JOB["job-hunting/"]
+            direction LR
+            J_CM["CLAUDE.md\nJob coach persona"]
+            J_ST["job-state.md\nApplications tracker"]
+            J_CN["connections/\nJob board data"]
+        end
+
+        subgraph PM["project-mgmt/"]
+            direction LR
+            P_CM["CLAUDE.md\nProject manager persona"]
+            P_ST["project-state.md\nTasks, deadlines, status"]
+            P_CN["connections/\nCalendar, task tools"]
+        end
+
+        subgraph CONTENT["content/"]
+            direction LR
+            C_CM["CLAUDE.md\nContent voice + rules"]
+            C_ST["content-state.md\nDrafts, published, metrics"]
+            C_PL["pipeline command\nResearch - Draft -\nReview - Publish"]
+        end
+    end
+
+    INPUT["User Input\n(question, task, request)"] --> LOAD
+
+    subgraph LOAD["What Claude Loads"]
+        direction LR
+        L1["CLAUDE.md\n(Instruction)"]
+        L2["Skills\n(Instruction)"]
+        L3["State file\n(Memory)"]
+    end
+
+    LOAD --> CLAUDE["Claude Processes\n(reasons, calls tools,\ngenerates output)"]
+
+    EXT["External Sources\n(Connections)"] -->|"live data\nfed into context"| CLAUDE
+
+    CLAUDE --> HOOKCHECK{"Hooks Check\n(Control)"}
+    HOOKCHECK -->|"Pass"| OUTPUT["Output\n(answer, document,\nrecommendation)"]
+    HOOKCHECK -->|"Fail"| REDO["Flag + Retry"]
+    REDO --> CLAUDE
+
+    OUTPUT --> UPDATE["State Updated\n(Memory grows)"]
+    UPDATE -.->|"next session\nreads updated state"| LOAD
+
+    style PROJECT fill:#f5f5f5,stroke:#333
+    style SHARED fill:#F3E5F5,stroke:#7B1FA2
+    style STUDY fill:#E3F2FD,stroke:#1976D2
+    style JOB fill:#E8F5E9,stroke:#388E3C
+    style PM fill:#FFF3E0,stroke:#FB8C00
+    style CONTENT fill:#FCE4EC,stroke:#C62828
+    style INPUT fill:#E3F2FD,stroke:#1976D2
+    style LOAD fill:#BBDEFB,stroke:#1976D2
+    style CLAUDE fill:#7E57C2,stroke:#512DA8,color:#fff
+    style EXT fill:#A5D6A7,stroke:#4CAF50
+    style HOOKCHECK fill:#FFC107,stroke:#F9A825,stroke-width:2px
+    style OUTPUT fill:#4CAF50,stroke:#2E7D32,color:#fff
+    style REDO fill:#EF5350,stroke:#C62828,color:#fff
+    style UPDATE fill:#8BC34A,stroke:#558B2F,color:#fff

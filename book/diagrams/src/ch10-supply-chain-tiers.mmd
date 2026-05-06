@@ -1,0 +1,22 @@
+---
+title: "Chapter 10 — Supply Chain Tier Classification"
+---
+flowchart TD
+    IMP["IMPORTER\n$8-12/unit\nBelow 20th percentile\nLanguage: 'direct from source', 'we import'"]
+    DIST["DISTRIBUTOR\n$15-25/unit\n20th-40th percentile\nLanguage: 'bulk price', 'wholesale only'"]
+    RES["RESELLER\n$40-65/unit\n40th-70th percentile\nLanguage: 'available in stock', 'DM for price'"]
+    SUB["SUB-RESELLER\n$80+/unit\nAbove 70th percentile\nLanguage: 'looking for supplier', 'where to buy'"]
+
+    IMP -->|"markup 25-40%\n7+ overlapping products\nconfidence: 0.8"| DIST
+    DIST -->|"markup 60-100%\n3-5 overlapping products\nconfidence: 0.6"| RES
+    RES -->|"markup 50-80%\n2-3 overlapping products\nconfidence: 0.4"| SUB
+
+    BEST["Best buy: source as close\nto importer tier as possible"]
+
+    IMP -.->|"direct relationship\n= highest margin"| BEST
+
+    style IMP fill:#4CAF50,stroke:#2E7D32,color:#fff
+    style DIST fill:#8BC34A,stroke:#558B2F,color:#fff
+    style RES fill:#FFC107,stroke:#F9A825
+    style SUB fill:#EF5350,stroke:#C62828,color:#fff
+    style BEST fill:#E3F2FD,stroke:#1976D2
