@@ -47,7 +47,7 @@ Legend: `D` = Draft, `S` = Score, `Rv` = Reviewed, `P` = Published
 
 | # | Chapter | Component | Primary System | Claude Code Feature | D | S |
 |---|---------|-----------|---------------|-------------------|---|---|
-| 8 | Connections | Connection | Study | MCP servers in settings.json | [ ] | -/30 |
+| 8 | Connections | Connection | Study | MCP servers in settings.json | DONE | -/30 |
 | 9 | Pipelines | Pipeline | Content | Subagents + orchestration | [ ] | -/30 |
 
 ### Act 2, Part V: Mastery
@@ -143,3 +143,4 @@ Legend: `D` = Draft, `S` = Score, `Rv` = Reviewed, `P` = Published
 | 2026-05-06 | Ch 5 drafted. ~2,550 words. @import mechanism as key wiring. 3-session Job Hunting deep build. Break-it tests for wiring removal, duplicates, edit behavior. Self-score 28/30. | Ch 5 |
 | 2026-05-06 | Ch 6 drafted. ~3,640 words. Content System deep build. Skill directory format, show-don't-describe principle, auto-trigger honesty (~50%), /skill-name as reliable path. | Ch 6 |
 | 2026-05-06 | Ch 7 drafted. ~4,030 words. Job Hunting deep build. stdin JSON + jq, exit code 2 blocks, PII redactor sidebar, 2 hook scripts with line-by-line walkthrough. | Ch 7 |
+| 2026-05-06 | Ch 8 drafted. ~4,140 words. Study System deep build. Web search (built-in, zero setup) + remote HTTP MCP. Graceful degradation as core design lesson. | Ch 8 |
