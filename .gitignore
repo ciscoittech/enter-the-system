@@ -11,36 +11,74 @@ Thumbs.db
 .env
 .env.*
 
-# Node (if any tooling added later)
+# Node
 node_modules/
+package.json
+package-lock.json
 
 # Claude Code local state
 .claude/plans/
 .venv/
 
-# Build pipeline (internal tooling)
-build/typst/chapters/
-build/output/
-package.json
-package-lock.json
+# MCP config (local)
+.mcp.json
 
-# Design system (internal)
+# ─── Premium content (paid book) ──────────────────────────
+# Act 2 full chapters (teasers are public, full text is paid)
+book/chapters/ch04-draft.md
+book/chapters/ch05-draft.md
+book/chapters/ch06-draft.md
+book/chapters/ch07-draft.md
+book/chapters/ch08-draft.md
+book/chapters/ch09-draft.md
+book/chapters/ch10-draft.md
+book/chapters/ch11-draft.md
+book/chapters/ch12-draft.md
+book/chapters/ch13-draft.md
+book/chapters/ch14-draft.md
+book/chapters/ch15-draft.md
+
+# Act 2 compiled draft
+book/published/act2-beta-draft.md
+
+# Act 2+ diagrams (print-quality = paid content)
+book/diagrams/png/ch04-*.png
+book/diagrams/png/ch05-*.png
+book/diagrams/png/ch06-*.png
+book/diagrams/png/ch07-*.png
+book/diagrams/png/ch08-*.png
+book/diagrams/png/ch09-*.png
+book/diagrams/png/ch10-*.png
+book/diagrams/png/ch11-*.png
+book/diagrams/png/ch12-*.png
+book/diagrams/png/ch13-*.png
+book/diagrams/png/ch14-*.png
+book/diagrams/png/ch15-*.png
+book/diagrams/png/pii-*.png
+
+# All SVGs (source assets)
+book/diagrams/svg/
+
+# Appendices (paid)
+book/appendices/
+
+# Diagram style brief (internal)
+book/diagrams/STYLE-BRIEF.md
+
+# ─── Internal tooling ─────────────────────────────────────
+# Build pipeline
+build/
+
+# Design system (Claude Design artifacts)
 design_system/
 
-# Screenshot production (in progress)
+# Screenshot production
 book/screenshots/
 book/SCREENSHOT-SCRIPT.md
 book/SCREENSHOT-LIST.md
 
+# Frontmatter source files
+book/frontmatter/
+
 # Platform infra (unrelated)
 platform/
-
-# MCP config (local)
-.mcp.json
-
-# Build scripts (keep build.sh, ignore output + typst intermediates)
-build/output/
-build/typst/chapters/
-
-# Frontmatter (LaTeX originals being replaced)
-book/frontmatter/
