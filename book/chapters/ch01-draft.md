@@ -56,13 +56,43 @@ This book teaches you to externalize those functions. Build them into the system
 
 Every AI system (the study quiz, the cover letter, the project plan, anything) needs four things to work reliably. When one is missing, the system fails in a specific, predictable way. Once you know the four, you can diagnose any AI interaction by checking which ones are present and which ones aren't.
 
-**Instruction** is what you tell the AI to do. It's the prompt, the request, the description of what you want. When Instruction is weak, the failure sounds like: "It didn't do what I wanted." Most people live here. They think the problem is their prompt, so they make it longer, add more detail, try different wording. Sometimes that helps. But Instruction alone can't fix the other three failures, and most people don't realize the other three exist.
+### Instruction
 
-**Memory** is anything that persists between sessions. When Memory is absent, the failure sounds like: "I have to re-explain everything every time." This is the concept most people have never considered. Chat interfaces treat every conversation as independent. You open a new window, and the slate is blank. But real work is continuous. A study session should build on the last one. A job application campaign should learn from prior results. A project plan should know what's changed since Monday. Without Memory, every session starts from zero, no matter how good the session before it was.
+What you tell the AI to do. The prompt, the request, the description of what you want.
 
-**Control** is any check, rule, or constraint that catches mistakes before they reach you. When Control is missing, the failure sounds like: "It gave me confident garbage and I almost used it." AI doesn't hedge. It doesn't say "I'm not sure about this one." It'll invent achievements for your cover letter, put wrong answers in your quiz, and hallucinate statistics for your blog post, all delivered with the same confident tone as its accurate output. Without Control, you're the only thing standing between AI output and real consequences. And you're not always paying close enough attention.
+When Instruction is weak, the failure sounds like: *"It didn't do what I wanted."*
 
-**Flow** is multi-step sequencing — breaking complex work into stages where each stage's output feeds the next. When Flow is absent, the failure sounds like: "It tried to do everything at once and botched it." Complex work has stages. Research is different from drafting is different from editing is different from formatting. When you ask AI to do all of those in a single prompt, each stage gets a fraction of the attention it needs, and the output is uniformly mediocre — passable at everything, excellent at nothing.
+Most people live here. They think the problem is their prompt, so they make it longer, add more detail, try different wording. Sometimes that helps. But Instruction alone can't fix the other three failures, and most people don't realize the other three exist.
+
+---
+
+### Memory
+
+Anything that persists between sessions.
+
+When Memory is absent, the failure sounds like: *"I have to re-explain everything every time."*
+
+This is the concept most people have never considered. Chat interfaces treat every conversation as independent. You open a new window, and the slate is blank. But real work is continuous. A study session should build on the last one. A job application campaign should learn from prior results. A project plan should know what's changed since Monday. Without Memory, every session starts from zero, no matter how good the session before it was.
+
+---
+
+### Control
+
+Any check, rule, or constraint that catches mistakes before they reach you.
+
+When Control is missing, the failure sounds like: *"It gave me confident garbage and I almost used it."*
+
+AI doesn't hedge. It doesn't say "I'm not sure about this one." It'll invent achievements for your cover letter, put wrong answers in your quiz, and hallucinate statistics for your blog post — all delivered with the same confident tone as its accurate output. Without Control, you're the only thing standing between AI output and real consequences. And you're not always paying close enough attention.
+
+---
+
+### Flow
+
+Multi-step sequencing — breaking complex work into stages where each stage's output feeds the next.
+
+When Flow is absent, the failure sounds like: *"It tried to do everything at once and botched it."*
+
+Complex work has stages. Research is different from drafting is different from editing is different from formatting. When you ask AI to do all of those in a single prompt, each stage gets a fraction of the attention it needs, and the output is uniformly mediocre — passable at everything, excellent at nothing.
 
 Four concepts. Four failures. Every AI system you'll ever use, in any tool, on any platform, today or five years from now, is some combination of these four. The tools change. The framework doesn't.
 
@@ -193,9 +223,9 @@ Right now, one prompt tries to do everything. By Chapter 11, a multi-stage pipel
 
 Same AI. Same underlying technology. Different architecture around it.
 
-This isn't theoretical. The author's own study system tracks 127 topics across 21 columns (quiz scores, gap keywords, completion dates, next-session priorities), all updated automatically after every session. You'll see the evidence in this book's research repository. What you're about to build in Act 2 is based on systems that run in production, not tutorials written for a book.
+This isn't theoretical. The author's own study system tracks every topic automatically — scores, gaps, priorities — updated after every session without lifting a finger. What you're about to build in Act 2 is based on systems that run in production, not tutorials written for a book.
 
-And it's not just studying. The same four concepts turn a one-shot cover letter into a career campaign system that tracks applications and learns from outcomes. They turn a task-list prompt into a work operations system with 15 specialized agents and 80,000 reference documents. They turn a generic blog post into a content pipeline that's produced 26 scored posts, each one graded on six dimensions, with a minimum quality threshold enforced by the system, not by willpower.
+And it's not just studying. The same four concepts turn a one-shot cover letter into a career campaign that tracks applications and learns from outcomes. They turn a task-list prompt into a work operations system with specialized agents pulling from a living knowledge base. They turn a generic blog post into a content pipeline where every piece is scored against a quality threshold enforced by the system, not by willpower.
 
 Four concepts. Applied to anything you already use AI for. That's what this book builds.
 

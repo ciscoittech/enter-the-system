@@ -34,6 +34,8 @@ Content creation: draft a blog post → compare it to your writing style → ide
 
 **The danger**: Loops without exit conditions run forever. "Good enough" has to be defined before the loop starts, not discovered along the way. Quiz score above 80% on weak areas. Draft passes the style check on all five criteria. Budget variance under 5%. Without a number, "one more round" becomes infinite revision.
 
+**Reading the diagrams in this chapter:** Box = a step or process. Diamond = a decision point. Arrow = what flows where. That's the whole notation.
+
 ![The Loop pattern: Process, Check, Improve, Repeat](../diagrams/png/ch03-loop.png)
 
 *The Loop: each cycle carries forward what the last one revealed.*
@@ -84,15 +86,11 @@ Routing is everywhere in daily life:
 
 Email triage. Message from your boss → reply within the hour. Industry newsletter → reading list for the weekend. Promotional email from a store you bought something from once → delete without opening. Three inputs, three paths, decided in about one second based on who sent it.
 
-Getting dressed. Board meeting with external clients → the nice outfit. Team standup on Zoom → whatever you're already wearing. Gym after work → change clothes at 5:30. Same person, same morning, different paths based on what the day requires.
-
 Customer service. Simple question about business hours → FAQ page, no human needed. Complex question about a specific order → route to a specialist. Billing dispute → finance team. One intake, three paths, based on what the customer actually needs.
 
 In AI systems:
 
 Study System: topic mastery score above 90% → light maintenance quiz, just verifying retention. Score between 50-89% → focused practice on the specific gaps. Below 50% → deep study starting from fundamentals, not advanced questions. One input — the topic score — three paths, three intensities. A 92% topic doesn't need the same treatment as a 45% topic.
-
-Project Management: same underlying status data, three different audiences. CEO → three-bullet executive summary with the one thing they need to decide. Engineering team → detailed action items with owners and deadlines. Client → progress highlights with timeline and no internal drama. One input, three routes, three formats. The data doesn't change. The presentation changes completely.
 
 **When to use it**: When different inputs genuinely need different handling. The key word is "genuinely." If you can handle everything the same way with minor tweaks, you don't need a Router. You need a slightly more flexible process. Routing adds complexity. Only route when the difference in handling is substantial, not cosmetic.
 
@@ -182,11 +180,11 @@ Before the full sketch, here's what a simple system looks like in this notation.
 
 That's it. Boxes for steps, arrows for flow, a decision point, and a backward arrow for the loop. Everything you need.
 
-Now the full Study System, the one you've been running manually for five sessions, sketched as a design. Every element maps to something you've already experienced.
+Now the full Study System, the one you've been running manually for five sessions, sketched as a design. Every element maps to something you've already experienced. Instead of one wall of boxes, we'll build it up in three stages so you can see how the patterns layer on top of each other.
+
+**Stage 1 — The Router decides intensity:**
 
 ```
-STUDY SYSTEM - NAPKIN SKETCH
-
 [Study materials + Progress notes]
               |
               v
@@ -204,14 +202,18 @@ STUDY SYSTEM - NAPKIN SKETCH
         +---+---+---+---+
             |
             v
-    +-------+-------+
-    |  GENERATE QUIZ  |  <-- calibrated to path
-    +-------+-------+
+       [ GENERATE QUIZ ]
+```
+
+The Router looks at your score and picks a path. A 92% topic gets light review. A 45% topic gets deep study. Same system, different treatment.
+
+**Stage 2 — Add the Gate to catch bad answers:**
+
+```
+       [ GENERATE QUIZ ]
             |
             v
-    +-------+-------+
-    |   TAKE QUIZ    |
-    +-------+-------+
+       [  TAKE QUIZ   ]
             |
             v
     +-------+-------+
@@ -221,9 +223,15 @@ STUDY SYSTEM - NAPKIN SKETCH
        [pass]  [fail --> flag & correct]
          |
          v
-    +----+----+
-    |  SCORE  |
-    +----+----+
+       [ SCORE ]
+```
+
+Before you study from the answers, the Gate checks: are they actually correct? Pass or go back. No "mostly correct."
+
+**Stage 3 — The Loop decides: another round or done?**
+
+```
+       [ SCORE ]
          |
          v
     +----+------+
@@ -237,13 +245,15 @@ STUDY SYSTEM - NAPKIN SKETCH
     | ENOUGH?   |  score >= 80% on weak areas?
     +----+--+---+
          |  |
-       [yes] [no --> back to ASSESS]
+       [yes] [no --> back to ASSESS at top]
          |
          v
       [DONE -- plan next session]
 ```
 
-Walk through it with me.
+If your weak-area scores hit 80%, you're done. If not, the Loop sends you back to ASSESS, where the Router picks new paths using your updated scores. Each cycle gets tighter because the progress notes now include the latest round's data.
+
+Walk through it with me — now as one connected flow.
 
 The system starts by reading your progress notes — that's Memory. It knows your history before generating anything.
 

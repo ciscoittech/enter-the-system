@@ -23,6 +23,37 @@ package-lock.json
 # MCP config (local)
 .mcp.json
 
+# ─── Internal book production ────────────────────────────
+# Agentic system (commands, hooks, skills, research)
+.claude/commands/
+.claude/hooks/
+.claude/skills/
+.claude/research/
+.claude/settings.json
+.claude/README.md
+
+# Book production instructions
+CLAUDE.md
+
+# Internal planning & tracking
+book/book-state.md
+book/outline-v3.md
+book/chapters/*-outline.md
+book/chapters/*-outlines.md
+book/chapters/*-review*.md
+book/chapters/*-showcase.md
+book/chapters/second-pass-*.md
+
+# Old Mermaid diagram sources & render script
+book/diagrams/src/
+book/diagrams/render.sh
+
+# Internal research (not reader-facing)
+research/synthesized/book-pdf-formatting-research.md
+
+# Dev docs (archived plans/tasks)
+dev/
+
 # ─── Premium content (paid book) ──────────────────────────
 # Act 2 full chapters (teasers are public, full text is paid)
 book/chapters/ch04-draft.md

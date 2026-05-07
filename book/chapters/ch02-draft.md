@@ -22,7 +22,7 @@ Here's what to type. Replace the blanks with your actual topic and your actual r
 >
 > Constraints: Don't ask questions I'd need to memorize a specific number or date to answer. Focus on conceptual understanding. If a question could be confusing because two answers seem close, acknowledge the ambiguity in your explanation."
 
-Take the quiz. Grade yourself.
+Take the quiz. Grade yourself — write your answers down somewhere you can find them (a notes app, a scratch document, even pen and paper). You'll need your score and which questions you got wrong for the next two sessions.
 
 The difference should be obvious. The questions are more targeted. Instead of random coverage, at least half the quiz focuses on your weak areas, the ones you specifically named. The explanations are better because you told the AI what format to use. The constraints are mostly followed: fewer gotcha questions, more conceptual ones.
 
@@ -111,13 +111,23 @@ If you're studying something more specialized (advanced options strategies, musi
 
 This matters more than it seems. You're not just reading AI output for entertainment — you're studying from it. A wrong "correct" answer doesn't just waste your time. It teaches you the wrong thing. And the AI delivers wrong answers with exactly the same confident, helpful tone as correct ones. There's no asterisk, no hedging, no "I'm less sure about this one." Every answer sounds equally authoritative.
 
-That's hallucination — not the dramatic kind where the AI invents entire fictional events, but the quiet kind where it's 90% right and the other 10% sounds just as convincing. In a cover letter, a hallucinated detail is embarrassing. In a study system, it's actively counterproductive. You're trying to learn, and the system is occasionally teaching you wrong things without any signal that it's doing so.
+### Hallucination
+
+Not the dramatic kind where the AI invents entire fictional events, but the quiet kind where it's 90% right and the other 10% sounds just as convincing. In a cover letter, a hallucinated detail is embarrassing. In a study system, it's actively counterproductive. You're trying to learn, and the system is occasionally teaching you wrong things without any signal that it's doing so.
+
+---
 
 Now check for two more problems in your Session 3 output. These are subtler.
 
-**Drift.** You gave the AI specific constraints: focus on conceptual understanding, not memorization. At least 5 questions on weak areas. Two-sentence explanations. Did it follow all of them? Count. Were there any date-or-number questions that slipped in despite your constraint? Were any explanations one sentence instead of two? Were there really five or more questions on your weak topics, or did the AI quietly shift the balance back toward general coverage? Drift is small. Each individual deviation is barely noticeable. You only see the pattern when you go looking for it.
+### Drift
 
-**Overstep.** Did the AI add anything you didn't ask for? A study plan you didn't request? Tips about test-day strategy? Book recommendations? Links to resources? Sometimes these are helpful. Sometimes they're not. Either way, you didn't ask for them, and generating them used attention that could have gone toward better quiz questions or more thorough explanations.
+You gave the AI specific constraints: focus on conceptual understanding, not memorization. At least 5 questions on weak areas. Two-sentence explanations. Did it follow all of them? Count. Were there any date-or-number questions that slipped in despite your constraint? Were any explanations one sentence instead of two? Were there really five or more questions on your weak topics, or did the AI quietly shift the balance back toward general coverage? Drift is small. Each individual deviation is barely noticeable. You only see the pattern when you go looking for it.
+
+---
+
+### Overstep
+
+Did the AI add anything you didn't ask for? A study plan you didn't request? Tips about test-day strategy? Book recommendations? Links to resources? Sometimes these are helpful. Sometimes they're not. Either way, you didn't ask for them, and generating them used attention that could have gone toward better quiz questions or more thorough explanations.
 
 Here's the uncomfortable part: you just fact-checked, counted constraint violations, and audited for extras. That took effort. Would you do that every session? For every question? At midnight the night before your certification exam, when you just want to cram through one more round of practice questions?
 
