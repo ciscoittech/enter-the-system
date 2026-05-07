@@ -6,11 +6,11 @@ Claude goes to work. It searches the web (your Ch 8 connection). Loads your edit
 
 The draft arrives. And it's... fine.
 
-The opening is decent. The structure makes sense. But read it closely. The "research" is thin — Claude found one source and built the whole post around it. A deeper search would have turned up three better ones. The outline is invisible — the piece wanders from point 1 to point 3 without a clear arc because Claude was writing and structuring at the same time. The voice starts strong but drifts generic by paragraph four because Claude was juggling too many concerns at once. And the fact-checking? That happened after the draft was already done — which means Claude built arguments on unchecked claims and had to awkwardly patch them.
+The opening is decent. The structure makes sense. But read it closely. The "research" is thin. Claude found one source and built the whole post around it. A deeper search would have turned up three better ones. The outline is invisible. The piece wanders from point 1 to point 3 without a clear arc because Claude was writing and structuring at the same time. The voice starts strong but drifts generic by paragraph four because Claude was juggling too many concerns at once. And the fact-checking? That happened after the draft was already done, which means Claude built arguments on unchecked claims and had to awkwardly patch them.
 
-Your hook catches the unchecked facts. Your skill file makes the opening paragraph sound like you. But the structural problems — shallow research, wandering outline, fading voice — aren't things hooks can fix after the fact. They're problems that need to be PREVENTED by doing each step properly before moving on.
+Your hook catches the unchecked facts. Your skill file makes the opening paragraph sound like you. But the structural problems (shallow research, wandering outline, fading voice) aren't things hooks can fix after the fact. They're problems that need to be PREVENTED by doing each step properly before moving on.
 
-You know how this works in real life. You don't sit down and write a polished blog post in one pass. You research first. Then you outline. Then you draft. Then you edit. Each step is separate. Each step is focused. You don't research WHILE drafting — that produces shallow research and rough drafts.
+You know how this works in real life. You don't sit down and write a polished blog post in one pass. You research first. Then you outline. Then you draft. Then you edit. Each step is separate. Each step is focused. You don't research WHILE drafting. That produces shallow research and rough drafts.
 
 Your AI system needs the same discipline.
 
@@ -18,7 +18,7 @@ Your AI system needs the same discipline.
 
 ## See the System
 
-Your Content System right now — single-pass:
+Your Content System right now, single-pass:
 
 ```
 [Topic + CLAUDE.md + Skill + State + Web search]
@@ -30,7 +30,7 @@ Your Content System right now — single-pass:
               [Hooks check output]
 ```
 
-One input. One pass. One output. Every stage — research, outline, draft, edit — happens simultaneously inside Claude's head. You can't see the intermediate work. You can't check the research before Claude starts drafting. You can't redirect the outline before 800 words are written.
+One input. One pass. One output. Every stage (research, outline, draft, edit) happens simultaneously inside Claude's head. You can't see the intermediate work. You can't check the research before Claude starts drafting. You can't redirect the outline before 800 words are written.
 
 After this chapter:
 
@@ -48,13 +48,13 @@ Five stages. Four quality gates. Each stage produces a visible file you can read
 
 ## The New Component: Pipelines
 
-Here's the thing about pipelines: there's no magic new feature to install. No pipeline button. No pipeline configuration file. A pipeline is a PATTERN — built from skills, state files, hooks, and commands you already know. It's what happens when you wire the existing components together into a sequence where each stage's output feeds the next, with a checkpoint between each one.
+Here's the thing about pipelines: there's no magic new feature to install. No pipeline button. No pipeline configuration file. A pipeline is a PATTERN, built from skills, state files, hooks, and commands you already know. It's what happens when you wire the existing components together into a sequence where each stage's output feeds the next, with a checkpoint between each one.
 
 That's the real lesson of this chapter. You're not learning a new tool. You're learning to COMPOSE the tools you've already built.
 
 **What a pipeline is, concretely**: A set of instructions that tell the AI "do step 1, save the result, check it, then do step 2 using step 1's result, save THAT result, check it, then step 3..." Each step is its own focused task. Each step produces a file you can read. Each transition has a check.
 
-**How it works in practice**: You create a markdown file in `.claude/commands/` that defines the workflow — the stages, the order, the checks. When you type the command name (like `/content-pipeline`), Claude reads that file and follows the stages. Think of it as a recipe card. Claude follows the steps in order.
+**How it works in practice**: You create a markdown file in `.claude/commands/` that defines the workflow: the stages, the order, the checks. When you type the command name (like `/content-pipeline`), Claude reads that file and follows the stages. Think of it as a recipe card. Claude follows the steps in order.
 
 ```
 my-ai-systems/.claude/commands/
@@ -70,7 +70,7 @@ You already have `.claude/skills/` (expertise) and `.claude/hooks/` (checks). No
 
 A **stage** is one focused step. Research is a stage. Drafting is a stage. Each one has a single job.
 
-An **artifact** is the thing a stage produces. Research produces a brief. Outlining produces an outline. Drafting produces a draft. Each artifact is saved as a file — you can read it, approve it, or send it back for rework.
+An **artifact** is the thing a stage produces. Research produces a brief. Outlining produces an outline. Drafting produces a draft. Each artifact is saved as a file. You can read it, approve it, or send it back for rework.
 
 A **quality gate** is a check between stages. "Is the research deep enough to start outlining?" "Does the outline have a clear structure before we start drafting?" The gate says "pass" or "rework."
 
@@ -78,16 +78,58 @@ A **quality gate** is a check between stages. "Is the research deep enough to st
 
 **Exit criteria** are what must be true for a stage to be done. The research stage must have 3+ sources with URLs. One source isn't enough.
 
-**Resumability** means the pipeline remembers where it stopped. If you close your laptop after approving the outline, the pipeline picks up at the drafting stage next session — it doesn't start over. Your state file (Ch 5) is the mechanism. The pipeline writes its progress to state. Next session, Claude reads state and continues.
+**Resumability** means the pipeline remembers where it stopped. If you close your laptop after approving the outline, the pipeline picks up at the drafting stage next session. It doesn't start over. Your state file (Ch 5) is the mechanism. The pipeline writes its progress to state. Next session, Claude reads state and continues.
 
 The difference between a pipeline and "a long prompt that says do A then B then C" is the exit criteria. A long prompt produces all outputs in one pass with no checkpoints. A pipeline checks each output before proceeding. Exit criteria are the quality gates. Without them, you have a to-do list, not a pipeline.
+
+**Your workflow engine is now complete.** Remember Chapter 4's promise? "Your project folder is your workflow engine." Here's the payoff. You now have three folders inside `.claude/`, each with a clear job:
+
+```
+.claude/
+├── skills/      ← what the AI knows (loaded expertise)
+├── hooks/       ← what gets checked (validation layer)
+└── commands/    ← what runs (workflow definitions)
+```
+
+Plus `settings.json` as the control plane that ties them together. If you've used n8n or Make, this is the same architecture: workflow definitions that reference action nodes and filter nodes, triggered on demand. Except yours lives in version-controlled files with no monthly subscription.
+
+**What makes this "agentic."** You may have heard the term "AI agent" and wondered what it means concretely. Here's the answer: an agent is an AI that doesn't just answer questions. It follows a plan, uses tools, checks its own work, and produces results across multiple steps without you guiding each one. That's exactly what your pipeline does. When you type `/content-pipeline`, Claude becomes an agent: it reads the workflow definition, executes stages in order, runs hooks between stages, writes results to state, and either continues or stops based on quality gates. You defined the plan. The agent executes it.
+
+The `.claude/` directory is what makes a chat into an agent. Without it, Claude is reactive (you ask, it answers). With it, Claude is agentic (you trigger, it executes a workflow with expertise, memory, and quality checks built in).
+
+**Subagents: when one agent isn't enough.** Each stage of your pipeline runs inside the same session. Claude carries all context from stage to stage. This works well for most personal systems. But you'll eventually notice a stage producing weaker output because Claude is holding too much in its head at once. Research context pollutes the drafting stage. Fact-checking rules interfere with creative writing.
+
+The fix: split that stage into a **subagent**. A subagent is a separate, focused AI session that handles one stage's work with only the context it needs. Think of it like n8n's "Execute Sub-Workflow" node: the main workflow hands off to a specialist, waits for the result, then continues.
+
+Here's what that looks like in a pipeline command file:
+
+```markdown
+## Stage 3: DRAFT (subagent)
+
+Spawn a focused session for drafting. Load ONLY:
+- The outline from Stage 2 (content/pipeline/outline.md)
+- The editorial-voice skill
+- The content CLAUDE.md
+
+Do NOT load: research sources, fact-checking rules, or state
+history. The drafter's only job is to write well from the
+approved outline.
+
+Save the draft to content/pipeline/draft.md when complete.
+```
+
+The subagent loads less context, focuses on one job, and produces better output for that job. The main session picks up the result and continues to Stage 4 (review). The trade-off is cost: each subagent pays its own startup overhead (Chapter 11 covers the math). Start with single-session pipelines. Split into subagents when you notice quality dropping in a specific stage.
+
+You won't need subagents for the systems you're building today. But you now know the pattern for when your workflows grow: one orchestrator session managing the overall flow, specialized subagents handling individual stages. That's how the production system in Chapter 10 works at scale.
+
+**Going deeper:** Anthropic's Building Effective Agents guide (docs.anthropic.com/en/docs/build-with-claude/agentic-patterns) covers orchestrator-worker, routing, and evaluation patterns. The Claude Code documentation (docs.anthropic.com/en/docs/claude-code) shows practical Agent tool usage. And n8n's AI workflow templates (n8n.io/ai) let you see the same patterns in a visual builder for comparison.
 
 ---
 
 ## Build It: Content System v6
 
 **Components Used:** `[Prompt (CLAUDE.md)] + [State] + [Skill] + [Hook] + [Connection] + [Pipeline (NEW)]`
-**New this chapter:** Pipeline — all 6 components working together.
+**New this chapter:** Pipeline. All 6 components working together.
 
 ### Step 1: Create the commands directory.
 
@@ -124,7 +166,7 @@ can resume if the session ends.
 **Goal**: Gather material for the topic.
 **Actions**:
 - Search the web for 3+ credible sources on the topic
-- Check content-state.md — has this topic been covered before? From
+- Check content-state.md. Has this topic been covered before? From
   what angle? Find a fresh angle.
 - Compile findings into content/pipeline/research-brief.md
 
@@ -132,7 +174,7 @@ can resume if the session ends.
 - [ ] 3+ sources with URLs
 - [ ] Clear angle identified (different from prior coverage)
 - [ ] Key facts and data points listed
-- [ ] No unverified claims — everything has a source or [VERIFY] flag
+- [ ] No unverified claims. Everything has a source or [VERIFY] flag
 
 **If exit criteria fail**: Search again with different queries. If
 still insufficient after 2 attempts, tell me the topic needs more
@@ -154,7 +196,7 @@ Wait for my approval before continuing to Stage 2.
 - [ ] Each section has a clear purpose noted
 - [ ] Structure follows my preferred format from editorial-voice skill
 - [ ] Target word count allocated across sections
-- [ ] Logical flow — sections build on each other
+- [ ] Logical flow: sections build on each other
 
 **If exit criteria fail**: Restructure. Max 2 revisions.
 
@@ -166,7 +208,7 @@ Wait for my approval before continuing to Stage 3.
 **Goal**: Write the full piece.
 **Actions**:
 - Read the outline from Stage 2
-- Load editorial-voice skill — match my voice throughout, not just
+- Load editorial-voice skill. Match my voice throughout, not just
   the opening
 - Load content-standards skill for format rules
 - Write the draft, saving to content/pipeline/draft.md
@@ -209,7 +251,7 @@ Show me the review results. If all pass, continue to Stage 5.
 **Goal**: Final formatting and state update.
 **Actions**:
 - Apply final formatting for target platform (blog, newsletter,
-  social — based on what I specified)
+  social, based on what I specified)
 - Save the final version to content/pipeline/final.md
 - Update content/content-state.md:
   - Add the piece to the Pieces table (title, topic, date, status:
@@ -228,11 +270,11 @@ sources used, stages completed, any issues flagged and resolved.
 
 That's the longest single file you've created in this book. Walk through what's in it.
 
-Each stage has a **goal**, **actions**, and **exit criteria**. The goal says what this stage is for — one sentence, one job. The actions say what to do. The exit criteria say "you're done when all these boxes are checked." If you remember one thing from this chapter, remember exit criteria. They're what make a pipeline different from "do all of this at once."
+Each stage has a **goal**, **actions**, and **exit criteria**. The goal says what this stage is for. One sentence, one job. The actions say what to do. The exit criteria say "you're done when all these boxes are checked." If you remember one thing from this chapter, remember exit criteria. They're what make a pipeline different from "do all of this at once."
 
-Notice the "wait for my approval" lines in Stages 1 and 2. You get to read the research before outlining starts. You get to approve the outline before drafting begins. You're the editor. You set the direction, then the system executes. Stages 3-5 run more automatically because the structure is already locked in. You can adjust this — add more approval points if you want tighter control, or remove them as you trust the system more.
+Notice the "wait for my approval" lines in Stages 1 and 2. You get to read the research before outlining starts. You get to approve the outline before drafting begins. You're the editor. You set the direction, then the system executes. Stages 3-5 run more automatically because the structure is already locked in. You can adjust this. Add more approval points if you want tighter control, or remove them as you trust the system more.
 
-And notice how the pipeline uses EVERYTHING from prior chapters. CLAUDE.md (Ch 4) for instructions. content-state.md (Ch 5) for topic history. editorial-voice and content-standards skills (Ch 6) for expertise. check-content-quality hook (Ch 7) for automated checks. Web search (Ch 8) for research. And now the pipeline (Ch 9) to stage it all. Six components, one system.
+And notice how the pipeline uses EVERYTHING from prior chapters. CLAUDE.md (Ch 4) for instructions. content-state.md (Ch 5) for topic history. editorial-voice and content-standards skills (Ch 6) for expertise. The check-content-quality hook (Ch 7) for automated checks. Web search (Ch 8) for research. And now the pipeline (Ch 9) to stage it all. Six components, one system.
 
 ### Step 3: Create the pipeline workspace.
 
@@ -240,7 +282,7 @@ And notice how the pipeline uses EVERYTHING from prior chapters. CLAUDE.md (Ch 4
 mkdir -p my-ai-systems/content/pipeline
 ```
 
-This folder holds the intermediate artifacts — the research brief, outline, draft, and final piece. Each stage saves its output here. You can open any of these files, read them, edit them, or restart a stage. The pipeline's work is visible, not hidden.
+This folder holds the intermediate artifacts: the research brief, outline, draft, and final piece. Each stage saves its output here. You can open any of these files, read them, edit them, or restart a stage. The pipeline's work is visible, not hidden.
 
 ### Step 4: Update content-state.md for pipeline tracking.
 
@@ -258,7 +300,7 @@ Add to `content/content-state.md`:
 | Stages Completed | -- |
 ```
 
-This is resumability. If you run the pipeline, approve Stage 1 and Stage 2, then close your laptop for the night — tomorrow, Claude reads this tracker and knows: "Topic is cloud migration mistakes, Stages 1-2 complete, resume at Stage 3." It doesn't start over. The state file gives the pipeline memory. Ch 5's state file pattern, applied one level up.
+This is resumability. If you run the pipeline, approve Stage 1 and Stage 2, then close your laptop for the night. Tomorrow, Claude reads this tracker and knows: "Topic is cloud migration mistakes, Stages 1-2 complete, resume at Stage 3." It doesn't start over. The state file gives the pipeline memory. Ch 5's state file pattern, applied one level up.
 
 ### Step 5: Run the pipeline.
 
@@ -276,33 +318,33 @@ Type:
 
 Here's what you see, stage by stage:
 
-**Stage 1 — Research.** Claude searches the web. Finds articles from AWS, a Gartner case study, a practitioner's blog with real cost data. Saves `content/pipeline/research-brief.md`. Shows you: "3 sources found. Angle: focus on mistakes that SEEM right — everyone makes them because they look smart — rather than obvious blunders. Exit criteria: all checked." Then it waits.
+**Stage 1: Research.** Claude searches the web. Finds articles from AWS, a Gartner case study, a practitioner's blog with real cost data. Saves `content/pipeline/research-brief.md`. Shows you: "3 sources found. Angle: focus on mistakes that SEEM right (everyone makes them because they look smart) rather than obvious blunders. Exit criteria: all checked." Then it waits.
 
 You open the research brief. Real sources, real data, a fresh angle. You say "continue."
 
-**Stage 2 — Outline.** Claude reads the research brief. Loads your editorial voice skill. Creates a structure: hook (a migration horror story from the research), three mistakes (each with a real example from the sources), close (the one question to ask before migrating). Saves `content/pipeline/outline.md`. Shows exit criteria. Waits.
+**Stage 2: Outline.** Claude reads the research brief. Loads your editorial voice skill. Creates a structure: hook (a migration horror story from the research), three mistakes (each with a real example from the sources), close (the one question to ask before migrating). Saves `content/pipeline/outline.md`. Shows exit criteria. Waits.
 
-You read the outline. The structure builds — small mistake to catastrophic. Maybe you say "swap mistake 2 and 3 — build from annoying to devastating." Claude adjusts. Then: "continue."
+You read the outline. The structure builds from small mistake to catastrophic. Maybe you say "swap mistake 2 and 3, build from annoying to devastating." Claude adjusts. Then: "continue."
 
-**Stage 3 — Draft.** Claude reads the approved outline. Loads both skills. Writes the full draft with your voice loaded from the start — not fading by paragraph four because drafting was the ONLY task this time, not research + drafting + checking all at once. Saves `content/pipeline/draft.md`.
+**Stage 3: Draft.** Claude reads the approved outline. Loads both skills. Writes the full draft with your voice loaded from the start, not fading by paragraph four because drafting was the ONLY task this time, not research + drafting + checking all at once. Saves `content/pipeline/draft.md`.
 
-**Stage 4 — Review.** Your hooks fire against the draft. check-content-quality.sh checks for banned words, word count, sourcing. Voice consistency is measured against your skill examples. Results: "All hooks pass. One [VERIFY] flag on a migration cost statistic — source found, flag resolved."
+**Stage 4: Review.** Your hooks fire against the draft. check-content-quality.sh checks for banned words, word count, sourcing. Voice consistency is measured against your skill examples. Results: "All hooks pass. One [VERIFY] flag on a migration cost statistic, source found, flag resolved."
 
-**Stage 5 — Polish.** Claude formats for blog publication. Saves `content/pipeline/final.md`. Updates content-state.md with the new piece. Clears the pipeline tracker.
+**Stage 5: Polish.** Claude formats for blog publication. Saves `content/pipeline/final.md`. Updates content-state.md with the new piece. Clears the pipeline tracker.
 
-Open the final draft. Compare it to what you'd get from a single-pass prompt. The research is deeper — three sources, not one. The structure is tighter — because the outline was approved before a single word of draft was written. The voice is consistent throughout — because drafting was the only task in Stage 3, not research-and-drafting-and-checking all at once. The facts are verified — because review was its own stage, not an afterthought.
+Open the final draft. Compare it to what you'd get from a single-pass prompt. The research is deeper (three sources, not one). The structure is tighter (because the outline was approved before a single word of draft was written). The voice is consistent throughout (because drafting was the only task in Stage 3, not research-and-drafting-and-checking all at once). The facts are verified (because review was its own stage, not an afterthought).
 
 The pipeline didn't make Claude smarter. It made Claude more focused. One job at a time, each job checked. That's what staging buys you.
 
 ### Step 6: Test resumability.
 
-Run the pipeline again with a new topic. After Stage 2 — outline approved — close Claude Code. Walk away. Open it tomorrow. Type:
+Run the pipeline again with a new topic. After Stage 2 (outline approved), close Claude Code. Walk away. Open it tomorrow. Type:
 
 ```
 Continue the content pipeline.
 ```
 
-Claude reads content-state.md. Sees "Topic: [your topic], Stages 1-2 complete, current stage: 3." Picks up at Stage 3 — drafting — without re-running research or outlining.
+Claude reads content-state.md. Sees "Topic: [your topic], Stages 1-2 complete, current stage: 3." Picks up at Stage 3 (drafting) without re-running research or outlining.
 
 You didn't re-explain the topic. You didn't re-run research. The pipeline has memory because it writes to state. State (Ch 5) and pipeline (Ch 9) working together.
 
@@ -312,49 +354,49 @@ You didn't re-explain the topic. You didn't re-run research. The pipeline has me
 
 Same pattern, different stages. Each system gets a command file and a pipeline workspace.
 
-### Study System v6 — Deep Study Pipeline
+### Study System v6: Deep Study Pipeline
 
 Create `.claude/commands/study-deep.md`:
 
 Five stages:
 
-1. **IDENTIFY** — Read study-state.md, find weak areas. Entry: at least 3 quiz sessions logged (so weak areas are data, not guesses).
-2. **RESEARCH** — Web search the weakest topic. Find explanations, tutorials, practice resources. Save to `study-system/pipeline/research.md`. Exit: at least 3 sources.
-3. **SYNTHESIZE** — Combine web findings with your notes. Load study-method skill. Produce a focused study brief in `study-system/pipeline/study-brief.md`.
-4. **PRACTICE** — Generate a 10-question quiz calibrated to the gap. Hook fires: check-quiz-format checks structure.
-5. **ANALYZE** — After you take the quiz, analyze results, update study-state.md. Topic above 70%? Move from "weak" to "moderate." Recommend next session's focus.
+1. **IDENTIFY**: Read study-state.md, find weak areas. Entry: at least 3 quiz sessions logged (so weak areas are data, not guesses).
+2. **RESEARCH**: Web search the weakest topic. Find explanations, tutorials, practice resources. Save to `study-system/pipeline/research.md`. Exit: at least 3 sources.
+3. **SYNTHESIZE**: Combine web findings with your notes. Load study-method skill. Produce a focused study brief in `study-system/pipeline/study-brief.md`.
+4. **PRACTICE**: Generate a 10-question quiz calibrated to the gap. Hook fires: check-quiz-format checks structure.
+5. **ANALYZE**: After you take the quiz, analyze results, update study-state.md. Topic above 70%? Move from "weak" to "moderate." Recommend next session's focus.
 
-This pipeline turns your Study System from a tutor into a researcher — identifies gaps, finds material, teaches it your way, tests you, tracks progress.
+This pipeline turns your Study System from a tutor into a researcher. It identifies gaps, finds material, teaches it your way, tests you, and tracks progress.
 
 Create the workspace: `mkdir -p my-ai-systems/study-system/pipeline`
 
-### Job Hunting System v6 — Application Pipeline
+### Job Hunting System v6: Application Pipeline
 
 Create `.claude/commands/job-apply.md`:
 
 Five stages:
 
-1. **RESEARCH COMPANY** — Web search: recent news, values, tech stack, culture. Save to `job-hunting/pipeline/company-brief.md`. Exit: at least 3 data points you can reference.
-2. **TAILOR MATERIALS** — Load career-profile skill, read job-state.md for patterns. Draft cover letter + resume bullets to `job-hunting/pipeline/materials.md`. Exit: references company research, uses best-performing resume version, under 400 words.
-3. **QUALITY CHECK** — Hooks fire: verify-cover-letter checks company name, word count, no fabrication. check-duplicate confirms you haven't applied here before.
-4. **PREPARE** — Generate interview prep: common questions for this role type + company-specific talking points. Save to `job-hunting/pipeline/interview-prep.md`.
-5. **TRACK** — Update job-state.md: company, role, date, resume version, approach, status "Applied." Recalculate callback rates.
+1. **RESEARCH COMPANY**: Web search for recent news, values, tech stack, culture. Save to `job-hunting/pipeline/company-brief.md`. Exit: at least 3 data points you can reference.
+2. **TAILOR MATERIALS**: Load career-profile skill, read job-state.md for patterns. Draft cover letter + resume bullets to `job-hunting/pipeline/materials.md`. Exit: references company research, uses best-performing resume version, under 400 words.
+3. **QUALITY CHECK**: Hooks fire. verify-cover-letter checks company name, word count, no fabrication. check-duplicate confirms you haven't applied here before.
+4. **PREPARE**: Generate interview prep: common questions for this role type + company-specific talking points. Save to `job-hunting/pipeline/interview-prep.md`.
+5. **TRACK**: Update job-state.md: company, role, date, resume version, approach, status "Applied." Recalculate callback rates.
 
 Create the workspace: `mkdir -p my-ai-systems/job-hunting/pipeline`
 
-### Project Management System v6 — Status Report Pipeline
+### Project Management System v6: Status Report Pipeline
 
 Create `.claude/commands/status-report.md`:
 
 Five stages:
 
-1. **GATHER** — Read project-state.md for current task status. Pull meeting notes if connected. Compile to `project-mgmt/pipeline/raw-data.md`.
-2. **ANALYZE** — What's done, blocked, at risk, changed. Save to `project-mgmt/pipeline/analysis.md`. Exit: analysis matches state file data — no invented progress.
-3. **ROUTE** — Load PM methodology skill. Generate TWO versions: executive summary (bullets, outcomes, risks) and team update (detailed actions, owners, deadlines). Hook fires: check-audience-format verifies structure.
-4. **VERIFY** — verify-status-consistency hook confirms task counts and statuses match state file.
-5. **UPDATE** — Update project-state.md with report date, status changes, new action items.
+1. **GATHER**: Read project-state.md for current task status. Pull meeting notes if connected. Compile to `project-mgmt/pipeline/raw-data.md`.
+2. **ANALYZE**: What's done, blocked, at risk, changed. Save to `project-mgmt/pipeline/analysis.md`. Exit: analysis matches state file data, no invented progress.
+3. **ROUTE**: Load PM methodology skill. Generate TWO versions: executive summary (bullets, outcomes, risks) and team update (detailed actions, owners, deadlines). Hook fires: check-audience-format verifies structure.
+4. **VERIFY**: verify-status-consistency hook confirms task counts and statuses match state file.
+5. **UPDATE**: Update project-state.md with report date, status changes, new action items.
 
-Notice the Router pattern from Chapter 3 appearing in Stage 3 — one set of data, two outputs shaped for different audiences. Patterns you learned in theory are now wired into real systems.
+Notice the Router pattern from Chapter 3 appearing in Stage 3: one set of data, two outputs shaped for different audiences. Patterns you learned in theory are now wired into real systems.
 
 Create the workspace: `mkdir -p my-ai-systems/project-mgmt/pipeline`
 
@@ -364,7 +406,7 @@ Create the workspace: `mkdir -p my-ai-systems/project-mgmt/pipeline`
 
 Your pipeline is only as good as its weakest stage. Run it 3 times and pay attention: which stage takes the longest? Which stage fails its exit criteria most often? That's your bottleneck. Fix THAT stage. Leave the rest alone.
 
-After 3 runs of the content pipeline, say Stage 1 (research) takes 60% of the total time and fails exit criteria once — only found 2 sources instead of 3. The draft stage passes every time. The bottleneck is research. Maybe the search queries need refining. Maybe the exit criteria should say "3 sources, but 2 high-quality sources with original data count as sufficient." Fix research. Don't touch drafting.
+After 3 runs of the content pipeline, say Stage 1 (research) takes 60% of the total time and fails exit criteria once (only found 2 sources instead of 3). The draft stage passes every time. The bottleneck is research. Maybe the search queries need refining. Maybe the exit criteria should say "3 sources, but 2 high-quality sources with original data count as sufficient." Fix research. Don't touch drafting.
 
 Track this. Add to your state file:
 
@@ -378,19 +420,19 @@ Track this. Add to your state file:
 
 After 5 runs, the pattern is obvious. One stage is always the problem.
 
-**When to add a stage.** Only when you can name the failure it prevents. "A formatting stage would be nice" is not enough. "Three times the review stage caught formatting issues that took 10 minutes to fix manually" — that's a reason. Name the failure, then add the stage.
+**When to add a stage.** Only when you can name the failure it prevents. "A formatting stage would be nice" is not enough. "Three times the review stage caught formatting issues that took 10 minutes to fix manually." That's a reason. Name the failure, then add the stage.
 
 **When to remove a stage.** If a stage passes 100% of the time for a month, ask: is the upstream stage so good that this check is redundant? Maybe your editorial-voice skill has gotten so precise that the voice-check in review always passes. Remove it. Simpler pipelines run faster and break less.
 
-**When to skip stages.** Not every piece of content needs all 5 stages. A quick social media post? Skip research and outlining — go straight to draft. Build this into your command: "For short-form content (under 300 words), skip Stages 1-2 and start at Stage 3." That's the Router pattern from Chapter 3, built into your pipeline.
+**When to skip stages.** Not every piece of content needs all 5 stages. A quick social media post? Skip research and outlining. Go straight to draft. Build this into your command: "For short-form content (under 300 words), skip Stages 1-2 and start at Stage 3." That's the Router pattern from Chapter 3, built into your pipeline.
 
-**Context limits.** A 5-stage pipeline running in a single session generates a lot of text — research briefs, outlines, full drafts, review notes. Claude can only hold so much at once (think of it as desk space — eventually, things get pushed off the edges). If your pipeline starts losing quality in later stages, the fix is simple: break the session. Run Stages 1-2 in one session, Stages 3-5 in another. The state file tracks where you stopped. That's what resumability is for.
+**Context limits.** A 5-stage pipeline running in a single session generates a lot of text: research briefs, outlines, full drafts, review notes. Claude can only hold so much at once (think of it as desk space; eventually, things get pushed off the edges). If your pipeline starts losing quality in later stages, the fix is simple: break the session. Run Stages 1-2 in one session, Stages 3-5 in another. The state file tracks where you stopped. That's what resumability is for.
 
 ---
 
 ## What You Built
 
-This is the complete `my-ai-systems/` directory — every file you've created across Chapters 4-9. All four systems at v6, all six components in place.
+This is the complete `my-ai-systems/` directory, every file you've created across Chapters 4-9. All four systems at v6, all six components in place.
 
 ```
 my-ai-systems/
@@ -434,11 +476,11 @@ my-ai-systems/
 
 Five CLAUDE.md files. Four state files. Five skills. Five hooks. One settings.json. Four command files. Four pipeline workspaces.
 
-You started Chapter 4 with a single CLAUDE.md. Six chapters later, you have four systems — each with instructions, memory, expertise, quality checks, external connections, and staged workflows. That's not a prompt. That's infrastructure.
+You started Chapter 4 with a single CLAUDE.md. Six chapters later, you have four systems, each with instructions, memory, expertise, quality checks, external connections, and staged workflows. That's not a prompt. That's infrastructure.
 
 ![The complete system: all six components working together](../diagrams/png/ch09-complete-system.png)
 
-*The complete system after Chapter 9 — all six components in place across all four systems.*
+*The complete system after Chapter 9. All six components in place across all four systems.*
 
 ---
 
@@ -446,11 +488,11 @@ You started Chapter 4 with a single CLAUDE.md. Six chapters later, you have four
 
 ### Test 1: Skip a stage.
 
-Run the pipeline but tell Claude "skip Stage 1, go straight to outlining." Without research, the outline is thinner — Claude falls back on general knowledge instead of specific sources. The draft has fewer concrete examples, vaguer data points. Compare this to a full-pipeline draft. The difference is the cost of skipping research.
+Run the pipeline but tell Claude "skip Stage 1, go straight to outlining." Without research, the outline is thinner. Claude falls back on general knowledge instead of specific sources. The draft has fewer concrete examples, vaguer data points. Compare this to a full-pipeline draft. The difference is the cost of skipping research.
 
 ### Test 2: Fail a quality gate.
 
-Give Claude a topic where credible sources are scarce — something obscure, something so new that very little has been written about it. Watch the exit criteria fail: "Only found 1 source. Exit criteria require 3." The pipeline stops. It doesn't charge ahead into outlining with inadequate research — it tells you the problem and waits. That's the gate holding.
+Give Claude a topic where credible sources are scarce. Something obscure, something so new that very little has been written about it. Watch the exit criteria fail: "Only found 1 source. Exit criteria require 3." The pipeline stops. It doesn't charge ahead into outlining with inadequate research. It tells you the problem and waits. That's the gate holding.
 
 ### Test 3: Compare single-pass to pipeline.
 
@@ -466,17 +508,17 @@ This is the chapter's most important test. Same AI. Same topic. Same tools. Diff
 
 ### Test 4: Test resumability.
 
-Run the pipeline. Complete Stages 1-2. Close Claude Code. Reopen it. Say "continue the content pipeline." Check that Claude picks up at Stage 3, not Stage 1. If it restarts from the beginning, the pipeline tracker in content-state.md needs a clearer "Current Pipeline" section — make the current stage and completed stages more explicit.
+Run the pipeline. Complete Stages 1-2. Close Claude Code. Reopen it. Say "continue the content pipeline." Check that Claude picks up at Stage 3, not Stage 1. If it restarts from the beginning, the pipeline tracker in content-state.md needs a clearer "Current Pipeline" section. Make the current stage and completed stages more explicit.
 
 ---
 
 ## How to Know It's Clicking
 
-Six checks — one for each component, because this chapter completes them all.
+Six checks, one for each component, because this chapter completes them all.
 
 **Pipeline command exists and runs.** `.claude/commands/content-pipeline.md` is in place. Typing `/content-pipeline` starts the workflow. Each stage produces a saved file in `content/pipeline/`.
 
-**Quality gates catch problems.** At least one gate triggers a "rework" during your first pipeline run — insufficient research, weak outline, hook failure. The gate catches it before the next stage inherits the problem.
+**Quality gates catch problems.** At least one gate triggers a "rework" during your first pipeline run (insufficient research, weak outline, hook failure). The gate catches it before the next stage inherits the problem.
 
 **Pipeline output is better than single-pass.** Your side-by-side comparison (Test 3) shows the difference: more sources, tighter structure, more consistent voice. The improvement is visible, not theoretical.
 
@@ -484,8 +526,8 @@ Six checks — one for each component, because this chapter completes them all.
 
 **All six components are visible.** In one pipeline run, you can point to: CLAUDE.md loading (instructions), skill loading (expertise), state reading and writing (memory), hooks firing (quality checks), web search running (connections), and stages executing in order (pipeline). All six. One system.
 
-**You can name the complete system.** "My Content System has six components. Instructions tell Claude what to do. Skills tell it how to write in my voice. State tracks what I've published and where the pipeline is. Hooks check every draft for banned words, unsourced claims, and word count. Connections let Claude research topics online. And the pipeline breaks production into five stages — research, outline, draft, review, polish — with a quality gate between each one."
+**You can name the complete system.** "My Content System has six components. Instructions tell Claude what to do. Skills tell it how to write in my voice. State tracks what I've published and where the pipeline is. Hooks check every draft for banned words, unsourced claims, and word count. Connections let Claude research topics online. And the pipeline breaks production into five stages (research, outline, draft, review, polish) with a quality gate between each one."
 
-That's not a prompt. That's a system. You built it, piece by piece, across six chapters. And you can build another one — for any complex, recurring work — using the same six components in the same pattern.
+That's not a prompt. That's a system. You built it, piece by piece, across six chapters. And you can build another one for any complex, recurring work, using the same six components in the same pattern.
 
-Now you've seen how to build a system from scratch. Chapter 10 shows you what happens when all six components run together under real pressure — a production case study where the stakes are higher than a study quiz or a blog draft. You'll see how the same patterns you just built handle work that actually costs money when it breaks.
+Now you've seen how to build a system from scratch. Chapter 10 shows you what happens when all six components run together under real pressure, a production case study where the stakes are higher than a study quiz or a blog draft. You'll see how the same patterns you just built handle work that actually costs money when it breaks.

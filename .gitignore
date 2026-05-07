@@ -17,3 +17,30 @@ node_modules/
 # Claude Code local state
 .claude/plans/
 .venv/
+
+# Build pipeline (internal tooling)
+build/typst/chapters/
+build/output/
+package.json
+package-lock.json
+
+# Design system (internal)
+design_system/
+
+# Screenshot production (in progress)
+book/screenshots/
+book/SCREENSHOT-SCRIPT.md
+book/SCREENSHOT-LIST.md
+
+# Platform infra (unrelated)
+platform/
+
+# MCP config (local)
+.mcp.json
+
+# Build scripts (keep build.sh, ignore output + typst intermediates)
+build/output/
+build/typst/chapters/
+
+# Frontmatter (LaTeX originals being replaced)
+book/frontmatter/

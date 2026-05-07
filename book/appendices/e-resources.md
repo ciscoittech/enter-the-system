@@ -8,6 +8,8 @@
 | **Claude Code** | Anthropic's AI CLI tool. Primary tool in this book's examples. | code.claude.com |
 | **OpenAI Codex** | OpenAI's CLI agent. Same patterns as Claude Code. | developers.openai.com/codex |
 | **Kimi CLI** | Moonshot AI's open-source CLI. Apache 2.0 license. | moonshotai.github.io/kimi-cli |
+| **Deep Agents CLI** | LangChain's open-source agent CLI. Model-agnostic (works with DeepSeek, Claude, OpenAI, local models). Full open-source stack. See Appendix F for setup. | docs.langchain.com/oss/python/deepagents/cli/overview |
+| **DeepSeek** | Fast, cheap AI models. V4 Flash at $0.14/M input tokens. | platform.deepseek.com |
 
 ## GUI Alternatives
 
@@ -24,6 +26,14 @@
 | Claude Code docs (code.claude.com/docs) | CLAUDE.md, skills, hooks, commands, settings |
 | Anthropic cookbook (github.com/anthropics) | Example projects and patterns |
 | OpenAI Codex docs | Codex CLI setup, usage, capabilities |
+
+## Agentic Workflows and Agent Patterns
+
+| Resource | What It Covers |
+|----------|---------------|
+| Anthropic — Building Effective Agents (docs.anthropic.com/en/docs/build-with-claude/agentic-patterns) | Orchestrator-worker, routing, evaluation patterns. The production architecture behind Chapter 10. |
+| Claude Code documentation (docs.anthropic.com/en/docs/claude-code) | Agent tool, subagents, practical usage for building multi-stage workflows. |
+| n8n AI Workflows (n8n.io/ai) | Visual workflow builder with AI agent nodes. Good for seeing the same patterns from this book in a drag-and-drop interface. |
 
 ## Systems Thinking
 

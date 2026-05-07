@@ -156,7 +156,7 @@ Each folder is self-contained — every file your system needs after that chapte
 
 ## Status
 
-**All 15 chapters drafted. ~50,000 words. Scored, reviewed, and second-pass edited.**
+**All 15 chapters drafted. ~53,000 words. Scored, reviewed, second-pass edited. PDF compiling via Typst.**
 
 | Area | Status |
 |------|--------|
@@ -165,8 +165,9 @@ Each folder is self-contained — every file your system needs after that chapte
 | Act 2 Mastery (Ch 10-15) | Drafted, reviewed, 22-30/30 |
 | Downloads | 54 project files (Ch 4-7) |
 | Research | 8 docs with verified CLI behavior |
-| Diagrams | 19 embedded across Ch 1-10, 10 placeholders in Ch 11-15 |
+| Diagrams | **32 publication-quality diagrams** — redesigned via Claude Design with consistent style system |
 | Production Evidence | 3 systems + PII redactor + case study |
+| PDF Build | Typst pipeline — single-pass compile with TOC, running headers, continuous pages |
 
 Average score: **25.9/30**. All pass. One perfect score (Ch 14: Designing New Systems).
 

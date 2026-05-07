@@ -1,8 +1,8 @@
-# Chapter 3: Design Patterns — Three Shapes Every System Takes
+# Chapter 3: Design Patterns: Three Shapes Every System Takes
 
-You've now pushed a Study System through five sessions. Each one got better. Each one required more work from you. By Session 5, you were providing all four concepts manually — structured prompts, pasted progress notes, fact-checked answers, staged pipeline — and the AI's actual contribution had shrunk to the part in the middle.
+You've now pushed a Study System through five sessions. Each one got better. Each one required more work from you. By Session 5, you were providing all four concepts manually (structured prompts, pasted progress notes, fact-checked answers, staged pipeline) and the AI's actual contribution had shrunk to the part in the middle.
 
-Before we fix that with real tools (that's Act 2), you need one more thing: a way to think about how systems are shaped. Not the concepts — you've got those. The architecture. How the pieces connect.
+Before we fix that with real tools (that's Act 2), you need one more thing: a way to think about how systems are shaped. Not the concepts (you've got those). The architecture. How the pieces connect.
 
 It turns out every system you'll ever build is some combination of three patterns. Once you know the three shapes, you can design systems on the back of a napkin. Without them, you'll either over-engineer something that should be simple or under-build something that needs structure.
 
@@ -18,9 +18,9 @@ You've already used this pattern. Session 5 was a manual Loop. You took a quiz, 
 
 The Loop is the most intuitive pattern because you see it everywhere outside of AI:
 
-Editing your own writing. You draft something, read it back, wince at a sentence, rewrite it, read it back again. Each pass gets closer to what you meant. You stop when it sounds right — or when the deadline hits, whichever comes first.
+Editing your own writing. You draft something, read it back, wince at a sentence, rewrite it, read it back again. Each pass gets closer to what you meant. You stop when it sounds right, or when the deadline hits, whichever comes first.
 
-Cooking without a recipe. You taste the sauce. Too salty. Add some acid. Taste again. Better. Needs heat. Add chili flakes. Taste again. Each cycle is tiny — taste, adjust, taste — but after five cycles, the sauce is yours.
+Cooking without a recipe. You taste the sauce. Too salty. Add some acid. Taste again. Better. Needs heat. Add chili flakes. Taste again. Each cycle is tiny (taste, adjust, taste) but after five cycles, the sauce is yours.
 
 Learning a guitar chord. You press the strings, strum, hear a buzzing sound. Adjust your ring finger. Strum again. Cleaner, but the high E is muted. Shift your index finger. Strum. There it is. Process, check, improve, repeat.
 
@@ -30,13 +30,13 @@ Your Study System: quiz → score → identify weak areas → generate targeted 
 
 Content creation: draft a blog post → compare it to your writing style → identify where the tone drifts toward generic AI voice → revise with specific corrections → compare again. Each draft is closer to sounding like you.
 
-**When to use it**: Any task where the output can be measured and the measurement tells you what to change. The key question is: "Is this good enough, or should we go again?" If you can answer that question with data — a score, a checklist, a comparison — the Loop applies.
+**When to use it**: Any task where the output can be measured and the measurement tells you what to change. The key question is: "Is this good enough, or should we go again?" If you can answer that question with data (a score, a checklist, a comparison), the Loop applies.
 
 **The danger**: Loops without exit conditions run forever. "Good enough" has to be defined before the loop starts, not discovered along the way. Quiz score above 80% on weak areas. Draft passes the style check on all five criteria. Budget variance under 5%. Without a number, "one more round" becomes infinite revision.
 
 ![The Loop pattern: Process, Check, Improve, Repeat](../diagrams/png/ch03-loop.png)
 
-*The Loop — each cycle carries forward what the last one revealed.*
+*The Loop: each cycle carries forward what the last one revealed.*
 
 ---
 
@@ -46,7 +46,7 @@ Stage → Quality Check → Pass or Rework.
 
 You've used this one too. When you fact-checked your quiz answers in Chapter 2, you were running a Gate. You took the AI's output (the "correct" answer), checked it against a source, and made a binary decision: correct or not. The Gate didn't improve the answer. It decided whether the answer was trustworthy enough to study from.
 
-A Gate is a checkpoint between stages. Work arrives, the Gate inspects it, and the verdict is pass or go back. There's no "mostly pass." There's no "pass with reservations." It's a yes or a no. That binary is what makes Gates powerful — they force a clear decision at the exact point where bad output becomes expensive.
+A Gate is a checkpoint between stages. Work arrives, the Gate inspects it, and the verdict is pass or go back. There's no "mostly pass." There's no "pass with reservations." It's a yes or a no. That binary is what makes Gates powerful. They force a clear decision at the exact point where bad output becomes expensive.
 
 You know this pattern from life:
 
@@ -58,17 +58,17 @@ Tasting food before serving it to guests. You taste. It's good? Serve it. Someth
 
 In AI systems:
 
-Job Hunting: the AI drafts a cover letter. Before you send it, a check fires: does it mention the company by name — the actual name, not "your company"? Does it reference something specific about the role? Does every claimed accomplishment match your real experience? Is it under 400 words? Pass all four → ready to send. Fail any one → back to drafting with specific feedback about what's wrong.
+Job Hunting: the AI drafts a cover letter. Before you send it, a check fires: does it mention the company by name (the actual name, not "your company")? Does it reference something specific about the role? Does every claimed accomplishment match your real experience? Is it under 400 words? Pass all four → ready to send. Fail any one → back to drafting with specific feedback about what's wrong.
 
-Project Management: the AI generates a status report. Check: do the task counts match the tracker? Are all blocked items explained? Is the format right for this specific audience — executive summary for the boss, detailed action items for the team? Pass → deliver. Fail → regenerate with corrections.
+Project Management: the AI generates a status report. Check: do the task counts match the tracker? Are all blocked items explained? Is the format right for this specific audience (executive summary for the boss, detailed action items for the team)? Pass → deliver. Fail → regenerate with corrections.
 
 **When to use it**: When shipping bad output costs more than checking it. Cover letters you can't un-send. Financial reports people make decisions from. Quiz answers you're going to study and internalize. Client communications that shape how people see you. Anything where a mistake that gets through is worse than a few extra seconds catching it.
 
-**The danger**: Gates can be too strict or too loose. A Gate that blocks everything is as useless as a Gate that passes everything. If your cover letter check requires five paragraphs of personalization for a wide-net application, nothing will ever ship. If your fact-check only verifies that answers "sound right," hallucinations will sail through. Calibration matters. Start strict and loosen over time — it's easier to relax a standard than to undo the damage from bad output that slipped through.
+**The danger**: Gates can be too strict or too loose. A Gate that blocks everything is as useless as a Gate that passes everything. If your cover letter check requires five paragraphs of personalization for a wide-net application, nothing will ever ship. If your fact-check only verifies that answers "sound right," hallucinations will sail through. Calibration matters. Start strict and loosen over time. It's easier to relax a standard than to undo the damage from bad output that slipped through.
 
 ![The Gate pattern: Stage, Quality Check, Pass or Rework](../diagrams/png/ch03-gate.png)
 
-*The Gate — a binary checkpoint between stages. Pass or go back.*
+*The Gate: a binary checkpoint between stages. Pass or go back.*
 
 ---
 
@@ -94,13 +94,13 @@ Study System: topic mastery score above 90% → light maintenance quiz, just ver
 
 Project Management: same underlying status data, three different audiences. CEO → three-bullet executive summary with the one thing they need to decide. Engineering team → detailed action items with owners and deadlines. Client → progress highlights with timeline and no internal drama. One input, three routes, three formats. The data doesn't change. The presentation changes completely.
 
-**When to use it**: When different inputs genuinely need different handling. The key word is "genuinely." If you can handle everything the same way with minor tweaks, you don't need a Router — you need a slightly more flexible process. Routing adds complexity. Only route when the difference in handling is substantial, not cosmetic.
+**When to use it**: When different inputs genuinely need different handling. The key word is "genuinely." If you can handle everything the same way with minor tweaks, you don't need a Router. You need a slightly more flexible process. Routing adds complexity. Only route when the difference in handling is substantial, not cosmetic.
 
 **The danger**: Route proliferation. Every route is a process you have to build, maintain, and debug. Three paths: manageable. Five paths: suspicious. Seven paths: you're probably splitting hairs that don't need splitting. If your Router has more than three paths, step back and ask: can any of these be merged? Do paths 2 and 3 really need different handling, or is it the same process with one variable changed?
 
 ![The Router pattern: Decision Point, Path A or Path B](../diagrams/png/ch03-router.png)
 
-*The Router — same system, different treatment depending on what comes in.*
+*The Router: same system, different treatment depending on what comes in.*
 
 ---
 
@@ -116,35 +116,35 @@ Here's what a Content System looks like with all three:
 
 **Loop** on the draft: write → check against voice and style → revise → check again. Exit: passes the style check, or maximum two revision cycles.
 
-Router → Gate → Loop. Three patterns, one system. Variety, quality, refinement — each pattern handles a different problem.
+Router → Gate → Loop. Three patterns, one system. Variety, quality, refinement. Each pattern handles a different problem.
 
-This isn't a thought experiment. The author runs a content pipeline with exactly this structure — 26 posts tracked, each scored on six dimensions with a 24-out-of-30 minimum to publish. The Gate has sent 15 drafts back to rework. The Router handles four output formats from the same source material. The Loop refines voice until AI-generated text is indistinguishable from the author's own writing. The patterns work at production scale, not just on napkins.
+This isn't a thought experiment. The author runs a content pipeline with exactly this structure: 26 posts tracked, each scored on six dimensions with a 24-out-of-30 minimum to publish. The Gate has sent 15 drafts back to rework. The Router handles four output formats from the same source material. The Loop refines voice until AI-generated text is indistinguishable from the author's own writing. The patterns work at production scale, not just on napkins.
 
 A Job Hunting System uses two:
 
 **Router**: Dream company you'd give anything to work for → full custom treatment. Every sentence tailored, deep company research, specific examples matched to their values. Wide-net application to keep pipeline full → solid template with targeted adjustments. Same system, two paths, appropriate effort for each.
 
-**Gate**: Before sending anything — dream job or wide-net — check: company name correct and spelled right? (You'd be amazed.) Specific reference to the role, not just the job title? Every experience claim matches the real career profile? Under word count? All pass → ready. Any fail → back to drafting. No exceptions. The Gate doesn't care whether you're excited about this application or exhausted by it.
+**Gate**: Before sending anything (dream job or wide-net), check: company name correct and spelled right? (You'd be amazed.) Specific reference to the role, not just the job title? Every experience claim matches the real career profile? Under word count? All pass → ready. Any fail → back to drafting. No exceptions. The Gate doesn't care whether you're excited about this application or exhausted by it.
 
-Notice what's NOT combined: the Job Hunting System doesn't need a Loop. The cover letter either passes the Gate or it doesn't. If it fails, it goes back to drafting with specific feedback — that's the Gate's rework path, not a Loop. A Loop would be for iteratively improving something that's already acceptable but not great. The Gate handles the "is this ready" question. Different pattern, different job.
+Notice what's NOT combined: the Job Hunting System doesn't need a Loop. The cover letter either passes the Gate or it doesn't. If it fails, it goes back to drafting with specific feedback. That's the Gate's rework path, not a Loop. A Loop would be for iteratively improving something that's already acceptable but not great. The Gate handles the "is this ready" question. Different pattern, different job.
 
 ---
 
 ## The Napkin Test
 
-If you can't draw your system on a napkin — an actual napkin, a sticky note, the back of a receipt — it's too complicated.
+If you can't draw your system on a napkin (an actual napkin, a sticky note, the back of a receipt), it's too complicated.
 
 This isn't a cute metaphor. It's a real design constraint. A system you can't sketch is a system you can't explain to someone else, which means it's a system you can't debug when it breaks, which means it's a system that will break and stay broken.
 
 The notation is simple: boxes for processes, arrows for flow, diamonds for decisions (Router), horizontal lines for checkpoints (Gate), curved arrows going backward for loops. If you need more symbols than that, you're designing something too complex.
 
-The napkin test forces you to leave out everything that doesn't matter. When you only have a small space, you can't include every edge case. You can't diagram what happens when the API times out AND the state file is corrupted AND the user gives bad input all at the same time. You have to draw the main path — the normal flow of the system — and trust that edge cases will be handled when they come up.
+The napkin test forces you to leave out everything that doesn't matter. When you only have a small space, you can't include every edge case. You can't diagram what happens when the API times out AND the state file is corrupted AND the user gives bad input all at the same time. You have to draw the main path (the normal flow of the system) and trust that edge cases will be handled when they come up.
 
 That constraint is the feature. Systems that try to handle every scenario up front end up handling none of them well. Systems that nail the main path and add edge-case handling when real failures occur end up simple, reliable, and maintainable.
 
 ![A napkin sketch of a system using all three patterns](../diagrams/png/ch03-napkin-sketch.png)
 
-*A napkin sketch of the Study System — boxes, arrows, and labels. That's all you need.*
+*A napkin sketch of the Study System. Boxes, arrows, and labels. That's all you need.*
 
 ---
 
@@ -152,7 +152,7 @@ That constraint is the feature. Systems that try to handle every scenario up fro
 
 You now have a vocabulary (four concepts) and a set of shapes (three patterns). Here's how to put them together when you're starting from nothing.
 
-**Step 1: Start with the goal.** Not a vague goal — a specific picture of what RIGHT looks like. "A good study session" is vague. "I spent 80% of my time on topics I haven't mastered, and the quiz targeted the specific concepts I keep getting wrong, not just the broad topic areas" is specific. The more concrete your picture of success, the easier it is to design toward it.
+**Step 1: Start with the goal.** Not a vague goal, but a specific picture of what RIGHT looks like. "A good study session" is vague. "I spent 80% of my time on topics I haven't mastered, and the quiz targeted the specific concepts I keep getting wrong, not just the broad topic areas" is specific. The more concrete your picture of success, the easier it is to design toward it.
 
 **Step 2: Map inputs and outputs.** What goes in? Study materials, prior quiz scores, a list of topics. What comes out? A targeted quiz, a score, an updated progress record, a plan for next session. Write them down. When you can see the inputs and outputs, you can see the gap in between — that's where the system lives.
 
@@ -162,9 +162,9 @@ You now have a vocabulary (four concepts) and a set of shapes (three patterns). 
 
 **Step 5: Add concepts to prevent specific failures.** This is where the four concepts from Chapters 1 and 2 come back. Memory → prevents "starts from zero every session." Control → prevents "learning wrong answers." Flow → prevents "trying to do everything in one prompt." Instruction → prevents "vague output from vague requests." Only add a concept when you can name the failure it prevents. If you can't name the failure, you don't need the concept yet.
 
-**Step 6: Imagine failure.** What if the input is bad — incomplete notes, wrong topic? What if the state file has outdated information? What if the reader is short on time and can only do a 10-minute session instead of 30? Each anticipated failure is a check you could build. You don't build them all now — you note them and build the checks when (if) the failures actually occur. Design for the common case. Handle the edge cases when they bite you.
+**Step 6: Imagine failure.** What if the input is bad (incomplete notes, wrong topic)? What if the state file has outdated information? What if the reader is short on time and can only do a 10-minute session instead of 30? Each anticipated failure is a check you could build. You don't build them all now. You note them and build the checks when (if) the failures actually occur. Design for the common case. Handle the edge cases when they bite you.
 
-That's six steps. Not a rigid methodology — a thinking process. For simple systems, you'll skip steps or combine them. For complex ones, you might spend real time on Step 3, because identifying the right constraint is the difference between a system that solves the actual problem and one that solves a problem nobody has.
+That's six steps. Not a rigid methodology, but a thinking process. For simple systems, you'll skip steps or combine them. For complex ones, you might spend real time on Step 3, because identifying the right constraint is the difference between a system that solves the actual problem and one that solves a problem nobody has.
 
 ---
 
@@ -182,10 +182,10 @@ Before the full sketch, here's what a simple system looks like in this notation.
 
 That's it. Boxes for steps, arrows for flow, a decision point, and a backward arrow for the loop. Everything you need.
 
-Now the full Study System — the one you've been running manually for five sessions — sketched as a design. Every element maps to something you've already experienced.
+Now the full Study System, the one you've been running manually for five sessions, sketched as a design. Every element maps to something you've already experienced.
 
 ```
-STUDY SYSTEM — NAPKIN SKETCH
+STUDY SYSTEM - NAPKIN SKETCH
 
 [Study materials + Progress notes]
               |
@@ -247,17 +247,17 @@ Walk through it with me.
 
 The system starts by reading your progress notes — that's Memory. It knows your history before generating anything.
 
-Then the **Router** kicks in. It looks at your score for each topic and routes to the right intensity. Topics you've mastered (90%+) get light review — just enough to verify retention, not enough to waste your time. Topics in the middle range (50-89%) get focused practice — targeted questions on the specific concepts you're getting wrong. Topics below 50% get deep study — back to fundamentals, not advanced questions you're not ready for.
+Then the **Router** kicks in. It looks at your score for each topic and routes to the right intensity. Topics you've mastered (90%+) get light review, just enough to verify retention, not enough to waste your time. Topics in the middle range (50-89%) get focused practice: targeted questions on the specific concepts you're getting wrong. Topics below 50% get deep study, back to fundamentals, not advanced questions you're not ready for.
 
 The quiz gets generated, calibrated to whichever path the Router chose. You take it.
 
 Then the **Gate**. Before you study from the answers, the system checks: are they actually correct? You experienced this in Chapter 2 when you fact-checked and found a questionable answer. The Gate catches that before the wrong "correct" answer becomes something you memorize.
 
-You score. The progress notes get updated — that's Memory again, writing this time. Your topics, scores, and weak areas are recorded so the next session can read them.
+You score. The progress notes get updated. That's Memory again, writing this time. Your topics, scores, and weak areas are recorded so the next session can read them.
 
-Finally, the **Loop** decides: good enough? If your weak-area scores are above 80%, you're done for today — plan the next session and stop. If they're below 80%, loop back to ASSESS and run another cycle. Each loop gets tighter because the progress notes now include the latest round's data.
+Finally, the **Loop** decides: good enough? If your weak-area scores are above 80%, you're done for today. Plan the next session and stop. If they're below 80%, loop back to ASSESS and run another cycle. Each loop gets tighter because the progress notes now include the latest round's data.
 
-Every piece of this diagram maps to something you felt in Chapters 1 and 2. The Router is what you did implicitly in Session 5 when you focused more on weak topics. The Gate is the fact-checking you did when you audited quiz answers. The Loop is the progression from Session 1 to Session 5 — each one informed by what you learned in the last. The Memory reads and writes are the progress note you maintained by hand.
+Every piece of this diagram maps to something you felt in Chapters 1 and 2. The Router is what you did implicitly in Session 5 when you focused more on weak topics. The Gate is the fact-checking you did when you audited quiz answers. The Loop is the progression from Session 1 to Session 5, each one informed by what you learned in the last. The Memory reads and writes are the progress note you maintained by hand.
 
 The difference: in this design, the system does all of it. You're the one studying. The system handles everything else.
 
@@ -285,27 +285,27 @@ Your sketch should include:
 - Where a Control check happens (what specifically gets verified)
 - Your exit condition for the Loop (what score or threshold means "done for today")
 
-Boxes and arrows. Labels. Ten minutes maximum. Don't overthink it — a rough sketch with the right patterns beats a polished diagram with the wrong constraint.
+Boxes and arrows. Labels. Ten minutes maximum. Don't overthink it. A rough sketch with the right patterns beats a polished diagram with the wrong constraint.
 
 Keep this sketch. It's your blueprint for Chapter 4.
 
 ### Exercise 3: Design a Second System
 
-Pick one of the other three throughlines — whichever matches your life right now:
+Pick one of the other three throughlines, whichever matches your life right now:
 
 - **Job Hunting**: if you're searching, considering a change, or want to be ready when an opportunity shows up
 - **Project Management**: if you manage work, deadlines, or tasks for yourself or a team
-- **Content Creation**: if you write, create, or publish anything — blog posts, newsletters, social media, reports
+- **Content Creation**: if you write, create, or publish anything: blog posts, newsletters, social media, reports
 
-Same six steps. Same napkin sketch. Same ten minutes. The goal isn't a perfect design — it's practicing the process. A rough sketch with the right patterns identified beats a detailed diagram with the wrong constraint identified.
+Same six steps. Same napkin sketch. Same ten minutes. The goal isn't a perfect design. It's practicing the process. A rough sketch with the right patterns identified beats a detailed diagram with the wrong constraint identified.
 
 ### Exercise 4: Audit Someone Else's System
 
-Find an "AI workflow" or "AI automation" post online — YouTube, LinkedIn, Twitter, there are thousands. Sketch their system using the three patterns. Then answer:
+Find an "AI workflow" or "AI automation" post online (YouTube, LinkedIn, Twitter, there are thousands). Sketch their system using the three patterns. Then answer:
 
 - Which patterns are they using?
 - Which are missing?
-- Where's the constraint — what fails most or costs the most?
+- Where's the constraint? What fails most or costs the most?
 - If you added one Gate, where would it go and what would it check?
 
 Five sentences maximum. The brevity is the exercise. If you can diagnose a system in five sentences, you understand the patterns.
@@ -318,15 +318,15 @@ Five sentences maximum. The brevity is the exercise. If you can diagnose a syste
 
 **Pattern selection.** Try these three scenarios. For each, pick the pattern and explain why the other two don't fit:
 
-*"My AI drafts are okay but never great. I keep tweaking and re-running."* That's a Loop. The work improves through iteration. A Gate doesn't fit — the work isn't wrong, just not good enough yet. A Router doesn't fit — the process doesn't change based on input type.
+*"My AI drafts are okay but never great. I keep tweaking and re-running."* That's a Loop. The work improves through iteration. A Gate doesn't fit because the work isn't wrong, just not good enough yet. A Router doesn't fit because the process doesn't change based on input type.
 
-*"Sometimes my AI output is perfectly fine and sometimes it has errors that would embarrass me."* That's a Gate. You need a quality check before using the output. A Loop would over-iterate work that's already fine. A Router doesn't apply — the issue is quality, not input type.
+*"Sometimes my AI output is perfectly fine and sometimes it has errors that would embarrass me."* That's a Gate. You need a quality check before using the output. A Loop would over-iterate work that's already fine. A Router doesn't apply; the issue is quality, not input type.
 
-*"I use the same AI prompt for quick emails and detailed proposals, and it works badly for both."* That's a Router. Different inputs need different processes. A Loop won't help — iterating on the wrong process doesn't make it the right process. A Gate would catch bad output but not prevent the mismatch that caused it.
+*"I use the same AI prompt for quick emails and detailed proposals, and it works badly for both."* That's a Router. Different inputs need different processes. A Loop won't help; iterating on the wrong process doesn't make it the right process. A Gate would catch bad output but not prevent the mismatch that caused it.
 
 If you got all three and can explain why the alternatives don't fit, you're solid.
 
-**Design ability.** Set a timer for fifteen minutes. Pick a task not covered in any exercise — something from your own life. Produce a napkin sketch with at least one pattern, at least two concept components (with the failure each one prevents), and at least one "what if it breaks" scenario. If someone else can understand the sketch without you narrating it, you're ready for Act 2.
+**Design ability.** Set a timer for fifteen minutes. Pick a task not covered in any exercise, something from your own life. Produce a napkin sketch with at least one pattern, at least two concept components (with the failure each one prevents), and at least one "what if it breaks" scenario. If someone else can understand the sketch without you narrating it, you're ready for Act 2.
 
 ---
 
@@ -340,6 +340,6 @@ You have a napkin sketch of the system you want to build. You know what each pie
 
 Act 2 gives you the tools to build it for real. You already know what you're building and why. That's the hard part — and you've already done it.
 
-One more thing before we start building. Everything in Act 2 comes from real systems the author uses in production — not tutorials written for a book. A study system tracking 127 curriculum items with quiz scoring and gap detection. A work operations system with 15 specialized agents and 80,000 reference documents. A content pipeline that's produced 26 scored posts across multiple platforms. The patterns you're about to learn are extracted from systems that run every day. The research repository for this book has the evidence — architecture diagrams, prompt comparisons, eval notebooks you can run yourself. When someone asks "does this actually work?" the answer isn't "trust me." It's "here's the data."
+One more thing before we start building. Everything in Act 2 comes from real systems the author uses in production, not tutorials written for a book. A study system tracking 127 curriculum items with quiz scoring and gap detection. A work operations system with 15 specialized agents and 80,000 reference documents. A content pipeline that's produced 26 scored posts across multiple platforms. The patterns you're about to learn are extracted from systems that run every day. The research repository for this book has the evidence: architecture diagrams, prompt comparisons, eval notebooks you can run yourself. When someone asks "does this actually work?" the answer isn't "trust me." It's "here's the data."
 
 Let's build.

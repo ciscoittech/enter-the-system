@@ -1,10 +1,10 @@
-# Chapter 14: Designing New Systems — From Problem to Blueprint
+# Chapter 14: Designing New Systems
 
 You've built four systems by following this book. Someone told you what file to create, what to type in it, when to run it. You followed the steps and it worked.
 
 That's not design. That's assembly.
 
-A person who assembles four IKEA bookshelves can put together a fifth IKEA bookshelf. A person who understands why bookshelves work — load distribution, shelf spacing, back panel rigidity — can build a bookshelf from raw lumber when there's no instruction manual.
+A person who assembles four IKEA bookshelves can put together a fifth IKEA bookshelf. A person who understands why bookshelves work (load distribution, shelf spacing, back panel rigidity) can build a bookshelf from raw lumber when there's no instruction manual.
 
 This chapter is the raw lumber. You pick a problem the book never covered. You design the system. You build it. The chapter gives you the process, not the answer.
 
@@ -14,35 +14,35 @@ This chapter is the raw lumber. You pick a problem the book never covered. You d
 
 Not everything needs a system. Three conditions have to be true before you start building:
 
-**You do the task repeatedly.** Weekly or daily. If it's quarterly, a prompt works fine. Systems have overhead — creating files, maintaining state, tuning hooks. That overhead only pays off with repetition.
+**You do the task repeatedly.** Weekly or daily. If it's quarterly, a prompt works fine. Systems have overhead: creating files, maintaining state, tuning hooks. That overhead only pays off with repetition.
 
-**Context carries between sessions.** What happened last time matters this time. If every instance is independent — translating a paragraph, brainstorming names, summarizing a one-off article — a prompt handles it. No memory needed means no system needed.
+**Context carries between sessions.** What happened last time matters this time. If every instance is independent (translating a paragraph, brainstorming names, summarizing a one-off article), a prompt handles it. No memory needed means no system needed.
 
-**Mistakes cost something real.** If bad output means redoing 10 minutes of work, a prompt is fine. If bad output means a fabricated credential on a cover letter, an unsourced claim in a published post, or an allergic reaction from a meal plan — build a system.
+**Mistakes cost something real.** If bad output means redoing 10 minutes of work, a prompt is fine. If bad output means a fabricated credential on a cover letter, an unsourced claim in a published post, or an allergic reaction from a meal plan, build a system.
 
 The test: "Would this task be better if it remembered what happened last time?" If yes, you need at least state. That's the start of a system.
 
 Tasks that don't need systems: translating a paragraph (one-shot, no context carries). Brainstorming project names (creative, disposable, no stakes). Summarizing a single article (independent, low-cost if wrong).
 
-Tasks that do: managing client relationships over months (context carries, mistakes cost trust). Planning meals for a household each week (recurring, context carries — what you bought, what you ate, dietary restrictions). Running a side business's books (recurring, high-stakes, patterns matter over time).
+Tasks that do: managing client relationships over months (context carries, mistakes cost trust). Planning meals for a household each week (recurring, context carries: what you bought, what you ate, dietary restrictions). Running a side business's books (recurring, high-stakes, patterns matter over time).
 
-The four systems in this book were chosen because all three conditions are obviously true. For your new system, verify all three before you start building. A system for a task that doesn't need one is worse than no system — it's overhead with no payoff.
+The four systems in this book were chosen because all three conditions are obviously true. For your new system, verify all three before you start building. A system for a task that doesn't need one is worse than no system. It's overhead with no payoff.
 
 ---
 
 ## The 8-Step Design Process
 
-I'm going to walk through each step with a running example — meal planning — so you can see how the decisions work. You're not building a meal planning system. You're building something else. The example shows the process. Your decisions are yours.
+I'm going to walk through each step with a running example (meal planning) so you can see how the decisions work. You're not building a meal planning system. You're building something else. The example shows the process. Your decisions are yours.
 
 ### Step 1: Start with frustration.
 
-What task do you do repeatedly that AI helps with inconsistently? Write it down. Not "I want to use AI for meal planning" — that's a solution looking for a problem. Start with the frustration.
+What task do you do repeatedly that AI helps with inconsistently? Write it down. Not "I want to use AI for meal planning." That's a solution looking for a problem. Start with the frustration.
 
-"I spend 30 minutes every Sunday planning meals for the week, and every time I ask for help, I re-explain my dietary restrictions, what's in my fridge, and what we ate last week. The suggestions repeat. The grocery list doesn't account for what I already have. And last month it suggested a recipe with walnuts — I'm allergic to walnuts."
+"I spend 30 minutes every Sunday planning meals for the week, and every time I ask for help, I re-explain my dietary restrictions, what's in my fridge, and what we ate last week. The suggestions repeat. The grocery list doesn't account for what I already have. And last month it suggested a recipe with walnuts. I'm allergic to walnuts."
 
 The frustration tells you what's broken. "I re-explain every time" = no memory. "Suggestions repeat" = no history tracking. "Didn't account for what I have" = no current state. "Suggested something I'm allergic to" = no guard rails. The frustration IS the diagnosis.
 
-Your turn. Write your frustration in one sentence. If you can't articulate it, you don't have a system problem yet — you have a vague desire. Come back when the frustration is specific.
+Your turn. Write your frustration in one sentence. If you can't articulate it, you don't have a system problem yet. You have a vague desire. Come back when the frustration is specific.
 
 ### Step 2: Map your current workflow.
 
@@ -60,7 +60,9 @@ Meal planning example: "I paste my dietary restrictions, what's in my fridge, wh
 
 Your turn. Map your current workflow. What do you paste? What do you check? What do you wish it remembered?
 
-<!-- DIAGRAM NEEDED: The "before" workflow — a simple linear diagram showing [What you type] -> [AI] -> [What you get] -> [What you check/fix by hand], with the manual work highlighted as the problem area. -->
+![Before workflow: What you type, AI, What you get, What you check and fix by hand](../diagrams/png/ch14-before-workflow.png)
+
+*The "before" workflow — everything after the last arrow is work the system should be doing.*
 
 ### Step 3: Identify the constraint.
 
@@ -68,25 +70,27 @@ Of everything that breaks, what breaks MOST or costs the MOST? That's the constr
 
 Meal planning: "The allergy check is the constraint. If the meal plan includes something I'm allergic to and I don't catch it, that's a health risk. Everything else is inconvenience. This one is safety."
 
-Your constraint might be different. Maybe it's accuracy — the system fabricates data you can't easily verify. Maybe it's consistency — the output quality swings wildly between sessions. Maybe it's completeness — it handles the easy cases but drops the hard ones.
+Your constraint might be different. Maybe it's accuracy: the system fabricates data you can't easily verify. Maybe it's consistency: the output quality swings wildly between sessions. Maybe it's completeness: it handles the easy cases but drops the hard ones.
 
 Name it. One constraint. That's where you start.
 
 ### Step 4: Choose a pattern.
 
-Loop, Gate, or Router — from Chapter 3. Most systems combine two or three. Pick the primary one.
+Loop, Gate, or Router, from Chapter 3. Most systems combine two or three. Pick the primary one.
 
-- If your task improves through iteration (draft, check, improve, repeat) — it's a **Loop**.
-- If your task has a quality bar that output must pass before you use it — it's a **Gate**.
-- If different inputs need different handling — it's a **Router**.
+- If your task improves through iteration (draft, check, improve, repeat), it's a **Loop**.
+- If your task has a quality bar that output must pass before you use it, it's a **Gate**.
+- If different inputs need different handling, it's a **Router**.
 
 Meal planning: Gate. The meal plan must pass allergy and dietary checks before I use it. I don't revise meal plans iteratively (not a Loop). All weeks get the same treatment (not a Router).
 
-Sketch yours on a napkin. Boxes and arrows. If you can't sketch it with these three shapes, it's too complicated — simplify.
+Sketch yours on a napkin. Boxes and arrows. If you can't sketch it with these three shapes, it's too complicated. Simplify.
 
-### Step 5: Start minimal — prompt only.
+### Step 5: Start minimal. Prompt only.
 
 Build v1: just a CLAUDE.md and a structured prompt. No state file. No skills. No hooks. No connections. No pipeline.
+
+One important note: your new system lives in the SAME project alongside your existing systems. The `.claude/` directory is shared infrastructure. When you add a skill for meal planning, it goes in the same `.claude/skills/` folder as your editorial-voice and career-profile skills. When you add a hook, it goes in `.claude/hooks/`. When you add a pipeline command, it goes in `.claude/commands/`. You're not starting from scratch. You're adding to a workflow engine that already has proven components. Some might even be reusable: your content-quality hook might work for meal plan descriptions too.
 
 This will feel like going backward. You just spent ten chapters building systems with six components each. Starting with prompt-only feels like regression.
 
@@ -106,11 +110,11 @@ The order depends on your constraint from Step 3:
 
 - Biggest problem is "it forgets" → add **State**
 - Biggest problem is "output quality is inconsistent" → add **Skill**
-- Biggest problem is "it makes dangerous errors" → add **Hook**
+- Biggest problem is "it makes dangerous errors" → add **Hook** (start building the validation layer)
 - Biggest problem is "it needs information I don't have" → add **Connection**
 - Biggest problem is "it tries to do everything at once" → add **Pipeline**
 
-Meal planning: the constraint is allergy safety. Add a Hook first — a script that checks every recipe against the allergy list before the meal plan is finalized. Run it. The hook catches the walnut recipe. Good. Now add State — so it remembers what was planned and eaten, what's in the fridge, what worked. Run it. Next week's plan avoids last week's meals and uses existing ingredients. Good. Then add Skill — cooking methodology, preferred cuisines, complexity levels for weeknights vs. weekends. The output starts matching how the household actually eats.
+Meal planning: the constraint is allergy safety. Add a Hook first, a script that checks every recipe against the allergy list before the meal plan is finalized. Run it. The hook catches the walnut recipe. Good. Now add State, so it remembers what was planned and eaten, what's in the fridge, what worked. Run it. Next week's plan avoids last week's meals and uses existing ingredients. Good. Then add Skill: cooking methodology, preferred cuisines, complexity levels for weeknights vs. weekends. The output starts matching how the household actually eats.
 
 Three components, added one at a time, each one earning its place by preventing a specific failure.
 
@@ -120,7 +124,7 @@ Your turn. Which component does your system need FIRST? Add it. Run the system. 
 
 Feed your system bad input. Skip steps. Lie to it. See what fails.
 
-Meal planning: Tell the system "I have no dietary restrictions" when you actually do. Does the hook still catch allergens? It should — the hook references a fixed allergy file, not what you said in the session. If the hook relies on your session input instead of the skill file, it's brittle. Fix it.
+Meal planning: Tell the system "I have no dietary restrictions" when you actually do. Does the hook still catch allergens? It should. The hook references a fixed allergy file, not what you said in the session. If the hook relies on your session input instead of the skill file, it's brittle. Fix it.
 
 For each failure that matters, add a check. For failures that don't matter (the system handles them gracefully or the consequences are trivial), leave them alone. Not every edge case needs a hook.
 
@@ -150,7 +154,9 @@ Monthly maintenance: update fridge staples list, review whether preferred cuisin
 
 Your turn. Draw the diagram. List the components. Write the maintenance plan.
 
-<!-- DIAGRAM NEEDED: The 8-step design process as a visual flow — from Frustration through Document — showing where the reader loops back (Step 6 adds components iteratively) and where gates exist (Step 7 tests by breaking). -->
+![The 8-step design process: Frustration through Document, with iterative loops and quality gates](../diagrams/png/ch14-design-process.png)
+
+*The design process — eight steps from frustration to a documented system, with loops where you add components and gates where you test by breaking.*
 
 ---
 
@@ -184,9 +190,9 @@ Rule of thumb: if you'll use the system less than once a week, think hard. Less 
 
 ### "Set it and forget it."
 
-You built the system 3 months ago. It ran well then. You haven't looked at it since. The state file has 200 rows of stale data — Claude's attention is spread across applications from January that went nowhere. The skill describes your situation 3 months ago, before you changed industries. One hook hasn't fired in 8 weeks because the skill already prevents what the hook used to catch.
+You built the system 3 months ago. It ran well then. You haven't looked at it since. The state file has 200 rows of stale data. Claude's attention is spread across applications from January that went nowhere. The skill describes your situation 3 months ago, before you changed industries. One hook hasn't fired in 8 weeks because the skill already prevents what the hook used to catch.
 
-Systems decay. Circumstances change. A system that worked in January may be actively misleading in April — and you won't notice because the output looks plausible.
+Systems decay. Circumstances change. A system that worked in January may be actively misleading in April, and you won't notice because the output looks plausible.
 
 Schedule maintenance. Thirty minutes a month. Review state, skills, hooks, connections, and pipeline performance. Read the maintenance sections from the chapters where you built each component (state hygiene in Ch 5, skill versioning in Ch 6, hook tuning in Ch 7, connection health in Ch 8, pipeline bottlenecks in Ch 9). Those sections exist because this anti-pattern is real and common.
 
@@ -196,7 +202,7 @@ Schedule maintenance. Thirty minutes a month. Review state, skills, hooks, conne
 
 This is your solo flight. The chapter holds the guardrails. You do the work.
 
-**Pick a domain.** Here are some that naturally benefit from systems — all three conditions (repeated, context carries, mistakes cost something) are true for each:
+**Pick a domain.** Here are some that naturally benefit from systems. All three conditions (repeated, context carries, mistakes cost something) are true for each:
 
 - Personal finance tracking and budget planning
 - Fitness and health tracking
@@ -211,7 +217,7 @@ This is your solo flight. The chapter holds the guardrails. You do the work.
 
 Pick the one where you feel the frustration from Step 1 most strongly. If none of these match, use your own. The process works for any domain where all three conditions are true.
 
-**Now walk through the 8 steps.** Not as a thought exercise — actually build it.
+**Now walk through the 8 steps.** Not as a thought exercise. Actually build it.
 
 **Step 1:** Write your frustration sentence. What's broken about how you do this task with AI today?
 
@@ -255,7 +261,7 @@ Five checks:
 
 **You built a system for a new problem.** Not a copy of the Study System with different labels. A different domain with different requirements, different constraints, different component priorities.
 
-**The system has at least 3 components.** At minimum: CLAUDE.md, a state file, and either a skill or a hook. More is fine if each component prevents a named failure. Fewer means you might not need a system — a prompt might be enough.
+**The system has at least 3 components.** At minimum: CLAUDE.md, a state file, and either a skill or a hook. More is fine if each component prevents a named failure. Fewer means you might not need a system. A prompt might be enough.
 
 **You followed the process, not your instinct.** You started with prompt-only v1. You ran it. You identified what broke. You added components one at a time. You didn't design the full system on paper and build it all at once.
 

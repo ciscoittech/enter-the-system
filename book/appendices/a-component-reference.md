@@ -64,7 +64,7 @@ Every component in the book — what it is, when to add it, what failure it prev
 
 ---
 
-## 3. Skill (Introduced: Chapter 7)
+## 3. Skill (Introduced: Chapter 6)
 
 **What it is**: A reusable knowledge document the AI loads before working. Contains rules, examples, vocabulary, and expertise for a specific domain.
 
@@ -99,29 +99,39 @@ You are a [role] who [key expertise]. Your output should [key quality].
 
 ---
 
-## 4. Hook (Introduced: Chapter 8)
+## 4. Hook (Introduced: Chapter 7)
 
-**What it is**: An automated check that runs before or after the AI acts. Catches mistakes before they reach you.
+**What it is**: An automated check (shell script) that runs before or after the AI acts. Together, your hooks form the **validation layer** between Claude's output and your use of it. Catches mistakes before they reach you.
 
 **When to add it**: When the cost of a mistake is higher than the cost of checking. Cover letters, financial reports, quiz answers you're studying from.
 
-**The failure it prevents**: "It gave me confident garbage and I almost used it." Without hooks, you're the only quality gate — and you're not always paying attention.
+**The failure it prevents**: "It gave me confident garbage and I almost used it." Without hooks, you're the only quality gate, and you're not always paying attention.
 
-**Template** (conceptual — implementation varies by tool):
+**Template**:
+```bash
+#!/bin/bash
+INPUT=$(cat)
+FILE_PATH=$(echo "$INPUT" | jq -r '.tool_input.file_path // empty')
+
+# Only check relevant files
+[[ "$FILE_PATH" != *"your-pattern"* ]] && exit 0
+
+CONTENT=$(echo "$INPUT" | jq -r '.tool_input.content // empty')
+
+# Check 1: [describe what you're checking]
+if echo "$CONTENT" | grep -qi "bad-pattern"; then
+    echo "FAILED: [explain why]"
+    exit 2
+fi
+
+exit 0
 ```
-Before saving output, check:
-- [ ] [Specific check 1 — e.g., company name is correct]
-- [ ] [Specific check 2 — e.g., no invented experience]
-- [ ] [Specific check 3 — e.g., under word count limit]
 
-If any check fails: block the output and report what's wrong.
-```
-
-**Maintenance**: Tune thresholds — if a hook flags everything, it's too strict. If it catches nothing, it's too loose. Periodically feed known-bad input to verify hooks still fire. See Chapter 8 "Maintain It" section.
+**Maintenance**: Tune thresholds. If a hook flags everything, it's too strict. If it catches nothing, it's too loose. Periodically feed known-bad input to verify hooks still fire. See Chapter 7 "Break It on Purpose" section.
 
 ---
 
-## 5. Connection (Introduced: Chapter 10)
+## 5. Connection (Introduced: Chapter 8)
 
 **What it is**: A way for the AI to reach outside your local files — web search, MCP servers (plugins for Google Drive, Notion, databases), APIs, CLI tools.
 
@@ -133,7 +143,7 @@ If any check fails: block the output and report what's wrong.
 
 ---
 
-## 6. Pipeline (Introduced: Chapter 11)
+## 6. Pipeline (Introduced: Chapter 9)
 
 **What it is**: A multi-stage workflow where each stage's output feeds the next, with quality gates between stages that decide "continue" or "rework."
 
