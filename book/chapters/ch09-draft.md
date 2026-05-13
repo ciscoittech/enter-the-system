@@ -106,13 +106,17 @@ The `.claude/` directory is what makes a chat into an agent. Without it, Claude 
 
 ### Step 1: Create the commands directory.
 
+This is the last piece of your workflow engine. You've been building it since Chapter 6: skills for knowledge, hooks for quality. Now commands for process — the playbooks that tell your system how to run a multi-stage workflow.
+
 ```
 mkdir -p my-ai-systems/.claude/commands
 ```
 
-Third and final folder inside `.claude/`. Skills hold knowledge. Hooks hold checks. Commands hold workflows. Your `.claude/` directory is now complete.
+Three folders inside `.claude/`. Three purposes. Your workflow engine is complete.
 
 ### Step 2: Build the content pipeline command.
+
+This is the longest single file you'll create in this book — and the most powerful. It's a recipe card for your Content System: five stages, each with a clear job, each checked before the next one starts.
 
 Create `my-ai-systems/.claude/commands/content-pipeline.md`:
 
@@ -241,9 +245,7 @@ Deliver the final piece. Show me a summary: topic, word count,
 sources used, stages completed, any issues flagged and resolved.
 ```
 
-That's the longest single file you've created in this book. Walk through what's in it.
-
-Each stage has a **goal**, **actions**, and **exit criteria**. The goal says what this stage is for. One sentence, one job. The actions say what to do. The exit criteria say "you're done when all these boxes are checked." If you remember one thing from this chapter, remember exit criteria. They're what make a pipeline different from "do all of this at once."
+Walk through what's in it. Each stage has a **goal**, **actions**, and **exit criteria**. The goal says what this stage is for — one sentence, one job. The actions say what to do. The exit criteria say "you're done when all these boxes are checked." If you remember one thing from this chapter, remember exit criteria. They're the difference between a pipeline and a to-do list.
 
 Notice the "wait for my approval" lines in Stages 1 and 2. You get to read the research before outlining starts. You get to approve the outline before drafting begins. You're the editor. You set the direction, then the system executes. Stages 3-5 run more automatically because the structure is already locked in. You can adjust this. Add more approval points if you want tighter control, or remove them as you trust the system more.
 
@@ -251,15 +253,15 @@ And notice how the pipeline uses EVERYTHING from prior chapters. CLAUDE.md (Ch 4
 
 ### Step 3: Create the pipeline workspace.
 
+The pipeline needs somewhere to put its intermediate work — the research brief, the outline, the draft. Each stage saves a file you can open, read, and edit. The work is visible, not hidden inside a chat.
+
 ```
 mkdir -p my-ai-systems/content/pipeline
 ```
 
-This folder holds the intermediate artifacts: the research brief, outline, draft, and final piece. Each stage saves its output here. You can open any of these files, read them, edit them, or restart a stage. The pipeline's work is visible, not hidden.
-
 ### Step 4: Update content-state.md for pipeline tracking.
 
-Add to `my-ai-systems/content/content-state.md`:
+Remember resumability from the concept section? Here's where it becomes real. Add this to `my-ai-systems/content/content-state.md`:
 
 ```markdown
 ## Current Pipeline
@@ -277,19 +279,13 @@ This is resumability. If you run the pipeline, approve Stage 1 and Stage 2, then
 
 ### Step 5: Run the pipeline.
 
-Open Claude Code in the `my-ai-systems/` directory:
-
-```
-claude
-```
-
-Type:
+Open Claude Code in the `my-ai-systems/` directory and type:
 
 ```
 /content-pipeline Write an 800-word blog post about the three biggest mistakes people make when migrating to the cloud.
 ```
 
-Here's what you see, stage by stage.
+One command. Five stages. Every component you've built across six chapters is about to fire in sequence.
 
 ### Stage 1: Research
 
@@ -315,9 +311,9 @@ Your hooks fire against the draft. check-content-quality.sh checks for banned wo
 
 Claude formats for blog publication. Saves `content/pipeline/final.md`. Updates `my-ai-systems/content/content-state.md` with the new piece. Clears the pipeline tracker.
 
-Open the final draft. Compare it to what you'd get from a single-pass prompt. The research is deeper (three sources, not one). The structure is tighter (because the outline was approved before a single word of draft was written). The voice is consistent throughout (because drafting was the only task in Stage 3, not research-and-drafting-and-checking all at once). The facts are verified (because review was its own stage, not an afterthought).
+Open the final draft. Now think back to the single-pass version from the chapter opening — the one that was "fine." The pipeline version has deeper research (three sources, not one). Tighter structure (the outline was approved before a word of draft was written). Consistent voice throughout (because drafting was the only job in Stage 3). Verified facts (because review was its own stage, not an afterthought).
 
-The pipeline didn't make Claude smarter. It made Claude more focused. One job at a time, each job checked. That's what staging buys you.
+Same AI. Same topic. Same tools. The only difference is organization. The pipeline didn't make Claude smarter. It made Claude focused. One job at a time, each job checked. That's what staging buys you.
 
 ### Step 6: Test resumability.
 

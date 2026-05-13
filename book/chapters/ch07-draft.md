@@ -114,17 +114,15 @@ I'll walk through every line of the first script in plain English. After that, y
 
 ### Step 1: Create the hooks folder.
 
-In your terminal, inside your `my-ai-systems/` project:
+Your `.claude/` directory has skills (knowledge). Now it gets hooks (quality checks). Same engine, new capability.
 
 ```
 mkdir -p .claude/hooks
 ```
 
-This creates a `hooks` folder inside your `.claude` directory, right next to the `skills` folder from Chapter 6.
+### Step 2: Build Hook #1 — Cover Letter Verification
 
-### Step 2: Build Hook #1, Cover Letter Verification
-
-Create a file at `.claude/hooks/verify-cover-letter.sh`. You can use any text editor. I'll walk through it in pieces so you see what each part does without scrolling back and forth.
+This is the script that would have caught the Nexus Technologies disaster. I'll walk through it in pieces so you see what each part does — no scrolling back and forth.
 
 **The setup lines** (every hook starts with these):
 
@@ -264,9 +262,11 @@ Make it executable:
 chmod +x .claude/hooks/check-duplicate.sh
 ```
 
-### Step 4: Register the hooks
+### Step 4: Register the hooks.
 
-Create `.claude/settings.json` (or add to it if you already have one from setting up permissions):
+The scripts exist, but Claude Code doesn't know to run them yet. This is the control plane — the file that says "before you save anything, run these checks first."
+
+Create `.claude/settings.json` (or add to it if you already have one):
 
 ```json
 {
@@ -302,17 +302,15 @@ A few things to notice about the format:
 
 One JSON formatting note: if you see an error about unexpected tokens or invalid JSON when Claude Code starts, check for missing commas between items or extra commas after the last item in a list. JSON is fussy about commas. Every item except the last one in a group needs a comma after it.
 
-### Step 5: Test it. Trigger the hooks
+### Step 5: Test it.
 
-Open Claude Code in your project folder. Paste a job posting. Ask Claude to draft a cover letter and save it as `job-hunting/cover-letter-datadog.md`.
+Time to see the gate in action. Open Claude Code, paste a job posting, and ask Claude to draft a cover letter and save it as `job-hunting/cover-letter-datadog.md`.
 
-**Test A: Clean output.** If Claude follows the career-profile skill and uses your real experience, the hooks pass silently. The file saves. The system worked and the guard rails didn't need to intervene. That's the ideal scenario: hooks that are present but quiet.
+**Test A: Clean output.** If Claude uses your real experience, the hooks pass silently. File saves. No drama. That's the ideal — hooks that are present but quiet. You don't notice the guard rail until it catches something.
 
-**Test B: Trigger a failure.** Tell Claude: "Draft a cover letter for this role, and mention my experience leading the data migration project at Nexus Technologies."
+**Test B: Trigger a failure.** Now deliberately break it. Tell Claude: "Draft a cover letter for this role, and mention my experience leading the data migration project at Nexus Technologies."
 
-Claude will draft the letter. When it tries to save the file, the verification hook fires. It scans for company names, finds "Nexus," checks your career-profile skill, and doesn't find a match.
-
-What you see:
+Claude drafts the letter. Tries to save. The hook fires, scans for company names, finds "Nexus," checks your career-profile skill — no match.
 
 ```
 COVER LETTER FAILED CHECKS:
@@ -323,11 +321,11 @@ The file doesn't get saved. Claude sees the feedback and can offer to fix the le
 
 You told Claude to fabricate something. It did, because Claude follows instructions, even bad ones. But the hook caught it. The system caught what Claude couldn't catch in itself.
 
-### Step 6: Confirm hooks fire automatically
+### Step 6: Confirm hooks fire automatically.
 
-Close Claude Code. Reopen it. Draft another cover letter. Don't mention hooks. Don't ask Claude to verify anything. Just ask for a cover letter.
+Close Claude Code. Reopen it. Draft another cover letter — don't mention hooks, don't ask for verification. Just ask for a cover letter.
 
-The hooks still fire. They're registered in `settings.json`. They run every time Claude tries to save a file that matches the pattern. You set them up once. They run forever. That's the point.
+The hooks still fire. They don't need your permission or your attention. They're registered in `settings.json`, and they run every time Claude tries to save a matching file. You set them up once. They work forever. That's what makes this different from "remember to check your work" — the system checks whether you remember or not.
 
 ---
 

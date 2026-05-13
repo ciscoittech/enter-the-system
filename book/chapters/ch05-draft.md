@@ -49,6 +49,8 @@ Without state, the system treats every session as day one. With state, session 1
 
 ### Step 1: Create the state file.
 
+Your system needs somewhere to write down what happened. Not instructions (that's CLAUDE.md), but facts: which jobs you applied to, which resume you used, whether you heard back. A running record.
+
 In your `job-hunting/` folder, create a new file called `job-state.md`:
 
 ```markdown
@@ -86,6 +88,8 @@ You'll also notice **session logs** further down — timestamped entries of what
 
 ### Step 2: Wire it into your CLAUDE.md.
 
+The state file exists, but your system doesn't know it's there yet. You need one line that connects them — the same way plugging a monitor into your computer isn't useful until the computer knows to send a signal to it.
+
 Open `job-hunting/CLAUDE.md` and add a new section at the bottom:
 
 ```markdown
@@ -114,15 +118,9 @@ Your CLAUDE.md just became a conductor. In Chapter 4, it told Claude WHO you are
 
 ### Step 3: Run Session 1 — first application.
 
-Open Claude Code in your `job-hunting/` folder:
+Open Claude Code in your `job-hunting/` folder and paste a real job posting. Tell Claude to draft a tailored cover letter and resume bullets.
 
-```
-claude
-```
-
-Paste a real job posting (or a realistic one). Tell Claude to draft a tailored cover letter and resume bullets.
-
-Here's what happens:
+Watch what happens behind the scenes:
 
 - Claude reads CLAUDE.md (your career info, format preferences, constraints)
 - Claude reads `job-state.md` through the `@` import (empty, first session)
@@ -133,9 +131,7 @@ Open `job-state.md`. It now has one row in the Applications table. The system wr
 
 ### Step 4: Run Session 2 — different job, different session.
 
-Close Claude Code. Open it again. Paste a different job posting.
-
-Here's what happens:
+Close Claude Code. Open it again. Paste a different job posting. This is the moment of truth — the test you ran in Chapter 1, except now the system has memory.
 
 - Claude reads CLAUDE.md + `job-state.md` (now has one row from last time)
 - Claude sees Application #1. It knows you emphasized data infrastructure last time.
@@ -146,9 +142,7 @@ You didn't tell Claude about Application #1. You didn't paste your notes. It rea
 
 ### Step 5: Run Session 3 — the pattern emerges.
 
-Tell Claude that Application #1 got a callback but Application #2 hasn't heard back.
-
-What happens:
+Tell Claude that Application #1 got a callback but Application #2 hasn't heard back. This is where the system starts earning its keep:
 
 - Claude updates statuses in the state file
 - Claude recalculates callback rate — this is a **derived field**, a value calculated from your data rather than typed by you. "Callback rate by resume version." "Average quiz score by topic." "Completion percentage." Claude updates these when it writes to state. These are where patterns emerge. Here: the data-infrastructure resume at 100% (1/1), the general resume at 0% (0/1)

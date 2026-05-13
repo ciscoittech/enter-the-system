@@ -70,9 +70,9 @@ This is the first system component you're building. Not a prompt you paste into 
 
 **Step 1: Create the root CLAUDE.md.**
 
-This file lives in your `my-ai-systems/` folder, not inside any system. It contains what's true about YOU, regardless of which system you're working in.
+Your systems will share some things — your name, your preferences, "never make things up." That shared context lives in one file at the root, so you write it once instead of four times.
 
-Open your text editor — VS Code, Notepad, TextEdit, whatever you use — and create a new file called `CLAUDE.md` in your `my-ai-systems/` folder. Put this in it:
+Create a new file called `CLAUDE.md` in your `my-ai-systems/` folder (any text editor works — VS Code, Notepad, TextEdit):
 
 ```markdown
 # My AI Systems
@@ -102,9 +102,9 @@ mkdir study-system
 cd study-system
 ```
 
-Now create `study-system/CLAUDE.md`. This file has the system-specific context: your topic, level, quiz format. When Claude Code runs here, it reads BOTH files: the root (who you are, shared rules) and this one (what the Study System does). Open it in any text editor (VS Code, TextEdit, Notepad, whatever you have). Or if you're in Warp or another terminal, create it right there.
+Now for the file that makes this folder a system instead of an empty directory. Create `study-system/CLAUDE.md` — this is where you put everything specific to studying: your topic, your level, your quiz preferences. When you work here, the AI reads BOTH files: the shared root (who you are) and this one (what you're studying). Two layers of context, loaded automatically.
 
-Here's what goes in it. Replace the brackets with your real information:
+Replace the brackets with your real information:
 
 ```markdown
 # Study System
@@ -144,9 +144,9 @@ terms in parentheses on first use.
   rather than guessing confidently
 ```
 
-Save it. That's it. That's your first system component.
+Save it. That's your first system component — a file that exists on disk, not a prompt that disappears when you close the window.
 
-**Step 2: Launch the AI and see what happens.**
+**Step 3: Launch the AI and see what happens.**
 
 In your terminal, from the `study-system/` folder:
 
@@ -154,7 +154,7 @@ In your terminal, from the `study-system/` folder:
 claude
 ```
 
-Claude Code starts, sees your folder, and automatically reads CLAUDE.md. This is the important part. You don't paste anything. You don't reference the file. It just loads. Every session, every time, without you doing anything.
+Here's the moment that changes everything. You didn't paste anything. You didn't reference the file. Claude Code found your folder, read both CLAUDE.md files (root + study-system), and loaded all of that context before you typed a word. Every session, automatically.
 
 Now type:
 
@@ -173,21 +173,13 @@ That's a short prompt. But watch what the AI does with it. It already knows your
 
 Compare this to Session 1 in Chapter 1, where you typed everything into a single prompt. Same AI. But now the context is persistent — you wrote it once, and it applies every time you open this folder.
 
-**Step 3: Close and reopen.**
+**Step 4: Close and reopen.**
 
-Close Claude Code. Open it again in the same folder.
+Close Claude Code. Open it again in the same folder. Type: "Quiz me on what we covered last time."
 
-```
-claude
-```
+The AI reads CLAUDE.md again — topic, level, constraints, all there. But here's the wall: it doesn't know what "last time" was. It doesn't know your score. It doesn't know which questions you got wrong. That's the same amnesia from Chapter 1, just smaller. CLAUDE.md handles who you are. It can't handle what happened.
 
-Type: "Quiz me on what we covered last time."
-
-The AI reads CLAUDE.md again. Your topic, level, constraints are all there. But here's what it CAN'T do: it doesn't know what "last time" was. It doesn't know your score. It doesn't know which questions you got wrong.
-
-CLAUDE.md handles static context: who you are, how you want to work. It doesn't handle dynamic data: what happened in each session. That's what state files do. That's Chapter 5.
-
-But notice how much better this already is. You didn't re-explain your topic. You didn't re-type your format preferences. You didn't remind the AI about your constraints. The CLAUDE.md file handled all of that automatically. The manual overhead from Chapter 2's sessions just dropped dramatically.
+Still — notice how much less work you did. No re-explaining your topic. No re-typing your format preferences. No reminding the AI about your constraints. All of that loaded automatically. The manual overhead from Chapter 2's sessions just collapsed. What's left is the dynamic part: session history, scores, weak areas. That's what state files handle. That's Chapter 5.
 
 ---
 

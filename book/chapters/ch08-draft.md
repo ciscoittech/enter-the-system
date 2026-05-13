@@ -90,11 +90,9 @@ Build your connections as enhancements, not foundations. The system should work 
 
 ### Step 1: Enable web search (the zero-setup connection).
 
-Claude Code already has web search and page fetching built in. They're not plugins you install. They're tools that ship with the software. You just need to give permission.
+Good news: this one's already installed. Claude Code ships with web search and page fetching built in. The only thing missing is your permission.
 
-Open your `.claude/settings.json`, the same file where you registered hooks in Chapter 7. You're adding a `"permissions"` section that tells Claude Code it's allowed to search the web and fetch pages during your sessions. Without this, Claude only knows what's in your files and its training data. With it, Claude can look things up in real time.
-
-Here's what the file looks like after the change. The new part is the `"permissions"` block at the top:
+Open `.claude/settings.json` — the same file where you registered hooks in Chapter 7. You're adding one section that flips the switch: Claude can now look things up in real time instead of relying only on your files and its training data.
 
 ```json
 {
@@ -132,7 +130,7 @@ If you prefer a graphical interface, these same permissions can be set in Cowork
 
 ### Step 2: Update the Study System's CLAUDE.md.
 
-Permission alone isn't enough. Claude needs to know WHEN to search and HOW to use what it finds. Open `study-system/CLAUDE.md` and add a new section:
+Permission opens the door. But a door that's always open lets in noise. Claude needs to know WHEN to search and what to do with what it finds — otherwise it'll search for things your notes already cover perfectly well. Open `study-system/CLAUDE.md` and add:
 
 ```markdown
 ## Connections
@@ -160,15 +158,9 @@ Your CLAUDE.md is becoming a real conductor now. It tells Claude when to read st
 
 ### Step 3: Run a session with web search in action.
 
-Open Claude Code in your `study-system/` folder:
+Open Claude Code in your `study-system/` folder. Tell Claude: "I'm weak on VPC peering. My quiz scores on networking topics are below 70%. Find me a clear explanation and create practice questions based on it."
 
-```
-claude
-```
-
-Tell Claude: "I'm weak on VPC peering. My quiz scores on networking topics are below 70%. Find me a clear explanation and create practice questions based on it."
-
-What happens:
+Now watch the system reach outside for the first time:
 
 Claude reads `study-state.md`, confirms networking is a weak area, 62% last session. Claude reads your study-method skill, knows you prefer examples-first, analogies from your field. Then Claude searches the web for VPC peering explanations. It finds two or three sources: an AWS documentation page, a tutorial blog, maybe a Stack Overflow answer.
 
@@ -202,13 +194,11 @@ Other tools follow the same pattern. The command is always `claude mcp add --tra
 
 ### Step 5: Run another session. The difference compounds.
 
-New session. Tell Claude: "Quiz me on networking. Focus on my weak areas."
+New session. "Quiz me on networking. Focus on my weak areas."
 
-Claude reads `study-state.md`, sees last session covered VPC peering with web-sourced material. Networking is still flagged weak (needs more sessions to cross the 70% threshold). Claude searches the web for current networking practice questions for your specific exam. If you connected Notion, Claude also pulls in your lecture notes on subnets.
+Claude reads state, sees networking is still flagged weak. Searches the web for current practice questions. If you connected Notion, it pulls your lecture notes too. The quiz that comes back blends three sources: your own notes, last session's web material, and newly found practice questions. Broader and deeper than anything the system could produce from local files alone.
 
-The quiz that comes back blends three things: your own notes, last session's web-sourced material, and newly found practice questions. It's broader and deeper than anything the system could produce from local files alone.
-
-The constraint moved again. Your system isn't just a tutor anymore. It's a tutor with internet access and (optionally) access to your other tools. Same system, bigger world.
+The system isn't just a tutor anymore. It's a tutor that does its own research. Same six files you've been building. The only difference is one permission and a few lines telling Claude when to look outside.
 
 ### Step 6: Verify the hooks still catch problems.
 

@@ -90,25 +90,25 @@ And the core design principle, the rule that makes everything in this chapter wo
 
 ### Step 1: Create the skills directory.
 
-Open your terminal and run:
+Your system needs a place to store expertise — not instructions (that's CLAUDE.md) and not history (that's state), but knowledge about how to do things well.
 
 ```
 mkdir -p my-ai-systems/.claude/skills
 ```
 
-A note on what just happened. `.claude/` is a hidden folder (it starts with a dot, so it won't show up in a regular file listing). Run `ls -a` to see it. This is the workflow engine from Chapter 4 taking physical form. Skills live here. Later, hooks and commands will live here too. By Chapter 9, this folder will have three sub-folders — knowledge, quality, and process — and your system will be fully agentic.
+You just created the second piece of your workflow engine. `.claude/` is a hidden folder (starts with a dot, so `ls` won't show it — run `ls -a` to see it). Skills live here. Later, hooks and commands will live here too. By Chapter 9, this folder will have three sub-folders — knowledge, quality, and process — and your system will be fully agentic.
 
 The skills directory goes at the ROOT of `my-ai-systems/`, not inside each system folder. That's deliberate. Skills are shared expertise. Your editorial voice skill loads when doing content work, but the same career-profile skill could load when writing a cover letter OR when writing a blog post about your professional experience. Skills belong to the whole system, not to one corner of it.
 
 ### Step 2: Build the editorial voice skill.
 
-Create the folder and file:
+This is the most personal file you'll create in this book. You're about to show the AI what your writing actually sounds like — not describe it in rules, but demonstrate it with real examples.
 
 ```
 mkdir -p my-ai-systems/.claude/skills/editorial-voice
 ```
 
-Now create `my-ai-systems/.claude/skills/editorial-voice/SKILL.md`:
+Create `my-ai-systems/.claude/skills/editorial-voice/SKILL.md`:
 
 ```markdown
 ---
@@ -159,19 +159,17 @@ abstract concepts to something the reader did that morning."
 the alternative works better."]
 ```
 
-This is the most personal step in the book so far. You're putting your actual voice into a file. It feels strange, describing how you write, picking examples, analyzing your own patterns.
-
-The trick is to let the examples do most of the talking. Claude learns more from reading your writing than from reading your description of your writing. If you spend 20 minutes on this, spend 15 finding good examples and 5 on the patterns section.
+It feels strange, analyzing your own voice. Here's the shortcut: let the examples do the work. Claude learns more from reading your writing than from reading your description of your writing. If you spend 20 minutes on this, spend 15 finding good examples and 5 on the patterns section.
 
 ### Step 3: Build the content standards skill.
 
-Create the folder and file:
+Voice is how you write. Standards are what you check before you ship. They're separate concerns, so they live in separate files.
 
 ```
 mkdir -p my-ai-systems/.claude/skills/content-standards
 ```
 
-Now create `my-ai-systems/.claude/skills/content-standards/SKILL.md`:
+Create `my-ai-systems/.claude/skills/content-standards/SKILL.md`:
 
 ```markdown
 ---
@@ -222,7 +220,7 @@ Two skills. One carries your voice. One carries your standards. They work togeth
 
 ### Step 4: Update the Content System's CLAUDE.md.
 
-Open `content/CLAUDE.md` and add a new section:
+Same wiring pattern as Chapter 5 — your CLAUDE.md becomes the conductor, pointing the AI at the right files. Open `content/CLAUDE.md` and add a new section:
 
 ```markdown
 ## Skills
@@ -243,19 +241,11 @@ This is the second time you've updated CLAUDE.md to orchestrate other files. In 
 
 ### Step 5: Run the system.
 
-Open Claude Code in your `my-ai-systems/` folder:
+Open Claude Code in your `my-ai-systems/` folder and give it a topic for a blog post. Something you'd actually write about.
 
-```
-claude
-```
+Behind the scenes, the system is stacking everything you've built. CLAUDE.md loads your preferences. The `@` import pulls your content state. The skills load your voice and your standards. All of that context is in place before Claude writes a word. You can type `/editorial-voice` to load the skill explicitly, or let the system pick it up from your CLAUDE.md reference.
 
-Give it a topic for a blog post. Something you'd actually write about.
-
-Here's what you should see happen. Claude loads CLAUDE.md (format preferences, constraints). It reads content-state.md through the `@` import (what's been written before). Then, because your CLAUDE.md says "load these skills when drafting content," it loads the editorial-voice and content-standards skills. You might see it mention the skills in its response, or you can type `/editorial-voice` to load it explicitly if it doesn't pick them up automatically. Either way, the skills are in context before Claude writes a word.
-
-Then it drafts.
-
-The draft sounds different from what you got in Chapters 4 and 5. The opening matches your style. The word choices reflect your examples. The tone is yours, not generic. It's not perfect, but it's recognizably closer to your voice than anything the system produced before.
+The draft that comes back sounds different from Chapters 4 and 5. The opening matches your style. The word choices reflect your examples. It's not perfect — but it's recognizably closer to your voice than anything the system produced before.
 
 Read the draft against Example 1 from your voice skill. Does the opening have the same energy? If your Example 1 uses short punchy sentences, does the draft? If your Example 3 closes with a question, does the draft?
 
