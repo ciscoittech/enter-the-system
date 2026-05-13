@@ -296,14 +296,7 @@ Together with the CLAUDE.md files (instructions) and state files (memory), this 
 
 The difference between this and a chat session: everything here is a file. You can version control it (git), share it (copy the folder), debug it (read the files), and evolve it (edit one file, behavior changes everywhere it's referenced). No platform lock-in. No subscription. No canvas that breaks when the vendor updates.
 
-**Where this goes next.** The systems you've built are single-agent workflows: one AI session executing the stages. Production systems (like Chapter 10's supplier intelligence) often use multi-agent architectures: an orchestrator agent that delegates stages to specialized subagents, each with their own focused context. The orchestrator decides what to do. The subagents decide how. Think of it as n8n's sub-workflow feature: the main workflow calls a specialized sub-workflow for heavy lifting, then continues with the results.
-
-You don't need multi-agent architecture for personal systems. But if you're curious where this pattern leads:
-
-- Anthropic's Building Effective Agents guide: docs.anthropic.com/en/docs/build-with-claude/agentic-patterns
-- Claude Code documentation on agents and subagents: docs.anthropic.com/en/docs/claude-code
-- The orchestrator-worker pattern: one coordinator, multiple specialists, each with their own skills and context
-- n8n's AI agent workflows (n8n.io/ai) for visual comparison of the same patterns
+**Where this goes next.** The systems you've built are single-agent workflows: one AI session executing the stages. Production systems (like Chapter 10's supplier intelligence) use multi-agent architectures: an orchestrator delegates to specialized subagents, each with focused context. You don't need that for personal systems. But if your systems grow past personal use, the pattern is the same — just more agents, each with their own skills and context. Chapter 15's resource table has the references if you want to explore further.
 
 ---
 

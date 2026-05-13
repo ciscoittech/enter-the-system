@@ -99,6 +99,27 @@ You're not looking for "is this tool amazing." You're looking for "can this tool
 
 You're not evaluating whether the tool is good. You're evaluating whether it can run your systems. A tool with great output quality but no state management is useless for what you've built. A tool with mediocre output but full component support might be exactly what you need. The framework tells you what to look for. The marketing tells you what they want you to look for. Trust the framework.
 
+### The Industry Is Catching Up
+
+If you want proof that this framework maps to reality, look at Anthropic's open-source knowledge-work-plugins repository (github.com/anthropics/knowledge-work-plugins). It's a collection of pre-built plugins for roles like sales, marketing, finance, and customer support. Each plugin is a folder containing skills (markdown files with domain expertise), commands (slash-invoked workflows), and connections (MCP servers wired to CRMs, chat tools, databases).
+
+Sound familiar? It should. Here's the mapping:
+
+| Plugin component | Book component | Chapter |
+|---|---|---|
+| `plugin.json` (manifest) | Prompt (CLAUDE.md) | Ch 4 |
+| `TASKS.md`, `memory/` | State files | Ch 5 |
+| `skills/SKILL.md` | Skill files | Ch 6 |
+| — | Hooks | Ch 7 |
+| `.mcp.json` (MCP servers) | Connections | Ch 8 |
+| Multi-step execution flows | Pipelines | Ch 9 |
+
+Five of six components, mapped directly. The one thing they don't ship? Hooks — automated quality checks that catch mistakes before they reach you. That's the component you learned to build yourself.
+
+These plugins are useful if you're inside Anthropic's ecosystem. But they're pre-built for generic roles. Your systems are built for *your* work, with *your* constraints, running on *whatever tool you choose*. Someone who installs a sales plugin gets a starting point. Someone who's read this book understands the architecture well enough to customize it, rebuild it for a different tool, or build something those plugins don't cover.
+
+That's the difference between using a system and understanding one.
+
 ---
 
 ## Teaching Others
@@ -133,6 +154,23 @@ Those two questions do more than a 30-minute presentation. The person sees the p
 
 ---
 
+## Where to Go Deeper
+
+This book got you building. It deliberately stayed at the systems level and skipped the theory underneath. Start with whichever row addresses your biggest current bottleneck.
+
+| Topic | When to explore | Best resource |
+|-------|----------------|---------------|
+| **Prompt engineering** — chain-of-thought, few-shot learning, prompt chaining | Output quality is inconsistent across runs | Anthropic's prompt engineering docs (docs.anthropic.com/en/docs/build-with-claude/prompt-engineering) |
+| **How LLMs actually work** — tokens, attention, temperature, context windows | You need to debug WHY a system fails, not just WHAT failed | Andrej Karpathy's YouTube lectures |
+| **Model selection and routing** — benchmarks, cost-per-quality, open-source vs. commercial | Your systems work but cost too much or run too slow | Artificial Analysis (artificialanalysis.ai) for benchmark comparisons |
+| **Context window management** — compression, summarization, chunking | State files and skills are getting large enough that the AI "forgets" parts | Anthropic's long context guide (docs.anthropic.com) |
+| **Advanced agent architectures** — orchestrator-worker, evaluation loops, autonomous planning | You want systems that run without you approving every step | Anthropic's Building Effective Agents guide (docs.anthropic.com/en/docs/build-with-claude/agentic-patterns) |
+| **Systems thinking foundations** — stocks, flows, feedback loops, constraints, leverage points | You want to understand WHY the framework works, not just HOW | *Thinking in Systems* (Meadows), *The Goal* (Goldratt), *Enter the System* (Danaher) |
+
+Short on time? Search YouTube for "Goldratt Theory of Constraints explained" and "Donella Meadows systems thinking." Ten-minute overviews that land differently now that you've built the systems yourself.
+
+---
+
 ## Your Toolkit
 
 What you have now that you didn't have 14 chapters ago:
@@ -143,31 +181,10 @@ What you have now that you didn't have 14 chapters ago:
 
 ---
 
-## Where to Go Deeper
-
-This book got you building. It deliberately stayed at the systems level and skipped the theory underneath. Now that your systems are running and producing real output, here's where to go deeper.
-
-Start with whichever row addresses your biggest current bottleneck. If your systems produce inconsistent output, start with prompt engineering. If they're slow or expensive, start with model selection. Let the system tell you what to learn next.
-
-| Topic | When to explore | Best resource |
-|-------|----------------|---------------|
-| **Prompt engineering** — chain-of-thought, few-shot learning, prompt chaining | Your prompts work but output quality is inconsistent across runs | Anthropic's prompt engineering docs (docs.anthropic.com/en/docs/build-with-claude/prompt-engineering) |
-| **How LLMs actually work** — tokens, attention, temperature, context windows | You need to debug WHY a system fails, not just WHAT failed | Andrej Karpathy's YouTube lectures |
-| **Model selection and routing** — benchmarks, cost-per-quality, open-source vs. commercial | Your systems work but cost too much or run too slow | Artificial Analysis (artificialanalysis.ai) for benchmark comparisons |
-| **Context window management** — compression, summarization, chunking | Your state files and skills are getting large enough that the AI "forgets" parts of them | Anthropic's long context guide (docs.anthropic.com) |
-| **Advanced agent architectures** — orchestrator-worker patterns, evaluation loops, autonomous planning | You want systems that run without you approving every step | Anthropic's Building Effective Agents guide (docs.anthropic.com/en/docs/build-with-claude/agentic-patterns) |
-| **Systems thinking foundations** — stocks, flows, feedback loops, constraints, leverage points | You want to understand WHY the framework works, not just HOW | *Thinking in Systems* (Meadows), *The Goal* (Goldratt), *Enter the System* (Danaher) |
-
-Short on time? Search YouTube for "Goldratt Theory of Constraints explained" and "Donella Meadows systems thinking." Ten-minute overviews that land differently now that you've built the systems yourself.
-
----
-
 ## How to Know It's Clicking
 
-Three checks.
+**You can evaluate a new AI tool in 30 minutes.** Not based on the marketing page. You opened it, mapped it to the four concepts, tested your simplest system, and scored it on component support, file transparency, and migration effort.
 
-**You can evaluate a new AI tool in 30 minutes.** Not based on the marketing page. Not based on a demo video. You opened it, mapped it to the four concepts, tested your simplest system, scored it on component support, file transparency, and migration effort. You have a verdict backed by your own testing.
-
-**You can explain the systems approach in under 5 minutes.** To someone who has never opened a terminal. Without jargon. Using THEIR workflow as the example, not yours. You asked the two questions, showed the gap, and demonstrated what a system looks like. They walked away thinking differently about how they use AI.
+**You can explain the systems approach in under 5 minutes.** To someone who has never opened a terminal. Using THEIR workflow as the example, not yours. You asked the two questions, showed the gap, and they walked away thinking differently about how they use AI.
 
 **You don't need this book to build the next system.** You don't need a new course when a new tool ships. You don't need someone to tell you which file to create. You have the concepts, the components, the patterns, the process. The next system is yours.

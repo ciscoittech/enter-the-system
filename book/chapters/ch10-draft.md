@@ -20,6 +20,8 @@ They built a system to answer it. An AI agent backed by a database of 22,000+ pr
 
 This isn't a team of engineers at a well-funded startup. It's one person with the same six components you just learned, pointed at a real market with real money on the line. Every component in this system is something you've already built. Just bigger.
 
+What follows is detailed. You're going to see database queries, confidence scores, and algorithms that compare thousands of data points. You don't need to understand every piece — you're not building this system today. What you're looking for is the shape: where the patterns you already know show up at production scale. Every time you recognize a component from your own systems (and you will, because they're all here), that recognition is the point.
+
 ---
 
 ## The Data Layer: State Files at Scale
